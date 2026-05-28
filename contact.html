@@ -31,17 +31,25 @@
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
-        .logo-icon { width:40px; height:40px; background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue)); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.1rem; }
+        /* ✅ Golden E in header – now matches footer */
+        .logo-icon {
+            width:40px; height:40px;
+            background: linear-gradient(135deg, var(--gold), #b3892d);
+            border-radius:8px;
+            display:flex; align-items:center; justify-content:center;
+            color:white; font-weight:800; font-size:1.1rem;
+        }
         .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
         .nav-links a { color:#ccd6e0; text-decoration:none; font-weight:500; font-size:0.95rem; transition:var(--transition); }
         .nav-links a:hover { color:white; }
         .nav-links .btn-contact { background: var(--gold); color:var(--navy); padding:0.6rem 1.6rem; border-radius:4px; font-weight:600; }
+        .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
         .dropdown { position:relative; }
         .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
         .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:white; border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
         .dropdown:hover .dropdown-menu { display:block; }
         .dropdown-menu li { list-style:none; }
-        .dropdown-menu li a { padding:0.7rem 1.4rem; color:var(--text); display:block; font-weight:500; }
+        .dropdown-menu li a { padding:0.7rem 1.4rem; color:var(--text); display:block; font-weight:500; font-size:0.9rem; }
         .dropdown-menu li a:hover { background:#f1f5f9; color:var(--gold); }
         .mobile-toggle { display:none; background:none; border:none; cursor:pointer; }
         .mobile-toggle span { display:block; width:26px; height:2.5px; background:white; margin:6px 0; border-radius:2px; transition:0.3s; }
