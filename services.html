@@ -21,7 +21,7 @@
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* Header (golden E, single arrow) */
+        /* HEADER (same as other pages) */
         .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
@@ -45,96 +45,22 @@
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
-        /* Page Content */
+        /* PAGE CONTENT */
         .page-content { padding-top:8rem; padding-bottom:5rem; }
-        .section-title { font-size:2.6rem; color:var(--navy); margin-bottom:2rem; }
+        .section-heading { text-align: center; margin-bottom: 4rem; }
+        .section-heading h2 { font-size:2.8rem; color: var(--navy); margin-bottom: 1rem; }
+        .section-heading p { color: var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto; }
 
-        /* Service Cards – now interactive */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 2rem;
-        }
-        .service-card {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem 1.6rem;
-            border: 1px solid var(--gray-light);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            scroll-margin-top: 100px;
-            box-shadow: var(--shadow-sm);
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--gold);
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 5px; height: 100%;
-            background: linear-gradient(to bottom, var(--nepal-red), var(--nepal-blue));
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
-            transform-origin: top;
-        }
-        .service-card:hover::before { transform: scaleY(1); }
-        .service-code {
-            display: inline-block;
-            background: rgba(197,163,82,0.1);
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 0.8rem;
-            padding: 0.25rem 0.9rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-        .service-card h3 {
-            font-size: 1.3rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-            pointer-events: none;
-        }
-        .service-card .short-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-            pointer-events: none;
-        }
-        .card-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, margin 0.4s ease;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            border-top: 1px dashed var(--gray-light);
-            margin-top: 0;
-        }
-        .service-card.open .card-detail {
-            max-height: 300px;
-            margin-top: 1rem;
-        }
-        .toggle-indicator {
-            text-align: right;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gold);
-            margin-top: 0.5rem;
-            user-select: none;
-        }
-        .service-card.open .toggle-indicator::after {
-            content: ' ▲';
-        }
-        .service-card:not(.open) .toggle-indicator::after {
-            content: ' ▼';
-        }
+        .service-category { margin-bottom: 5rem; }
+        .category-title { font-size:2rem; color: var(--navy); border-left: 5px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2rem; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
+        .service-item { background: white; border-radius: 8px; padding: 2rem 1.6rem; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); text-align: center; }
+        .service-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--gold); }
+        .service-item h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
+        .service-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        /* Footer */
+        /* FOOTER */
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
         .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:white; display:flex; align-items:center; gap:8px; }
@@ -148,17 +74,18 @@
 
         @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
         @media (max-width:768px) {
-            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; }
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
             .dropdown-menu li a { color:white; }
-            .services-grid { grid-template-columns:1fr; }
+            .service-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns:1fr; }
         }
     </style>
 </head>
 <body>
+    <!-- ==================== HEADER ==================== -->
     <header class="header" id="header">
         <div class="container header-inner">
             <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
@@ -170,19 +97,10 @@
                     <li class="dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown-menu">
-                            <li><a href="#card-4651">Wholesale (4651)</a></li>
-                            <li><a href="#card-4741">Retail (4741)</a></li>
-                            <li><a href="#card-5820">Software Publishing (5820)</a></li>
-                            <li><a href="#card-6201">Programming (6201)</a></li>
-                            <li><a href="#card-6202">IT Consultancy (6202)</a></li>
-                            <li><a href="#card-6209">Cloud & Security (6209)</a></li>
-                            <li><a href="#card-6311">Hosting (6311)</a></li>
-                            <li><a href="#card-6312">Web Portals (6312)</a></li>
-                            <li><a href="#card-7020">Management (7020)</a></li>
-                            <li><a href="#card-7310">Advertising (7310)</a></li>
-                            <li><a href="#card-7410">Design (7410)</a></li>
-                            <li><a href="#card-9511">Repair (9511)</a></li>
-                            <li><a href="#card-training">IT Training</a></li>
+                            <!-- Quick jump links to categories -->
+                            <li><a href="#infrastructure">Infrastructure</a></li>
+                            <li><a href="#security">Security</a></li>
+                            <li><a href="#remote-workers">Remote Workers</a></li>
                         </ul>
                     </li>
                     <li><a href="why-us.html">Why Us</a></li>
@@ -193,158 +111,129 @@
         </div>
     </header>
 
-    <section class="page-content" id="services">
+    <!-- ==================== SERVICES CONTENT ==================== -->
+    <section class="page-content">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Complete Service Portfolio</h2>
-            <div class="services-grid">
+            <div class="section-heading" data-aos="fade-up">
+                <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;">What We Offer</span>
+                <h2>Comprehensive IT Services</h2>
+                <p>From building your infrastructure to securing your data and enabling remote work – we have every technology need covered.</p>
+            </div>
 
-                <!-- CARD 4651 -->
-                <div class="service-card" id="card-4651" data-aos="fade-up">
-                    <span class="service-code">4651</span>
-                    <h3>Wholesale of Computers & Peripherals</h3>
-                    <p class="short-desc">Import, export, wholesale trading of IT hardware, software, and peripherals.</p>
-                    <div class="card-detail">
-                        <p>We supply bulk orders of laptops, desktops, printers, networking equipment, and licensed software to businesses, government agencies, and educational institutions. Our global sourcing network ensures competitive pricing and fast delivery across Nepal.</p>
+            <!-- INFRASTRUCTURE -->
+            <div class="service-category" id="infrastructure" data-aos="fade-up">
+                <h3 class="category-title">Infrastructure</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon">📡</div>
+                        <h3>Wireless Infrastructure</h3>
+                        <p>Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 4741 -->
-                <div class="service-card" id="card-4741" data-aos="fade-up">
-                    <span class="service-code">4741</span>
-                    <h3>Retail of Computers & Software</h3>
-                    <p class="short-desc">Retail distribution of laptops, desktops, peripherals, accessories, and software.</p>
-                    <div class="card-detail">
-                        <p>Our retail outlets and online store offer a wide range of genuine IT products. From individual buyers to small businesses, we provide personalized recommendations, after‑sales support, and warranty services.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🖥️</div>
+                        <h3>Endpoint Management</h3>
+                        <p>Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 5820 -->
-                <div class="service-card" id="card-5820" data-aos="fade-up">
-                    <span class="service-code">5820</span>
-                    <h3>Software Publishing</h3>
-                    <p class="short-desc">Software development, SaaS platforms, AI systems, and application publishing.</p>
-                    <div class="card-detail">
-                        <p>We design, build, and publish custom software products – from mobile apps to enterprise SaaS. Our AI/ML solutions help businesses automate processes, gain insights, and scale efficiently.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🛒</div>
+                        <h3>IT Procurement</h3>
+                        <p>Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 6201 -->
-                <div class="service-card" id="card-6201" data-aos="fade-up">
-                    <span class="service-code">6201</span>
-                    <h3>Computer Programming</h3>
-                    <p class="short-desc">Custom software development, application programming, and full‑stack engineering.</p>
-                    <div class="card-detail">
-                        <p>Our engineering team excels in modern languages and frameworks. We deliver robust, scalable code for web, mobile, and desktop platforms, following agile methodologies and clean architecture principles.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🌐</div>
+                        <h3>Network Management</h3>
+                        <p>Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 6202 -->
-                <div class="service-card" id="card-6202" data-aos="fade-up">
-                    <span class="service-code">6202</span>
-                    <h3>IT Consultancy & Facilities Mgmt</h3>
-                    <p class="short-desc">System architecture design, IT strategy consulting, and facility management.</p>
-                    <div class="card-detail">
-                        <p>We help organizations plan, design, and manage their IT infrastructure. From network setup to cloud migration, our consultants ensure technology aligns with your business goals.</p>
+                    <div class="service-item">
+                        <div class="service-icon">⚙️</div>
+                        <h3>Operations</h3>
+                        <p>Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 6209 -->
-                <div class="service-card" id="card-6209" data-aos="fade-up">
-                    <span class="service-code">6209</span>
-                    <h3>Cloud & Cybersecurity</h3>
-                    <p class="short-desc">Cloud, cybersecurity, IT support, managed services, and technology maintenance.</p>
-                    <div class="card-detail">
-                        <p>Protect your business with our comprehensive security solutions. We offer penetration testing, firewall setup, endpoint protection, and 24/7 monitoring, alongside cloud infrastructure management on AWS, Azure, and GCP.</p>
+                    <div class="service-item">
+                        <div class="service-icon">☁️</div>
+                        <h3>Cloud Backup & Disaster Recovery</h3>
+                        <p>Automated backups and rapid recovery plans to keep your business running after any disruption.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 6311 -->
-                <div class="service-card" id="card-6311" data-aos="fade-up">
-                    <span class="service-code">6311</span>
-                    <h3>Data Processing & Hosting</h3>
-                    <p class="short-desc">Cloud hosting, data center services, server management, and processing.</p>
-                    <div class="card-detail">
-                        <p>We provide reliable hosting environments, data backup solutions, and server administration. Your data stays secure and accessible, with guaranteed uptime and performance monitoring.</p>
+                    <div class="service-item">
+                        <div class="service-icon">📧</div>
+                        <h3>Microsoft 365 for Business</h3>
+                        <p>Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 6312 -->
-                <div class="service-card" id="card-6312" data-aos="fade-up">
-                    <span class="service-code">6312</span>
-                    <h3>Web Portals</h3>
-                    <p class="short-desc">Development & maintenance of websites, web portals, and SaaS platforms.</p>
-                    <div class="card-detail">
-                        <p>From corporate websites to complex customer portals, we design and develop responsive, SEO‑friendly digital experiences that engage users and drive growth.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🔥</div>
+                        <h3>Managed Firewall Services</h3>
+                        <p>24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 7020 -->
-                <div class="service-card" id="card-7020" data-aos="fade-up">
-                    <span class="service-code">7020</span>
-                    <h3>Management Consultancy</h3>
-                    <p class="short-desc">Business consulting, digital transformation advisory, and strategic planning.</p>
-                    <div class="card-detail">
-                        <p>Our business experts help you streamline operations, adopt new technologies, and create digital roadmaps. We align IT investments with long‑term strategy for measurable ROI.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🎧</div>
+                        <h3>Managed Helpdesk Services</h3>
+                        <p>Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
                 </div>
+            </div>
 
-                <!-- CARD 7310 -->
-                <div class="service-card" id="card-7310" data-aos="fade-up">
-                    <span class="service-code">7310</span>
-                    <h3>Advertising & Digital Marketing</h3>
-                    <p class="short-desc">Digital marketing, online advertising, SEO/SEM, and brand promotion.</p>
-                    <div class="card-detail">
-                        <p>We craft data‑driven marketing campaigns that increase visibility and conversions. Services include search engine optimization, paid ads management, social media strategy, and analytics.</p>
+            <!-- SECURITY -->
+            <div class="service-category" id="security" data-aos="fade-up">
+                <h3 class="category-title">Security</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon">🛡️</div>
+                        <h3>Endpoint Protection</h3>
+                        <p>Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 7410 -->
-                <div class="service-card" id="card-7410" data-aos="fade-up">
-                    <span class="service-code">7410</span>
-                    <h3>Specialized Design</h3>
-                    <p class="short-desc">UI/UX design, graphic design, branding identity, and creative assets.</p>
-                    <div class="card-detail">
-                        <p>Great design is at the heart of every successful product. Our designers create intuitive user interfaces, memorable brand identities, and compelling visuals that resonate with your audience.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🔍</div>
+                        <h3>IT Security Risk Analysis</h3>
+                        <p>Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD 9511 -->
-                <div class="service-card" id="card-9511" data-aos="fade-up">
-                    <span class="service-code">9511</span>
-                    <h3>Computer & Peripheral Repair</h3>
-                    <p class="short-desc">Repair, maintenance, servicing, and troubleshooting of computers & peripherals.</p>
-                    <div class="card-detail">
-                        <p>Our certified technicians diagnose and fix hardware issues quickly. We service laptops, desktops, printers, and networking devices, with genuine spare parts and warranty on repairs.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🔐</div>
+                        <h3>Ransomware Protection</h3>
+                        <p>Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
-                </div>
-
-                <!-- CARD TRAINING -->
-                <div class="service-card" id="card-training" data-aos="fade-up">
-                    <span class="service-code">TRAINING</span>
-                    <h3>IT Training & Upskilling</h3>
-                    <p class="short-desc">Corporate workshops, certification prep, and hands‑on training in modern tech.</p>
-                    <div class="card-detail">
-                        <p>Empower your team with practical skills. We offer customized training programs in programming, cloud technologies, cybersecurity, and office productivity, delivered on‑site or online.</p>
+                    <div class="service-item">
+                        <div class="service-icon">🎓</div>
+                        <h3>Security Awareness Training</h3>
+                        <p>Employee training programs that transform your staff into the first line of defense against cyber threats.</p>
                     </div>
-                    <div class="toggle-indicator"></div>
+                    <div class="service-item">
+                        <div class="service-icon">📋</div>
+                        <h3>Vulnerability Assessment</h3>
+                        <p>Regular scanning and penetration testing to find and fix security holes before attackers do.</p>
+                    </div>
                 </div>
+            </div>
 
+            <!-- REMOTE WORKERS -->
+            <div class="service-category" id="remote-workers" data-aos="fade-up">
+                <h3 class="category-title">Remote Workers</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon">💻</div>
+                        <h3>Virtual Desktop Solutions</h3>
+                        <p>Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">✉️</div>
+                        <h3>Business Email Management</h3>
+                        <p>Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🔧</div>
+                        <h3>Hardware Support Services</h3>
+                        <p>On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">📂</div>
+                        <h3>Remote File Access</h3>
+                        <p>Secure, encrypted access to company files and shared drives from anywhere in the world.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -357,6 +246,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -364,10 +254,9 @@
                 <div>
                     <h4>Key Services</h4>
                     <ul>
-                        <li><a href="#card-5820">Software</a></li>
-                        <li><a href="#card-4651">Hardware Wholesale</a></li>
-                        <li><a href="#card-6209">Cybersecurity</a></li>
-                        <li><a href="#card-9511">Repair</a></li>
+                        <li><a href="#infrastructure">Infrastructure</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#remote-workers">Remote Workers</a></li>
                     </ul>
                 </div>
                 <div>
@@ -379,49 +268,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                &copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal
-            </div>
+            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal</div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Sticky header
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile menu
+        window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50));
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => {
-            toggle.classList.remove('active');
-            nav.classList.remove('active');
-        }));
-
-        // ---- Accordion for service cards ----
-        const cards = document.querySelectorAll('.service-card');
-        cards.forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Don't toggle if user clicks on a link inside (e.g., in the dropdown)
-                if (e.target.tagName === 'A') return;
-
-                // Close all other cards
-                cards.forEach(c => {
-                    if (c !== card) c.classList.remove('open');
-                });
-
-                // Toggle current card
-                card.classList.toggle('open');
-            });
-        });
+        toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
     </script>
 </body>
 </html>
