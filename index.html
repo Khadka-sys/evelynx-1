@@ -21,8 +21,6 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
         .text-center { text-align: center; }
-        .mb-2 { margin-bottom: 2rem; }
-        .mb-4 { margin-bottom: 4rem; }
 
         /* HEADER */
         .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
@@ -74,9 +72,8 @@
         .section-title { font-size:2.6rem; color:var(--navy); margin-bottom:1rem; }
         .section-subtitle { color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto 3rem; }
         .bg-light { background: var(--off-white); }
-        .bg-navy { background: var(--navy); color: var(--white); }
 
-        /* SOLUTIONS CARDS (New) */
+        /* SOLUTIONS CARDS WITH IMAGES */
         .solutions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -86,34 +83,18 @@
         .solution-card {
             background: white;
             border-radius: 8px;
-            padding: 2.5rem 2rem;
+            overflow: hidden;
             border: 1px solid var(--gray-light);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
             box-shadow: var(--shadow-sm);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
-        .solution-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--gold);
-        }
-        .solution-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        .solution-card h3 {
-            font-size: 1.4rem;
-            color: var(--navy);
-            margin-bottom: 1rem;
-        }
-        .solution-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
+        .solution-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+        .solution-card img { width: 100%; height: 180px; object-fit: cover; }
+        .solution-card .card-body { padding: 1.8rem 1.5rem; text-align: center; flex: 1; }
+        .solution-card h3 { font-size: 1.4rem; color: var(--navy); margin-bottom: 0.8rem; }
+        .solution-card p { color: var(--text-muted); font-size: 0.95rem; }
 
         /* SERVICE DETAIL CARDS */
         .page-content { padding-top:8rem; padding-bottom:5rem; }
@@ -130,10 +111,24 @@
         .service-item h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
         .service-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        /* TESTIMONIALS */
-        .testimonial-card { background:white; padding:2rem; border-radius:8px; box-shadow:var(--shadow-md); max-width:700px; margin:0 auto; text-align:center; }
-        .testimonial-card p { font-style:italic; color:var(--text-muted); margin-bottom:1rem; }
-        .testimonial-card strong { color:var(--navy); }
+        /* TESTIMONIAL SLIDER */
+        .testimonial-slider { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
+        .testimonial-slide { display: none; background: white; padding: 2.5rem; border-radius: 8px; box-shadow: var(--shadow-md); }
+        .testimonial-slide.active { display: block; }
+        .testimonial-slide p { font-style: italic; color: var(--text-muted); margin-bottom: 1rem; }
+        .testimonial-slide strong { color: var(--navy); display: block; margin-top: 1rem; }
+        .slider-dots { margin-top: 1.5rem; }
+        .slider-dots .dot { display: inline-block; width: 12px; height: 12px; margin: 0 5px; background: var(--gray-light); border-radius: 50%; cursor: pointer; transition: var(--transition); }
+        .slider-dots .dot.active { background: var(--gold); }
+
+        /* CONTACT SECTION (Google Form) */
+        .contact-form-container { max-width: 700px; margin: 0 auto; background: white; border-radius: 8px; padding: 2rem; box-shadow: var(--shadow-md); }
+        .contact-form-container iframe { width: 100%; height: 650px; border: none; }
+
+        /* COOKIE BANNER */
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 1rem 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; z-index: 9999; transform: translateY(100%); transition: transform 0.4s ease; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner button { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
 
         /* BACK TO TOP */
         .back-to-top { position:fixed; bottom:2rem; right:2rem; width:45px; height:45px; background:var(--gold); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; }
@@ -158,7 +153,7 @@
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
             .dropdown-menu li a { color:white; }
-            .solutions-grid, .service-detail-grid { grid-template-columns: 1fr; }
+            .solutions-grid, .service-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns:1fr; }
         }
     </style>
@@ -175,22 +170,20 @@
                     <li class="dropdown">
                         <a href="solutions.html">Solutions</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#Cybersecurity & Data Protection">Cybersecurity & Data Protection</a></li>
-                            <li><a href="#Cloud Infrastructure & Migration">Cloud Infrastructure & Migration</a></li>
-                            <li><a href="#Managed IT & Helpdesk Support">Managed IT & Helpdesk Support</a></li>
-                            <li><a href="#Software Development & ERP">Software Development & ERP</a></li>
-                            <li><a href="#AI & Machine Learning">AI & Machine Learning</a></li>
-                            <li><a href="#Hardware Supply & Repair">Hardware Supply & Repair</a></li>
+                            <li><a href="solutions.html#business-continuity">Business Continuity</a></li>
+                            <li><a href="solutions.html#cloud-solutions">Cloud Solutions</a></li>
+                            <li><a href="solutions.html#cybersecurity">Cybersecurity</a></li>
+                            <li><a href="solutions.html#it-support">IT Support Services</a></li>
+                            <li><a href="solutions.html#it-consulting">IT Consulting</a></li>
+                            <li><a href="solutions.html#managed-it">Managed IT Services</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#infrastructure">Infrastructure</a></li>
-                            <li><a href="#security">Security</a></li>
-                            <li><a href="#remote-workers">Remote Workers</a></li>
+                            <li><a href="services.html#infrastructure">Infrastructure</a></li>
+                            <li><a href="services.html#security">Security</a></li>
+                            <li><a href="services.html#remote-workers">Remote Workers</a></li>
                         </ul>
                     </li>
                     <li><a href="why-us.html">Why Us</a></li>
@@ -209,7 +202,7 @@
             <p>From software to hardware, cloud to repair – Evelynx Solutions is Nepal’s most comprehensive IT partner. Limited liability, unlimited ambition.</p>
             <div class="hero-buttons">
                 <a href="services.html" class="btn btn-primary">Explore All Services</a>
-                <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
             </div>
         </div>
     </section>
@@ -234,7 +227,7 @@
         </div>
     </section>
 
-    <!-- ==================== SOLUTIONS SECTION  ==================== -->
+    <!-- ==================== SOLUTIONS WITH IMAGES ==================== -->
     <section class="section" id="solutions">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label">What We Solve</span>
@@ -243,42 +236,66 @@
         </div>
         <div class="container">
             <div class="solutions-grid">
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="0">
-                    <span class="solution-icon">🔒</span>
-                    <h3>Cybersecurity & Data Protection</h3>
-                    <p>Protect your business from evolving cyber threats with enterprise-grade security. We provide endpoint protection, threat detection, identity management, security awareness training, and compliance support to safeguard your data and reputation.</p>
-                </div>
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="solution-icon">☁️</span>
-                    <h3>Cloud Infrastructure & Migration</h3>
-                    <p>Modernize your IT with scalable cloud solutions. We manage cloud migration, infrastructure setup on AWS/Azure/GCP, serverless architecture, and ongoing optimization – giving you flexibility, cost savings, and reliable performance.</p>
-                </div>
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
-                    <span class="solution-icon">💻</span>
-                    <h3>Managed IT & Helpdesk Support</h3>
-                    <p>Focus on growing your business while we handle your IT. Our 24/7 helpdesk, proactive monitoring, and on-site support ensure minimal downtime and maximum productivity for your team.</p>
-                </div>
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
-                    <span class="solution-icon">📊</span>
-                    <h3>Software Development & ERP</h3>
-                    <p>Custom web and mobile applications, enterprise resource planning systems, and SaaS platforms – built to your exact specifications using modern frameworks and agile methodologies.</p>
-                </div>
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="400">
-                    <span class="solution-icon">🤖</span>
-                    <h3>AI & Machine Learning</h3>
-                    <p>Unlock intelligent automation with predictive analytics, natural language processing, and computer vision. Our AI/ML solutions turn your data into actionable insights and competitive advantage.</p>
-                </div>
-                <div class="solution-card" data-aos="fade-up" data-aos-delay="500">
-                    <span class="solution-icon">🛠️</span>
-                    <h3>Hardware Supply & Repair</h3>
-                    <p>One-stop shop for all your hardware needs – wholesale and retail of computers, laptops, peripherals, and accessories, plus expert repair and maintenance services for all major brands.</p>
-                </div>
+                <a href="solutions.html#business-continuity" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop" alt="Business Continuity">
+                        <div class="card-body">
+                            <h3>Business Continuity</h3>
+                            <p>Keep your operations running no matter what. Disaster recovery, automated backups, and failover systems ensure zero downtime.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="solutions.html#cloud-solutions" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop" alt="Cloud Solutions">
+                        <div class="card-body">
+                            <h3>Cloud Solutions</h3>
+                            <p>Flexible, secure cloud infrastructure – migration, optimization, and 24/7 management on AWS, Azure, and GCP.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="solutions.html#cybersecurity" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop" alt="Cybersecurity">
+                        <div class="card-body">
+                            <h3>Cybersecurity</h3>
+                            <p>Protect your business from ransomware, phishing, and data breaches with multi‑layered security and 24/7 monitoring.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="solutions.html#it-support" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1581092921461-7c37f9d7b6b6?w=800&auto=format&fit=crop" alt="IT Support">
+                        <div class="card-body">
+                            <h3>IT Support Services</h3>
+                            <p>24/7 helpdesk with Nepali‑speaking engineers. Remote and on‑site support that keeps your team productive.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="solutions.html#it-consulting" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop" alt="IT Consulting">
+                        <div class="card-body">
+                            <h3>IT Consulting</h3>
+                            <p>Align your technology with business goals. Strategic roadmaps, digital transformation, and vendor management.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="solutions.html#managed-it" style="text-decoration:none; color:inherit;">
+                    <div class="solution-card" data-aos="fade-up">
+                        <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&auto=format&fit=crop" alt="Managed IT">
+                        <div class="card-body">
+                            <h3>Managed IT Services</h3>
+                            <p>Outsource your IT operations so you can focus on your core business. Proactive monitoring, maintenance, and support.</p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ==================== SERVICE DETAILS ==================== -->
-    <section class="page-content">
+    <!-- ==================== SERVICE DETAILS (Infrastructure / Security / Remote Workers) ==================== -->
+    <section class="page-content" id="services-section">
         <div class="container">
             <div class="section-heading" data-aos="fade-up">
                 <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;">What We Offer</span>
@@ -290,51 +307,15 @@
             <div class="service-category" id="infrastructure" data-aos="fade-up">
                 <h3 class="category-title">Infrastructure</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">📡</div>
-                        <h3>Wireless Infrastructure</h3>
-                        <p>Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🖥️</div>
-                        <h3>Endpoint Management</h3>
-                        <p>Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🛒</div>
-                        <h3>IT Procurement</h3>
-                        <p>Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🌐</div>
-                        <h3>Network Management</h3>
-                        <p>Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">⚙️</div>
-                        <h3>Operations</h3>
-                        <p>Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">☁️</div>
-                        <h3>Cloud Backup & Disaster Recovery</h3>
-                        <p>Automated backups and rapid recovery plans to keep your business running after any disruption.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📧</div>
-                        <h3>Microsoft 365 for Business</h3>
-                        <p>Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔥</div>
-                        <h3>Managed Firewall Services</h3>
-                        <p>24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎧</div>
-                        <h3>Managed Helpdesk Services</h3>
-                        <p>Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">📡</div><h3>Wireless Infrastructure</h3><p>Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.</p></div>
+                    <div class="service-item"><div class="service-icon">🖥️</div><h3>Endpoint Management</h3><p>Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.</p></div>
+                    <div class="service-item"><div class="service-icon">🛒</div><h3>IT Procurement</h3><p>Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.</p></div>
+                    <div class="service-item"><div class="service-icon">🌐</div><h3>Network Management</h3><p>Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.</p></div>
+                    <div class="service-item"><div class="service-icon">⚙️</div><h3>Operations</h3><p>Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.</p></div>
+                    <div class="service-item"><div class="service-icon">☁️</div><h3>Cloud Backup & Disaster Recovery</h3><p>Automated backups and rapid recovery plans to keep your business running after any disruption.</p></div>
+                    <div class="service-item"><div class="service-icon">📧</div><h3>Microsoft 365 for Business</h3><p>Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.</p></div>
+                    <div class="service-item"><div class="service-icon">🔥</div><h3>Managed Firewall Services</h3><p>24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.</p></div>
+                    <div class="service-item"><div class="service-icon">🎧</div><h3>Managed Helpdesk Services</h3><p>Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p></div>
                 </div>
             </div>
 
@@ -342,31 +323,11 @@
             <div class="service-category" id="security" data-aos="fade-up">
                 <h3 class="category-title">Security</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">🛡️</div>
-                        <h3>Endpoint Protection</h3>
-                        <p>Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔍</div>
-                        <h3>IT Security Risk Analysis</h3>
-                        <p>Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔐</div>
-                        <h3>Ransomware Protection</h3>
-                        <p>Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎓</div>
-                        <h3>Security Awareness Training</h3>
-                        <p>Employee training programs that transform your staff into the first line of defense against cyber threats.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📋</div>
-                        <h3>Vulnerability Assessment</h3>
-                        <p>Regular scanning and penetration testing to find and fix security holes before attackers do.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">🛡️</div><h3>Endpoint Protection</h3><p>Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.</p></div>
+                    <div class="service-item"><div class="service-icon">🔍</div><h3>IT Security Risk Analysis</h3><p>Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.</p></div>
+                    <div class="service-item"><div class="service-icon">🔐</div><h3>Ransomware Protection</h3><p>Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.</p></div>
+                    <div class="service-item"><div class="service-icon">🎓</div><h3>Security Awareness Training</h3><p>Employee training programs that transform your staff into the first line of defense against cyber threats.</p></div>
+                    <div class="service-item"><div class="service-icon">📋</div><h3>Vulnerability Assessment</h3><p>Regular scanning and penetration testing to find and fix security holes before attackers do.</p></div>
                 </div>
             </div>
 
@@ -374,44 +335,66 @@
             <div class="service-category" id="remote-workers" data-aos="fade-up">
                 <h3 class="category-title">Remote Workers</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">💻</div>
-                        <h3>Virtual Desktop Solutions</h3>
-                        <p>Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">✉️</div>
-                        <h3>Business Email Management</h3>
-                        <p>Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔧</div>
-                        <h3>Hardware Support Services</h3>
-                        <p>On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📂</div>
-                        <h3>Remote File Access</h3>
-                        <p>Secure, encrypted access to company files and shared drives from anywhere in the world.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">💻</div><h3>Virtual Desktop Solutions</h3><p>Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.</p></div>
+                    <div class="service-item"><div class="service-icon">✉️</div><h3>Business Email Management</h3><p>Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.</p></div>
+                    <div class="service-item"><div class="service-icon">🔧</div><h3>Hardware Support Services</h3><p>On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.</p></div>
+                    <div class="service-item"><div class="service-icon">📂</div><h3>Remote File Access</h3><p>Secure, encrypted access to company files and shared drives from anywhere in the world.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== TESTIMONIALS ==================== -->
-    <section class="section" id="testimonials">
+    <!-- ==================== TESTIMONIAL SLIDER ==================== -->
+    <section class="section bg-light" id="testimonials">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label">Client Testimonials</span>
             <h2 class="section-title">Trusted by Businesses Across Nepal</h2>
         </div>
         <div class="container" data-aos="fade-up" data-aos-delay="200">
-            <div class="testimonial-card">
-                <p>"Evelynx transformed our IT infrastructure completely. Their support is outstanding – proactive, responsive, and truly understanding of our business needs."</p>
-                <strong>— A Nepali Fintech Startup</strong>
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial-slide active">
+                    <p>"Evelynx transformed our IT infrastructure completely. Their support is outstanding – proactive, responsive, and truly understanding of our business needs."</p>
+                    <strong>— A Nepali Fintech Startup</strong>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Their cloud migration saved us 40% in operational costs. The team's expertise and 24/7 availability made the transition seamless."</p>
+                    <strong>— Kathmandu‑based E‑commerce Company</strong>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"We've been relying on Evelynx for cybersecurity and managed IT for over three years. They've never let us down."</p>
+                    <strong>— National NGO</strong>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- ==================== CONTACT SECTION (Google Form) ==================== -->
+    <section class="section" id="contact">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">Get In Touch</span>
+            <h2 class="section-title">Let's start a conversation.</h2>
+        </div>
+        <div class="container" data-aos="fade-up" data-aos-delay="200">
+            <div class="contact-form-container">
+                <!-- Replace the src with YOUR Google Form link if needed, ensure it includes ?embedded=true -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdoGtkLXMp1jOnrsNf0TtK4qeJVmz9GfFRBNfjmMsKIr5LfsA/viewform?embedded=true" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+            <p class="text-center" style="color:var(--text-muted); margin-top:1rem;">
+                📞 Need immediate help? Call or WhatsApp us at <strong>+977‑1‑XXXXXXX</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== COOKIE BANNER ==================== -->
+    <div class="cookie-banner" id="cookieBanner">
+        <span>🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.</span>
+        <button id="acceptCookies">Accept</button>
+    </div>
 
     <!-- ==================== BACK TO TOP ==================== -->
     <div class="back-to-top" id="backToTop">↑</div>
@@ -424,8 +407,8 @@
                     <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
                     <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
-                <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-                <div><h4>Key Services</h4><ul><li><a href="services.html#card-5820">Software</a></li><li><a href="services.html#card-4651">Hardware Wholesale</a></li><li><a href="services.html#card-6209">Cybersecurity</a></li><li><a href="services.html#card-9511">Repair</a></li></ul></div>
+                <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="solutions.html">Solutions</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div><h4>Key Solutions</h4><ul><li><a href="solutions.html#business-continuity">Business Continuity</a></li><li><a href="solutions.html#cloud-solutions">Cloud</a></li><li><a href="solutions.html#cybersecurity">Cybersecurity</a></li><li><a href="solutions.html#it-support">IT Support</a></li></ul></div>
                 <div><h4>Legal</h4><ul><li><a href="#">Limited Liability Company</a></li><li><a href="#">Registered in Nepal</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
             </div>
             <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal</div>
@@ -436,7 +419,7 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // Sticky header
+        // Sticky header & back‑to‑top
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
             document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
@@ -470,6 +453,35 @@
             });
         }, { threshold: 0.5 });
         counters.forEach(c => observer.observe(c));
+
+        // Testimonial slider
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => showSlide(parseInt(dot.getAttribute('data-slide'))));
+        });
+        let currentSlide = 0;
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+
+        // Cookie consent
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptBtn = document.getElementById('acceptCookies');
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => cookieBanner.classList.add('show'), 1000);
+        }
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
     </script>
 </body>
 </html>
