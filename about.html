@@ -3,81 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Evelynx Solutions | Nepal IT Company</title>
+    <title>About Evelynx Solutions | IT Company Nepal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root { --nepal-red: #C8102E; --nepal-blue: #003893; --gold: #FFC107; --deep-navy: #0B1D3A; --white: #ffffff; --off-white: #F9F9FB; --gray-light: #E5E7EB; --text: #1F2937; --text-muted: #6B7280; --shadow: 0 8px 25px rgba(0,0,0,0.06); --transition: all 0.3s ease; }
+        :root {
+            --navy: #0B1A2D;
+            --white: #ffffff;
+            --off-white: #f7f8fa;
+            --gray-light: #e9ecf1;
+            --text: #1e293b;
+            --text-muted: #5b6e8c;
+            --gold: #c5a352;
+            --nepal-red: #C8102E;
+            --nepal-blue: #003893;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
-        .mukta { font-family: 'Mukta', sans-serif; }
-        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
 
         /* HEADER (same as index) */
-        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,29,58,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid var(--nepal-red); padding: 0.7rem 0; transition: var(--transition); }
-        .header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.2); padding: 0.5rem 0; }
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
+        .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
-        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-size: 1.8rem; font-weight:800; color: var(--white); letter-spacing: -0.5px; }
-        .logo-icon { width:42px; height:42px; background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue)); border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:white; font-weight:800; box-shadow: 0 0 15px rgba(200,16,46,0.4); }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
+        .logo-icon { width:40px; height:40px; background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue)); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.1rem; }
         .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
-        .nav-links li { position: relative; }
-        .nav-links a { color: #d1d5db; text-decoration:none; font-weight:500; font-size:0.95rem; transition: var(--transition); padding: 0.5rem 0; display: block; }
-        .nav-links a:hover { color: white; }
-        .dropdown { position: relative; }
-        .dropdown > a::after { content: ' ▾'; font-size:0.8rem; margin-left: 4px; color: var(--nepal-red); }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left:0; background: var(--deep-navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 999; }
-        .dropdown:hover .dropdown-menu { display: block; }
-        .dropdown-menu li { list-style: none; }
-        .dropdown-menu li a { padding: 0.6rem 1.2rem; color: #d1d5db; font-size:0.9rem; white-space: nowrap; transition: background 0.2s; }
-        .dropdown-menu li a:hover { background: rgba(200,16,46,0.2); color: white; }
+        .nav-links a { color:#ccd6e0; text-decoration:none; font-weight:500; font-size:0.95rem; transition:var(--transition); }
+        .nav-links a:hover { color:white; }
+        .nav-links .btn-contact { background: var(--gold); color:var(--navy); padding:0.6rem 1.6rem; border-radius:4px; font-weight:600; }
+        .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
+        .dropdown { position:relative; }
+        .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
+        .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:white; border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
+        .dropdown:hover .dropdown-menu { display:block; }
+        .dropdown-menu li { list-style:none; }
+        .dropdown-menu li a { padding:0.7rem 1.4rem; color:var(--text); display:block; font-weight:500; font-size:0.9rem; }
+        .dropdown-menu li a:hover { background:#f1f5f9; color:var(--gold); }
         .mobile-toggle { display:none; background:none; border:none; cursor:pointer; }
         .mobile-toggle span { display:block; width:26px; height:2.5px; background:white; margin:6px 0; border-radius:2px; transition:0.3s; }
-        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .mobile-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
-        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
         /* PAGE CONTENT */
-        .page-content { padding-top: 8rem; padding-bottom: 4rem; }
-        .section-title { font-size: 2.4rem; font-weight:700; color: var(--deep-navy); margin-bottom: 1.5rem; }
-        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:2rem; }
-        .about-text .nepali-flag { font-size:3rem; margin-bottom:1rem; }
-        .about-text p { margin-bottom:1.2rem; color: #334155; line-height:1.8; }
-        .about-image { background: linear-gradient(135deg, var(--nepal-blue), var(--deep-navy)); border-radius:12px; height:350px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .about-image::before { content: "🇳🇵"; font-size:6rem; opacity:0.15; position:absolute; }
-        .about-image span { position:relative; color:white; font-size:1.2rem; font-weight:600; background: rgba(0,0,0,0.5); padding:0.8rem 1.8rem; border-radius:6px; border:1px solid var(--gold); }
+        .page-content { padding-top:8rem; padding-bottom:5rem; }
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:3rem; }
+        .about-text h2 { font-size:2.5rem; color:var(--navy); margin-bottom:1.5rem; }
+        .about-text p { color:var(--text-muted); margin-bottom:1.2rem; line-height:1.8; }
+        .about-image { background: linear-gradient(135deg, #1e3b5a, #0a1628); border-radius:8px; height:400px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; box-shadow:var(--shadow-md); }
+        .about-image::before { content:"🇳🇵"; font-size:8rem; opacity:0.06; position:absolute; }
+        .about-image span { position:relative; color:white; font-weight:600; background:rgba(0,0,0,0.5); padding:0.8rem 2rem; border-radius:4px; border:1px solid var(--gold); }
+        .legal-highlight { background: var(--off-white); padding:2rem; border-left:4px solid var(--gold); margin-top:2rem; border-radius:0 8px 8px 0; }
+        .legal-highlight h4 { color:var(--navy); margin-bottom:0.5rem; }
 
-        /* FOOTER */
-        .footer { background: var(--deep-navy); color: #cbd5e1; padding: 4rem 0 2rem; margin-top: 5rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 3rem; }
-        .footer-logo-text { font-size:1.8rem; font-weight:700; color:white; display: flex; align-items:center; gap:8px; }
-        .footer h4 { color: white; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:1.2rem; font-weight:600; }
+        /* FOOTER (same) */
+        .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
+        .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
+        .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:white; display:flex; align-items:center; gap:8px; }
+        .footer h4 { color:white; text-transform:uppercase; letter-spacing:1px; font-size:0.9rem; margin-bottom:1.2rem; }
         .footer ul { list-style:none; }
-        .footer ul li { margin-bottom:0.7rem; }
-        .footer ul li a { color:#cbd5e1; text-decoration:none; font-size:0.9rem; transition:0.2s; }
-        .footer ul li a:hover { color: var(--nepal-red); }
+        .footer ul li { margin-bottom:0.6rem; }
+        .footer ul li a { color:#b0c4de; text-decoration:none; font-size:0.9rem; transition:0.2s; }
+        .footer ul li a:hover { color:var(--gold); }
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
-        .footer-bottom span { color: var(--nepal-red); font-weight:600; }
+        .footer-bottom span { color:var(--gold); font-weight:600; }
 
-        @media (max-width: 1024px) {
-            .footer-grid { grid-template-columns:1fr 1fr; }
-            .about-grid { grid-template-columns:1fr; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { position:fixed; top:0; right:-100%; width:270px; height:100vh; background: var(--deep-navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:2px solid var(--nepal-red); overflow-y: auto; }
+        @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } .about-grid { grid-template-columns:1fr; } }
+        @media (max-width:768px) {
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
-            .dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; padding-left: 1rem; }
-            .dropdown:hover .dropdown-menu { display: block; }
+            .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
+            .dropdown-menu li a { color:white; }
             .footer-grid { grid-template-columns:1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER (same navigation as index) -->
+    <!-- Header (exactly same as index) -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="logo"><span class="logo-icon">E</span> <span class="mukta">Evelynx</span></a>
+            <a href="index.html" class="logo"><span class="logo-icon">E</span> Evelynx</a>
             <nav>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
@@ -100,55 +113,42 @@
                             <li><a href="services.html#card-training">IT Training</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="why-us.html">Why Us ▾</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="why-us.html">Local Expertise</a></li>
-                            <li><a href="why-us.html">Limited Liability</a></li>
-                            <li><a href="why-us.html">End‑to‑End Solutions</a></li>
-                            <li><a href="why-us.html">24/7 Support</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="why-us.html">Why Us</a></li>
+                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
                 </ul>
                 <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
             </nav>
         </div>
     </header>
 
-    <!-- ABOUT CONTENT -->
+    <!-- About Content -->
     <section class="page-content">
         <div class="container">
-            <h2 class="section-title">About Evelynx Solutions</h2>
             <div class="about-grid">
                 <div class="about-text">
-                    <div class="nepali-flag">🇳🇵</div>
-                    <p>
-                        Headquartered in Kathmandu, Nepal, Evelynx Solutions Private Limited is a 
-                        technology company built on the foundation of limited liability and local expertise.
-                        We offer a comprehensive range of IT services — from software development, cloud, 
-                        and cybersecurity to wholesale & retail of computer hardware, IT training, and 
-                        equipment repair.
-                    </p>
-                    <p>
-                        Our team understands the Nepali market and delivers solutions that meet both 
-                        international standards and local business needs.
-                    </p>
+                    <span style="color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:2px; font-size:0.85rem;">About Evelynx Solutions</span>
+                    <h2>Rooted in Nepal,<br>built for the world.</h2>
+                    <p>Evelynx Solutions Private Limited is a Kathmandu‑based technology company offering a complete spectrum of IT services. From software publishing and cloud architecture to wholesale hardware and equipment repair, we provide end‑to‑end solutions under one roof.</p>
+                    <p>Our company is structured as a limited liability entity, ensuring transparency, security, and trust for all stakeholders. We combine deep local expertise with international best practices to deliver value that matters.</p>
+                    <div class="legal-highlight">
+                        <h4>⚖️ Limited Liability</h4>
+                        <p>Members' liability is strictly capped at their share capital, in full compliance with Nepalese corporate law.</p>
+                    </div>
                 </div>
                 <div class="about-image">
-                    <span>📍 Kathmandu, Nepal</span>
+                    <span>📍 Registered Office · Kathmandu</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- Footer (same) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo-text"><span style="background:var(--nepal-red); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:0.9rem; color:white;">E</span> Evelynx Solutions</div>
-                    <p style="margin-top:1rem;">A Nepal-registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
+                    <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>Evelynx Solutions</div>
+                    <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -182,23 +182,12 @@
             </div>
         </div>
     </footer>
-
     <script>
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-        });
+        window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50); });
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggle.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
+        toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
     </script>
 </body>
 </html>
