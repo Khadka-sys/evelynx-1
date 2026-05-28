@@ -3,44 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EvelynX Solutions Pvt. Ltd. | IT & Technology Nepal</title>
+    <title>Evelynx Solutions Pvt. Ltd. | IT & Technology Nepal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --navy: #0B1A2D;
-            --white: #ffffff;
-            --off-white: #f7f8fa;
-            --gray-light: #e9ecf1;
-            --text: #1e293b;
-            --text-muted: #5b6e8c;
-            --gold: #c5a352;
-            --nepal-red: #C8102E;
-            --nepal-blue: #003893;
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
-            --shadow-md: 0 8px 28px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --navy: #0B1A2D; --white: #ffffff; --off-white: #f7f8fa; --gray-light: #e9ecf1;
+            --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352; --nepal-red: #C8102E; --nepal-blue: #003893;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04); --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
 
-        /* HEADER */
+        /* HEADER (golden E, single arrow) */
         .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
-        /* ✅ Golden E in header – now matches footer */
-        .logo-icon {
-            width:40px; height:40px;
-            background: linear-gradient(135deg, var(--gold), #b3892d);
-            border-radius:8px;
-            display:flex; align-items:center; justify-content:center;
-            color:white; font-weight:800; font-size:1.1rem;
-        }
+        .logo-icon { width:40px; height:40px; background: linear-gradient(135deg, var(--gold), #b3892d); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.1rem; }
         .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
         .nav-links a { color:#ccd6e0; text-decoration:none; font-weight:500; font-size:0.95rem; transition:var(--transition); }
         .nav-links a:hover { color:white; }
@@ -73,6 +59,22 @@
         .btn-outline { border:2px solid rgba(255,255,255,0.6); color:white; }
         .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
 
+        /* COUNTERS */
+        .counters { background: var(--off-white); padding:4rem 0; }
+        .counters-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; text-align:center; }
+        .counter-item h3 { font-size:2.5rem; color:var(--gold); }
+        .counter-item p { color:var(--text-muted); }
+
+        /* TESTIMONIALS */
+        .testimonials { padding:5rem 0; }
+        .testimonial-card { background:white; padding:2rem; border-radius:8px; box-shadow:var(--shadow-md); max-width:700px; margin:0 auto; text-align:center; }
+        .testimonial-card p { font-style:italic; color:var(--text-muted); margin-bottom:1rem; }
+        .testimonial-card strong { color:var(--navy); }
+
+        /* BACK TO TOP */
+        .back-to-top { position:fixed; bottom:2rem; right:2rem; width:45px; height:45px; background:var(--gold); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; }
+        .back-to-top.show { opacity:1; visibility:visible; }
+
         /* FOOTER */
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
@@ -97,12 +99,9 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">E</span> EvelynX Solutions
-            </a>
+            <a href="index.html" class="logo"><span class="logo-icon">E</span> Evelynx Solutions</a>
             <nav>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
@@ -133,12 +132,11 @@
         </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-greeting">नमस्ते 🙏  |  KATHMANDU, NEPAL</div>
+        <div class="container" data-aos="fade-up">
+            <div class="hero-greeting">नमस्ते 🙏 | KATHMANDU, NEPAL</div>
             <h1>We deliver <span>technology</span> that transforms business.</h1>
-            <p>From software to hardware, cloud to repair – EvelynX Solutions is Nepal’s most comprehensive IT partner. Limited liability, unlimited ambition.</p>
+            <p>From software to hardware, cloud to repair – Evelynx Solutions is Nepal’s most comprehensive IT partner. Limited liability, unlimited ambition.</p>
             <div class="hero-buttons">
                 <a href="services.html" class="btn btn-primary">Explore All Services</a>
                 <a href="contact.html" class="btn btn-outline">Get in Touch</a>
@@ -146,52 +144,105 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="counters" data-aos="fade-up">
+        <div class="container">
+            <div class="counters-grid">
+                <div class="counter-item">
+                    <h3><span class="count" data-target="120">0</span>+</h3>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="counter-item">
+                    <h3><span class="count" data-target="50">0</span>+</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="counter-item">
+                    <h3><span class="count" data-target="8">0</span></h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" data-aos="fade-up">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom:2rem;">What Our Clients Say</h2>
+            <div class="testimonial-card">
+                <p>"Evelynx transformed our IT infrastructure completely. Their support is outstanding."</p>
+                <strong>— A Nepali Fintech Startup</strong>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
+                    <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>Evelynx Solutions</div>
                     <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                    <ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul>
                 </div>
                 <div>
                     <h4>Key Services</h4>
-                    <ul>
-                        <li><a href="services.html#card-5820">Software</a></li>
-                        <li><a href="services.html#card-4651">Hardware Wholesale</a></li>
-                        <li><a href="services.html#card-6209">Cybersecurity</a></li>
-                        <li><a href="services.html#card-9511">Repair</a></li>
-                    </ul>
+                    <ul><li><a href="services.html#card-5820">Software</a></li><li><a href="services.html#card-4651">Hardware Wholesale</a></li><li><a href="services.html#card-6209">Cybersecurity</a></li><li><a href="services.html#card-9511">Repair</a></li></ul>
                 </div>
                 <div>
                     <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Limited Liability Company</a></li>
-                        <li><a href="#">Registered in Nepal</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
+                    <ul><li><a href="#">Limited Liability Company</a></li><li><a href="#">Registered in Nepal</a></li><li><a href="#">Privacy Policy</a></li></ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 <span>EvelynX Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal
+                &copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal
             </div>
         </div>
     </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50); });
+        AOS.init({ duration: 1000, once: true });
+
+        // Sticky header
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            const backBtn = document.getElementById('backToTop');
+            backBtn.classList.toggle('show', window.scrollY > 500);
+        });
+
+        // Mobile menu
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
         toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
+
+        // Back to top
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior: 'smooth' }));
+
+        // Counter animation
+        const counters = document.querySelectorAll('.count');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 100;
+                    const update = () => {
+                        if(count < target) {
+                            counter.innerText = Math.ceil(count);
+                            count += speed;
+                            requestAnimationFrame(update);
+                        } else counter.innerText = target;
+                    };
+                    update();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => observer.observe(c));
     </script>
 </body>
 </html>
