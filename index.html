@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evelynx Solutions Pvt. Ltd. | Nepal IT Services</title>
     <meta name="description" content="Nepal-based IT company — software, hardware, cloud, AI, cybersecurity, retail, wholesale, repair & training. लिमिटेड लायबिलिटी।">
-    <!-- Google Fonts: Inter for body, Mukta for Devanagari support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,372 +22,112 @@
             --shadow: 0 8px 25px rgba(0,0,0,0.06);
             --transition: all 0.3s ease;
         }
-
         * { margin:0; padding:0; box-sizing:border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--white);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
         .mukta { font-family: 'Mukta', sans-serif; }
-
-        /* ========== HEADER ========== */
-        .header {
-            position: fixed;
-            top:0; left:0; right:0;
-            z-index: 1000;
-            background: rgba(11,29,58,0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid var(--nepal-red);
-            padding: 0.7rem 0;
-            transition: var(--transition);
-        }
-        .header.scrolled {
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            padding: 0.5rem 0;
-        }
         .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+
+        /* HEADER */
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,29,58,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid var(--nepal-red); padding: 0.7rem 0; transition: var(--transition); }
+        .header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.2); padding: 0.5rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
-        .logo {
-            display:flex; align-items:center; gap:10px;
-            text-decoration:none;
-            font-size: 1.8rem; font-weight:800;
-            color: var(--white);
-            letter-spacing: -0.5px;
-        }
-        .logo-icon {
-            width:42px; height:42px;
-            background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue));
-            border-radius: 8px;
-            display:flex; align-items:center; justify-content:center;
-            font-size:1.3rem; color:white; font-weight:800;
-            box-shadow: 0 0 15px rgba(200,16,46,0.4);
-        }
-        .nav-links {
-            display:flex; list-style:none; gap:2.2rem; align-items:center;
-        }
-        .nav-links a {
-            color: #d1d5db; text-decoration:none;
-            font-weight:500; font-size:0.95rem;
-            transition: var(--transition);
-            position:relative;
-        }
-        .nav-links a::after {
-            content:''; position:absolute; bottom:-4px; left:0;
-            width:0; height:2px; background: var(--nepal-red);
-            transition: width 0.3s;
-        }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-size: 1.8rem; font-weight:800; color: var(--white); letter-spacing: -0.5px; }
+        .logo-icon { width:42px; height:42px; background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue)); border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:white; font-weight:800; box-shadow: 0 0 15px rgba(200,16,46,0.4); }
+        .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: #d1d5db; text-decoration:none; font-weight:500; font-size:0.95rem; transition: var(--transition); padding: 0.5rem 0; display: block; }
         .nav-links a:hover { color: white; }
-        .nav-links a:hover::after { width:100%; }
-        .btn-header {
-            background: var(--nepal-red);
-            color: white !important;
-            padding: 0.5rem 1.5rem;
-            border-radius: 6px;
-            font-weight:600; text-decoration:none;
-            transition: var(--transition);
-        }
-        .btn-header:hover {
-            background: #a00d24;
-            box-shadow: 0 6px 15px rgba(200,16,46,0.4);
-            transform: translateY(-1px);
-        }
+        .dropdown { position: relative; }
+        .dropdown > a::after { content: ' ▾'; font-size:0.8rem; margin-left: 4px; color: var(--nepal-red); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left:0; background: var(--deep-navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 999; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu li { list-style: none; }
+        .dropdown-menu li a { padding: 0.6rem 1.2rem; color: #d1d5db; font-size:0.9rem; white-space: nowrap; transition: background 0.2s; }
+        .dropdown-menu li a:hover { background: rgba(200,16,46,0.2); color: white; }
+        .btn-header { background: var(--nepal-red); color: white !important; padding: 0.5rem 1.5rem; border-radius: 6px; font-weight:600; text-decoration:none; transition: var(--transition); }
+        .btn-header:hover { background: #a00d24; box-shadow: 0 6px 15px rgba(200,16,46,0.4); transform: translateY(-1px); }
         .mobile-toggle { display:none; background:none; border:none; cursor:pointer; }
         .mobile-toggle span { display:block; width:26px; height:2.5px; background:white; margin:6px 0; border-radius:2px; transition:0.3s; }
         .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
-        /* ========== HERO ========== */
-        .hero {
-            background: linear-gradient(135deg, #0B1D3A 0%, #132D4A 60%, #1A3B5C 100%);
-            min-height: 100vh;
-            display:flex; align-items:center;
-            position:relative; overflow:hidden;
-            padding: 8rem 0 5rem;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.08"><path d="M20 5 L50 30 L80 5 L95 25 L75 50 L95 75 L80 95 L50 70 L20 95 L5 75 L25 50 L5 25 Z" fill="%23ffffff"/></svg>') repeat;
-            background-size: 120px;
-            opacity: 0.04;
-        }
-        .hero-content {
-            position:relative; z-index:10;
-            max-width: 720px;
-        }
-        .hero-greeting {
-            font-size: 2.8rem; font-weight:700;
-            color: var(--nepal-red);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(200,16,46,0.5);
-        }
-        .hero h1 {
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            font-weight:800; color:white;
-            line-height:1.2; margin-bottom:1.5rem;
-        }
+        /* HERO */
+        .hero { background: linear-gradient(135deg, #0B1D3A 0%, #132D4A 60%, #1A3B5C 100%); min-height: 100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding: 8rem 0 5rem; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.08"><path d="M20 5 L50 30 L80 5 L95 25 L75 50 L95 75 L80 95 L50 70 L20 95 L5 75 L25 50 L5 25 Z" fill="%23ffffff"/></svg>') repeat; background-size: 120px; opacity: 0.04; }
+        .hero-content { position:relative; z-index:10; max-width: 720px; }
+        .hero-greeting { font-size: 2.8rem; font-weight:700; color: var(--nepal-red); margin-bottom:0.5rem; text-shadow: 0 0 10px rgba(200,16,46,0.5); }
+        .hero h1 { font-size: clamp(2.6rem, 5vw, 4rem); font-weight:800; color:white; line-height:1.2; margin-bottom:1.5rem; }
         .hero h1 span { color: var(--gold); }
-        .hero p {
-            font-size:1.1rem; color:#cbd5e1;
-            max-width:600px; margin-bottom:2.5rem;
-        }
+        .hero p { font-size:1.1rem; color:#cbd5e1; max-width:600px; margin-bottom:2.5rem; }
         .hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; }
-        .btn {
-            display:inline-block; padding:0.85rem 2rem;
-            border-radius:8px; font-weight:600;
-            font-size:1rem; text-decoration:none;
-            transition: var(--transition);
-        }
-        .btn-primary {
-            background: var(--nepal-red);
-            color: white;
-            box-shadow: 0 8px 20px rgba(200,16,46,0.35);
-        }
-        .btn-primary:hover {
-            background: #a00d24;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(200,16,46,0.5);
-        }
-        .btn-outline {
-            border: 2px solid white; color:white; background:transparent;
-        }
-        .btn-outline:hover {
-            border-color: var(--nepal-red);
-            color: var(--nepal-red);
-            background: rgba(255,255,255,0.05);
-        }
+        .btn { display:inline-block; padding:0.85rem 2rem; border-radius:8px; font-weight:600; font-size:1rem; text-decoration:none; transition: var(--transition); }
+        .btn-primary { background: var(--nepal-red); color:white; box-shadow: 0 8px 20px rgba(200,16,46,0.35); }
+        .btn-primary:hover { background: #a00d24; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(200,16,46,0.5); }
+        .btn-outline { border: 2px solid white; color:white; background:transparent; }
+        .btn-outline:hover { border-color: var(--nepal-red); color: var(--nepal-red); background: rgba(255,255,255,0.05); }
 
-        /* ========== SECTION STYLES ========== */
+        /* SECTIONS */
         .section { padding: 5rem 0; }
-        .section-title {
-            font-size: 2.4rem; font-weight:700;
-            color: var(--deep-navy);
-            margin-bottom: 1rem;
-        }
-        .section-subtitle {
-            color: var(--text-muted); font-size:1.05rem;
-            max-width:600px; margin-bottom:3rem;
-        }
+        .section-title { font-size: 2.4rem; font-weight:700; color: var(--deep-navy); margin-bottom: 1rem; }
+        .section-subtitle { color: var(--text-muted); font-size:1.05rem; max-width:600px; margin-bottom:3rem; }
         .bg-light { background: var(--off-white); }
 
-        /* ========== ABOUT ========== */
-        .about-grid {
-            display:grid; grid-template-columns:1fr 1fr;
-            gap:4rem; align-items:center;
-        }
-        .about-text .nepali-flag {
-            font-size:3rem; margin-bottom:1rem;
-        }
-        .about-image {
-            background: linear-gradient(135deg, var(--nepal-blue), var(--deep-navy));
-            border-radius:12px; height:350px;
-            display:flex; align-items:center; justify-content:center;
-            position:relative; overflow:hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        .about-image::before {
-            content: "🇳🇵";
-            font-size:6rem; opacity:0.15;
-            position:absolute;
-        }
-        .about-image span {
-            position:relative;
-            color:white; font-size:1.2rem; font-weight:600;
-            background: rgba(0,0,0,0.5);
-            padding:0.8rem 1.8rem;
-            border-radius:6px;
-            border:1px solid var(--gold);
-        }
+        /* ABOUT */
+        .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+        .about-text .nepali-flag { font-size:3rem; margin-bottom:1rem; }
+        .about-image { background: linear-gradient(135deg, var(--nepal-blue), var(--deep-navy)); border-radius:12px; height:350px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .about-image::before { content: "🇳🇵"; font-size:6rem; opacity:0.15; position:absolute; }
+        .about-image span { position:relative; color:white; font-size:1.2rem; font-weight:600; background: rgba(0,0,0,0.5); padding:0.8rem 1.8rem; border-radius:6px; border:1px solid var(--gold); }
 
-        /* ========== SERVICES ========== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.8rem;
-        }
-        .service-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            border: 1px solid var(--gray-light);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(200,16,46,0.1);
-            border-color: var(--nepal-red);
-        }
-        .service-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--nepal-red), var(--nepal-blue));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-            transform-origin: left;
-        }
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.8rem; margin-top:2rem; }
+        .service-card { background: white; border-radius: 12px; padding: 2rem 1.5rem; border: 1px solid var(--gray-light); transition: var(--transition); position: relative; overflow: hidden; box-shadow: var(--shadow); scroll-margin-top: 100px; }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(200,16,46,0.1); border-color: var(--nepal-red); }
+        .service-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--nepal-red), var(--nepal-blue)); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
         .service-card:hover::after { transform: scaleX(1); }
-        .service-code {
-            display: inline-block;
-            background: rgba(200,16,46,0.1);
-            color: var(--nepal-red);
-            font-weight: 700;
-            font-size: 0.8rem;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-        .service-card h3 {
-            color: var(--deep-navy); margin-bottom:0.6rem;
-            font-size:1.2rem;
-        }
+        .service-code { display: inline-block; background: rgba(200,16,46,0.1); color: var(--nepal-red); font-weight: 700; font-size: 0.8rem; padding: 0.2rem 0.8rem; border-radius: 20px; margin-bottom: 1rem; }
+        .service-card h3 { color: var(--deep-navy); margin-bottom:0.6rem; font-size:1.2rem; }
         .service-card p { color: var(--text-muted); font-size:0.9rem; }
-        .service-flag {
-            position: absolute;
-            top: 10px; right: 10px;
-            font-size: 1.5rem; opacity:0.3;
-            transition: opacity 0.3s;
-        }
+        .service-flag { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; opacity:0.3; transition: opacity 0.3s; }
         .service-card:hover .service-flag { opacity:1; }
 
-        /* ========== WHY NEPAL ========== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-        .feature-item {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.12);
-        }
+        /* WHY US */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
+        .feature-item { text-align: center; padding: 2rem 1.5rem; background: white; border-radius: 12px; box-shadow: var(--shadow); transition: var(--transition); }
+        .feature-item:hover { transform: translateY(-5px); box-shadow: 0 20px 35px rgba(0,0,0,0.12); }
         .feature-icon { font-size:2.5rem; margin-bottom:1rem; }
 
-        /* ========== CONTACT ========== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-        .contact-info .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .info-icon {
-            width: 45px; height: 45px;
-            background: rgba(200,16,46,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: var(--nepal-red);
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.9rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--gray-light);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--nepal-red);
-            box-shadow: 0 0 0 3px rgba(200,16,46,0.1);
-        }
-        .contact-form button {
-            background: var(--nepal-red);
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .contact-form button:hover {
-            background: #a00d24;
-            box-shadow: 0 8px 20px rgba(200,16,46,0.3);
-        }
+        /* CONTACT */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+        .contact-info .info-item { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow); }
+        .info-icon { width: 55px; height: 55px; background: rgba(200,16,46,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--nepal-red); flex-shrink: 0; }
+        .info-text strong { display: block; color: var(--deep-navy); margin-bottom: 0.3rem; }
+        .info-text p { color: var(--text-muted); }
 
-        /* ========== FOOTER ========== */
-        .footer {
-            background: var(--deep-navy);
-            color: #cbd5e1;
-            padding: 4rem 0 2rem;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.2fr;
-            gap: 3rem;
-        }
-        .footer-logo-text {
-            font-size:1.8rem; font-weight:700; color:white;
-            display: flex; align-items:center; gap:8px;
-        }
-        .footer h4 {
-            color: white;
-            font-size:0.9rem;
-            text-transform:uppercase;
-            letter-spacing:1.5px;
-            margin-bottom:1.2rem;
-            font-weight:600;
-        }
+        /* FOOTER */
+        .footer { background: var(--deep-navy); color: #cbd5e1; padding: 4rem 0 2rem; margin-top: 5rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 3rem; }
+        .footer-logo-text { font-size:1.8rem; font-weight:700; color:white; display: flex; align-items:center; gap:8px; }
+        .footer h4 { color: white; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:1.2rem; font-weight:600; }
         .footer ul { list-style:none; }
         .footer ul li { margin-bottom:0.7rem; }
         .footer ul li a { color:#cbd5e1; text-decoration:none; font-size:0.9rem; transition:0.2s; }
         .footer ul li a:hover { color: var(--nepal-red); }
-        .footer-bottom {
-            border-top:1px solid rgba(255,255,255,0.08);
-            margin-top:3rem;
-            padding-top:1.5rem;
-            text-align:center;
-            font-size:0.85rem;
-        }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
         .footer-bottom span { color: var(--nepal-red); font-weight:600; }
 
-        /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .footer-grid { grid-template-columns:1fr 1fr; }
             .about-grid, .contact-grid { grid-template-columns:1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links {
-                position:fixed; top:0; right:-100%;
-                width:270px; height:100vh;
-                background: var(--deep-navy);
-                flex-direction:column;
-                padding:6rem 2rem 2rem;
-                gap:1.5rem;
-                transition:right 0.4s;
-                border-left:2px solid var(--nepal-red);
-            }
+            .nav-links { position:fixed; top:0; right:-100%; width:270px; height:100vh; background: var(--deep-navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:2px solid var(--nepal-red); overflow-y: auto; }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
+            .dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; padding-left: 1rem; }
+            .dropdown:hover .dropdown-menu { display: block; }
             .services-grid, .features-grid { grid-template-columns:1fr; }
             .footer-grid { grid-template-columns:1fr; }
         }
@@ -405,8 +144,33 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#why">Why Us</a></li>
+                    <li class="dropdown">
+                        <a href="#services">Services ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#card-4651">Wholesale (4651)</a></li>
+                            <li><a href="#card-4741">Retail (4741)</a></li>
+                            <li><a href="#card-5820">Software Publishing (5820)</a></li>
+                            <li><a href="#card-6201">Programming (6201)</a></li>
+                            <li><a href="#card-6202">IT Consultancy (6202)</a></li>
+                            <li><a href="#card-6209">Cloud & Security (6209)</a></li>
+                            <li><a href="#card-6311">Hosting (6311)</a></li>
+                            <li><a href="#card-6312">Web Portals (6312)</a></li>
+                            <li><a href="#card-7020">Management (7020)</a></li>
+                            <li><a href="#card-7310">Advertising (7310)</a></li>
+                            <li><a href="#card-7410">Design (7410)</a></li>
+                            <li><a href="#card-9511">Repair (9511)</a></li>
+                            <li><a href="#card-training">IT Training</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#why">Why Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#why">Local Expertise</a></li>
+                            <li><a href="#why">Limited Liability</a></li>
+                            <li><a href="#why">End‑to‑End Solutions</a></li>
+                            <li><a href="#why">24/7 Support</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
@@ -456,18 +220,17 @@
         </div>
     </section>
 
-    <!-- ==================== SERVICES (with all codes) ==================== -->
+    <!-- ==================== SERVICES ==================== -->
     <section class="section bg-light" id="services">
         <div class="container">
             <h2 class="section-title">Our Complete Service Portfolio</h2>
             <p class="section-subtitle">
-                Each card below represents a distinct business activity — easily editable by finding the
-                comment tags in the code.
+                Each card represents a distinct business activity. Click any link in the menu to jump directly to it.
             </p>
             <div class="services-grid">
 
                 <!-- CARD 4651 -->
-                <div class="service-card">
+                <div class="service-card" id="card-4651">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">4651</span>
                     <h3>Wholesale of Computers & Peripherals</h3>
@@ -475,7 +238,7 @@
                 </div>
 
                 <!-- CARD 4741 -->
-                <div class="service-card">
+                <div class="service-card" id="card-4741">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">4741</span>
                     <h3>Retail of Computers & Software</h3>
@@ -483,7 +246,7 @@
                 </div>
 
                 <!-- CARD 5820 -->
-                <div class="service-card">
+                <div class="service-card" id="card-5820">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">5820</span>
                     <h3>Software Publishing</h3>
@@ -491,7 +254,7 @@
                 </div>
 
                 <!-- CARD 6201 -->
-                <div class="service-card">
+                <div class="service-card" id="card-6201">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">6201</span>
                     <h3>Computer Programming</h3>
@@ -499,7 +262,7 @@
                 </div>
 
                 <!-- CARD 6202 -->
-                <div class="service-card">
+                <div class="service-card" id="card-6202">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">6202</span>
                     <h3>IT Consultancy & Facilities Mgmt</h3>
@@ -507,7 +270,7 @@
                 </div>
 
                 <!-- CARD 6209 -->
-                <div class="service-card">
+                <div class="service-card" id="card-6209">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">6209</span>
                     <h3>Other IT Services</h3>
@@ -515,7 +278,7 @@
                 </div>
 
                 <!-- CARD 6311 -->
-                <div class="service-card">
+                <div class="service-card" id="card-6311">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">6311</span>
                     <h3>Data Processing & Hosting</h3>
@@ -523,7 +286,7 @@
                 </div>
 
                 <!-- CARD 6312 -->
-                <div class="service-card">
+                <div class="service-card" id="card-6312">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">6312</span>
                     <h3>Web Portals</h3>
@@ -531,7 +294,7 @@
                 </div>
 
                 <!-- CARD 7020 -->
-                <div class="service-card">
+                <div class="service-card" id="card-7020">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">7020</span>
                     <h3>Management Consultancy</h3>
@@ -539,7 +302,7 @@
                 </div>
 
                 <!-- CARD 7310 -->
-                <div class="service-card">
+                <div class="service-card" id="card-7310">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">7310</span>
                     <h3>Advertising</h3>
@@ -547,7 +310,7 @@
                 </div>
 
                 <!-- CARD 7410 -->
-                <div class="service-card">
+                <div class="service-card" id="card-7410">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">7410</span>
                     <h3>Specialized Design</h3>
@@ -555,7 +318,7 @@
                 </div>
 
                 <!-- CARD 9511 -->
-                <div class="service-card">
+                <div class="service-card" id="card-9511">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">9511</span>
                     <h3>Computer & Peripheral Repair</h3>
@@ -563,7 +326,7 @@
                 </div>
 
                 <!-- CARD TRAINING -->
-                <div class="service-card">
+                <div class="service-card" id="card-training">
                     <span class="service-flag">🇳🇵</span>
                     <span class="service-code">TRAINING</span>
                     <h3>IT Training & Upskilling</h3>
@@ -574,7 +337,7 @@
         </div>
     </section>
 
-    <!-- ==================== WHY CHOOSE US (Nepal focus) ==================== -->
+    <!-- ==================== WHY US ==================== -->
     <section class="section" id="why">
         <div class="container">
             <h2 class="section-title">Why Evelynx in Nepal?</h2>
@@ -603,7 +366,7 @@
         </div>
     </section>
 
-    <!-- ==================== CONTACT US ==================== -->
+    <!-- ==================== CONTACT ==================== -->
     <section class="section bg-light" id="contact">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
@@ -612,36 +375,36 @@
                 <div class="contact-info">
                     <div class="info-item">
                         <div class="info-icon">📍</div>
-                        <div>
-                            <strong>Registered Office</strong><br>
-                            Kathmandu, Nepal
+                        <div class="info-text">
+                            <strong>Registered Office</strong>
+                            <p>Kathmandu, Nepal</p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">📧</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            info@evelynxsolutions.com
+                        <div class="info-text">
+                            <strong>Email</strong>
+                            <p>info@evelynxsolutions.com</p>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">📞</div>
-                        <div>
-                            <strong>Phone / WhatsApp</strong><br>
-                            +977-1-XXXXXXX
+                        <div class="info-text">
+                            <strong>Phone / WhatsApp</strong>
+                            <p>+977-1-XXXXXXX</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⚖️</div>
+                        <div class="info-text">
+                            <strong>Legal Structure</strong>
+                            <p>Private Limited Company · Members' liability limited</p>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form action="mailto:info@evelynxsolutions.com" method="post" enctype="text/plain">
-                        <input type="text" name="name" placeholder="तपाईंको नाम (Your Name)" required>
-                        <input type="email" name="email" placeholder="ईमेल (Email)" required>
-                        <textarea name="message" rows="5" placeholder="तपाईंको सन्देश (Your Message)" required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                    <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.8rem;">
-                        * This opens your email app. We'll respond within 24 hours.
-                    </p>
+                <!-- You can add a form later if needed; currently uses contact details only -->
+                <div style="display:flex; align-items:center; justify-content:center; background:white; border-radius:12px; padding:2rem; box-shadow: var(--shadow);">
+                    <p style="color:var(--text-muted); text-align:center;">📬 For inquiries, please email or call us directly.</p>
                 </div>
             </div>
         </div>
@@ -656,9 +419,7 @@
                         <span style="background:var(--nepal-red); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:0.9rem; color:white;">E</span>
                         Evelynx Solutions
                     </div>
-                    <p style="margin-top:1rem;">
-                        A Nepal-registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.
-                    </p>
+                    <p style="margin-top:1rem;">A Nepal-registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -672,10 +433,10 @@
                 <div>
                     <h4>Key Services</h4>
                     <ul>
-                        <li><a href="#">Software Development</a></li>
-                        <li><a href="#">Hardware Wholesale</a></li>
-                        <li><a href="#">Cybersecurity</a></li>
-                        <li><a href="#">IT Repair</a></li>
+                        <li><a href="#card-5820">Software</a></li>
+                        <li><a href="#card-4651">Hardware Wholesale</a></li>
+                        <li><a href="#card-6209">Cybersecurity</a></li>
+                        <li><a href="#card-9511">Repair</a></li>
                     </ul>
                 </div>
                 <div>
@@ -694,30 +455,28 @@
     </footer>
 
     <script>
+        // Sticky header
         window.addEventListener('scroll', () => {
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Mobile menu toggle
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
         toggle.addEventListener('click', () => {
             toggle.classList.toggle('active');
             nav.classList.toggle('active');
         });
+
+        // Close mobile menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 toggle.classList.remove('active');
                 nav.classList.remove('active');
             });
         });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+
+        // Smooth scroll is handled natively via CSS scroll-behavior: smooth
     </script>
 </body>
 </html>
