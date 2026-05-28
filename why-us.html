@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Evelynx | Nepal IT Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --nepal-red: #C8102E; --nepal-blue: #003893; --gold: #FFC107; --deep-navy: #0B1D3A; --white: #ffffff; --off-white: #F9F9FB; --gray-light: #E5E7EB; --text: #1F2937; --text-muted: #6B7280; --shadow: 0 8px 25px rgba(0,0,0,0.06); --transition: all 0.3s ease; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.7; }
+        .mukta { font-family: 'Mukta', sans-serif; }
+        .container { max-width:1280px; margin:0 auto; padding:0 2rem; }
+
+        /* HEADER */
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,29,58,0.95); backdrop-filter: blur(12px); border-bottom: 2px solid var(--nepal-red); padding: 0.7rem 0; transition: var(--transition); }
+        .header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.2); padding: 0.5rem 0; }
+        .header-inner { display:flex; align-items:center; justify-content:space-between; }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-size: 1.8rem; font-weight:800; color: var(--white); letter-spacing: -0.5px; }
+        .logo-icon { width:42px; height:42px; background: linear-gradient(135deg, var(--nepal-red), var(--nepal-blue)); border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:white; font-weight:800; box-shadow: 0 0 15px rgba(200,16,46,0.4); }
+        .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
+        .nav-links li { position: relative; }
+        .nav-links a { color: #d1d5db; text-decoration:none; font-weight:500; font-size:0.95rem; transition: var(--transition); padding: 0.5rem 0; display: block; }
+        .nav-links a:hover { color: white; }
+        .dropdown { position: relative; }
+        .dropdown > a::after { content: ' ▾'; font-size:0.8rem; margin-left: 4px; color: var(--nepal-red); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left:0; background: var(--deep-navy); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; min-width: 220px; padding: 0.5rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.5); z-index: 999; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu li { list-style: none; }
+        .dropdown-menu li a { padding: 0.6rem 1.2rem; color: #d1d5db; font-size:0.9rem; white-space: nowrap; transition: background 0.2s; }
+        .dropdown-menu li a:hover { background: rgba(200,16,46,0.2); color: white; }
+        .mobile-toggle { display:none; background:none; border:none; cursor:pointer; }
+        .mobile-toggle span { display:block; width:26px; height:2.5px; background:white; margin:6px 0; border-radius:2px; transition:0.3s; }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .mobile-toggle.active span:nth-child(2) { opacity:0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+        /* PAGE CONTENT */
+        .page-content { padding-top: 8rem; padding-bottom: 4rem; }
+        .section-title { font-size: 2.4rem; font-weight:700; color: var(--deep-navy); margin-bottom: 2rem; text-align: center; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top:2rem; }
+        .feature-item { text-align: center; padding: 2rem 1.5rem; background: white; border-radius: 12px; box-shadow: var(--shadow); transition: var(--transition); }
+        .feature-item:hover { transform: translateY(-5px); box-shadow: 0 20px 35px rgba(0,0,0,0.12); }
+        .feature-icon { font-size:2.5rem; margin-bottom:1rem; }
+        .feature-item h4 { color: var(--deep-navy); margin-bottom:0.7rem; }
+        .feature-item p { color: var(--text-muted); font-size:0.9rem; }
+
+        /* FOOTER */
+        .footer { background: var(--deep-navy); color: #cbd5e1; padding: 4rem 0 2rem; margin-top: 5rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 3rem; }
+        .footer-logo-text { font-size:1.8rem; font-weight:700; color:white; display: flex; align-items:center; gap:8px; }
+        .footer h4 { color: white; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:1.2rem; font-weight:600; }
+        .footer ul { list-style:none; }
+        .footer ul li { margin-bottom:0.7rem; }
+        .footer ul li a { color:#cbd5e1; text-decoration:none; font-size:0.9rem; transition:0.2s; }
+        .footer ul li a:hover { color: var(--nepal-red); }
+        .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
+        .footer-bottom span { color: var(--nepal-red); font-weight:600; }
+
+        @media (max-width: 1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+        @media (max-width: 768px) {
+            .nav-links { position:fixed; top:0; right:-100%; width:270px; height:100vh; background: var(--deep-navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:2px solid var(--nepal-red); overflow-y: auto; }
+            .nav-links.active { right:0; }
+            .mobile-toggle { display:block; }
+            .dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; padding-left: 1rem; }
+            .dropdown:hover .dropdown-menu { display: block; }
+            .features-grid { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><span class="logo-icon">E</span> <span class="mukta">Evelynx</span></a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="services.html">Services ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="services.html#card-4651">Wholesale (4651)</a></li>
+                            <li><a href="services.html#card-4741">Retail (4741)</a></li>
+                            <li><a href="services.html#card-5820">Software Publishing (5820)</a></li>
+                            <li><a href="services.html#card-6201">Programming (6201)</a></li>
+                            <li><a href="services.html#card-6202">IT Consultancy (6202)</a></li>
+                            <li><a href="services.html#card-6209">Cloud & Security (6209)</a></li>
+                            <li><a href="services.html#card-6311">Hosting (6311)</a></li>
+                            <li><a href="services.html#card-6312">Web Portals (6312)</a></li>
+                            <li><a href="services.html#card-7020">Management (7020)</a></li>
+                            <li><a href="services.html#card-7310">Advertising (7310)</a></li>
+                            <li><a href="services.html#card-7410">Design (7410)</a></li>
+                            <li><a href="services.html#card-9511">Repair (9511)</a></li>
+                            <li><a href="services.html#card-training">IT Training</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="why-us.html">Why Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="why-us.html">Local Expertise</a></li>
+                            <li><a href="why-us.html">Limited Liability</a></li>
+                            <li><a href="why-us.html">End‑to‑End Solutions</a></li>
+                            <li><a href="why-us.html">24/7 Support</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- WHY US CONTENT -->
+    <section class="page-content" id="why">
+        <div class="container">
+            <h2 class="section-title">Why Evelynx in Nepal?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🇳🇵</div>
+                    <h4>Local Presence, Global Standards</h4>
+                    <p>Registered in Nepal with deep understanding of local regulations and business culture.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚖️</div>
+                    <h4>Limited Liability</h4>
+                    <p>Members' risk is capped at share capital — safe and transparent corporate structure.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <h4>End‑to‑End Solutions</h4>
+                    <p>From software to hardware, wholesale to repair — all technology needs under one roof.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <h4>Nepali Support, 24/7</h4>
+                    <p>Responsive customer service with a team that speaks your language.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo-text"><span style="background:var(--nepal-red); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:0.9rem; color:white;">E</span> Evelynx Solutions</div>
+                    <p style="margin-top:1rem;">A Nepal-registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Key Services</h4>
+                    <ul>
+                        <li><a href="services.html#card-5820">Software</a></li>
+                        <li><a href="services.html#card-4651">Hardware Wholesale</a></li>
+                        <li><a href="services.html#card-6209">Cybersecurity</a></li>
+                        <li><a href="services.html#card-9511">Repair</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Limited Liability Company</a></li>
+                        <li><a href="#">Registered in Nepal</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+        const toggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
