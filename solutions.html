@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why Evelynx | Nepal IT Company</title>
+    <title>Solutions | Evelynx Solutions Pvt. Ltd.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -11,10 +11,9 @@
     <style>
         :root {
             --navy: #0B1A2D; --white: #ffffff; --off-white: #f7f8fa; --gray-light: #e9ecf1;
-            --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352;
-            --nepal-red: #C8102E; --nepal-blue: #003893;
-            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04); --shadow-md: 0 8px 28px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352; --nepal-red: #C8102E;
+            --nepal-blue: #003893; --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
@@ -22,7 +21,7 @@
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* HEADER (exactly like other pages) */
+        /* HEADER */
         .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
@@ -48,14 +47,17 @@
 
         /* PAGE CONTENT */
         .page-content { padding-top:8rem; padding-bottom:5rem; }
-        .why-title { text-align:center; margin-bottom:4rem; }
-        .why-title h2 { font-size:2.6rem; color:var(--navy); margin-bottom:1rem; }
-        .timeline { display:flex; flex-direction:column; gap:2rem; }
-        .timeline-item { display:flex; align-items:center; gap:2rem; background:white; padding:2rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.04); transition:var(--transition); }
-        .timeline-item:hover { transform:translateX(10px); box-shadow:0 10px 25px rgba(0,0,0,0.08); }
-        .timeline-icon { font-size:2.8rem; min-width:70px; text-align:center; }
-        .timeline-content h3 { color:var(--navy); margin-bottom:0.5rem; }
-        .timeline-content p { color:var(--text-muted); }
+        .solution-section { padding: 4rem 0; background: white; border-bottom: 1px solid var(--gray-light); }
+        .solution-section:nth-child(even) { background: var(--off-white); }
+        .solution-section .container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .solution-section .solution-text h2 { font-size: 2.2rem; color: var(--navy); margin-bottom: 1.5rem; }
+        .solution-section .solution-text p { color: var(--text-muted); margin-bottom: 1rem; }
+        .solution-section .solution-text ul { list-style: none; padding: 0; }
+        .solution-section .solution-text ul li { margin-bottom: 0.6rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+        .solution-section .solution-text ul li::before { content: "✓"; color: var(--gold); font-weight: bold; margin-right: 0.3rem; }
+        .solution-icon-large { font-size: 8rem; text-align: center; color: var(--gold); opacity: 0.8; }
+        .cta-btn { display: inline-block; margin-top: 1.5rem; background: var(--gold); color: var(--navy); padding: 0.8rem 2rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: var(--transition); }
+        .cta-btn:hover { background: #d4b66b; }
 
         /* FOOTER */
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
@@ -69,13 +71,15 @@
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
         .footer-bottom span { color:var(--gold); font-weight:600; }
 
-        @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } .timeline-item { flex-direction:column; text-align:center; } }
+        @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
         @media (max-width:768px) {
             .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
             .dropdown-menu li a { color:white; }
+            .solution-section .container { grid-template-columns: 1fr; }
+            .solution-icon-large { font-size: 4rem; }
             .footer-grid { grid-template-columns:1fr; }
         }
     </style>
@@ -84,14 +88,12 @@
     <!-- ==================== HEADER ==================== -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">E</span> EvelynX Solutions
-            </a>
+            <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
             <nav>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>  <!-- NEW LINK -->
                     <li class="dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown-menu">
@@ -118,55 +120,123 @@
         </div>
     </header>
 
-    <!-- ==================== WHY US CONTENT ==================== -->
-    <section class="page-content" id="why">
-        <div class="container">
-            <div class="why-title" data-aos="fade-up">
-                <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;">Why Choose Evelynx</span>
-                <h2>Built different, for Nepal.</h2>
-                <p style="color:var(--text-muted);">Four pillars that set us apart from the rest.</p>
+    <!-- ==================== SOLUTIONS CONTENT ==================== -->
+    <div class="page-content">
+        <!-- Cybersecurity -->
+        <section class="solution-section" id="cybersecurity">
+            <div class="container">
+                <div class="solution-text" data-aos="fade-right">
+                    <h2>Cybersecurity & Data Protection</h2>
+                    <p>Protect your business from ransomware, phishing, and data breaches with our multi‑layered security stack.</p>
+                    <ul>
+                        <li>24/7 threat monitoring and incident response</li>
+                        <li>Endpoint protection and advanced firewall management</li>
+                        <li>Security awareness training for your employees</li>
+                        <li>Compliance audits (ISO, PCI‑DSS, GDPR)</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Get a Security Assessment</a>
+                </div>
+                <div class="solution-icon-large" data-aos="fade-left">🔒</div>
             </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-icon">🇳🇵</div>
-                    <div class="timeline-content">
-                        <h3>Local Expertise, Global Standards</h3>
-                        <p>We’re registered in Nepal and understand the local regulatory landscape, while delivering services that meet international benchmarks.</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-icon">⚖️</div>
-                    <div class="timeline-content">
-                        <h3>Limited Liability Protection</h3>
-                        <p>As a Private Limited company, members’ financial risk is strictly capped at their share capital – ensuring a secure, trustworthy structure.</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-icon">📦</div>
-                    <div class="timeline-content">
-                        <h3>End‑to‑End Solutions</h3>
-                        <p>From software publishing to hardware repair, we cover every technology need under one roof – no need to juggle multiple vendors.</p>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-icon">🤝</div>
-                    <div class="timeline-content">
-                        <h3>Expert Support, 24/7</h3>
-                        <p>Our team speaks your language and is available around the clock to ensure your business never stops. We combine deep technical knowledge with a genuine understanding of local needs, so you always have a reliable partner by your side.</p>
-                    </div>
+        </section>
+
+        <!-- Cloud -->
+        <section class="solution-section" id="cloud">
+            <div class="container">
+                <div class="solution-icon-large" data-aos="fade-right">☁️</div>
+                <div class="solution-text" data-aos="fade-left">
+                    <h2>Cloud Infrastructure & Migration</h2>
+                    <p>Move your workloads to the cloud seamlessly and run them efficiently.</p>
+                    <ul>
+                        <li>AWS, Azure, and Google Cloud expertise</li>
+                        <li>Serverless and containerized architectures</li>
+                        <li>Cost optimization and performance tuning</li>
+                        <li>Disaster recovery and backup solutions</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Start Cloud Journey</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Managed IT -->
+        <section class="solution-section" id="managed-it">
+            <div class="container">
+                <div class="solution-text" data-aos="fade-right">
+                    <h2>Managed IT & Helpdesk Support</h2>
+                    <p>Outsource your IT operations so you can focus on your core business.</p>
+                    <ul>
+                        <li>24/7 helpdesk with Nepali‑speaking engineers</li>
+                        <li>Proactive monitoring and maintenance</li>
+                        <li>Hardware and software procurement assistance</li>
+                        <li>On‑site and remote support</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Learn About Support Plans</a>
+                </div>
+                <div class="solution-icon-large" data-aos="fade-left">💻</div>
+            </div>
+        </section>
+
+        <!-- Software Development -->
+        <section class="solution-section" id="software-dev">
+            <div class="container">
+                <div class="solution-icon-large" data-aos="fade-right">📊</div>
+                <div class="solution-text" data-aos="fade-left">
+                    <h2>Software Development & ERP</h2>
+                    <p>Custom applications that streamline your operations and fuel growth.</p>
+                    <ul>
+                        <li>Web & mobile app development (React, Node.js, Python)</li>
+                        <li>ERP implementation (finance, HR, supply chain)</li>
+                        <li>SaaS platform development</li>
+                        <li>Agile project management and continuous delivery</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Discuss Your Project</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI / ML -->
+        <section class="solution-section" id="ai-ml">
+            <div class="container">
+                <div class="solution-text" data-aos="fade-right">
+                    <h2>AI & Machine Learning</h2>
+                    <p>Turn your data into a competitive advantage with intelligent automation.</p>
+                    <ul>
+                        <li>Predictive analytics and forecasting</li>
+                        <li>Natural language processing (chatbots, sentiment analysis)</li>
+                        <li>Computer vision applications</li>
+                        <li>Custom ML model training and deployment</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Explore AI Possibilities</a>
+                </div>
+                <div class="solution-icon-large" data-aos="fade-left">🤖</div>
+            </div>
+        </section>
+
+        <!-- Hardware -->
+        <section class="solution-section" id="hardware">
+            <div class="container">
+                <div class="solution-icon-large" data-aos="fade-right">🛠️</div>
+                <div class="solution-text" data-aos="fade-left">
+                    <h2>Hardware Supply & Repair</h2>
+                    <p>One‑stop shop for all your hardware needs – from purchase to maintenance.</p>
+                    <ul>
+                        <li>Wholesale and retail of laptops, desktops, printers</li>
+                        <li>Genuine spare parts and warranty services</li>
+                        <li>Certified repair technicians</li>
+                        <li>Annual maintenance contracts for businesses</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn">Request a Quote</a>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">
-                        <span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions
-                    </div>
+                    <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
                     <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
@@ -174,17 +244,18 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Key Services</h4>
+                    <h4>Key Solutions</h4>
                     <ul>
-                        <li><a href="services.html#card-5820">Software</a></li>
-                        <li><a href="services.html#card-4651">Hardware Wholesale</a></li>
-                        <li><a href="services.html#card-6209">Cybersecurity</a></li>
-                        <li><a href="services.html#card-9511">Repair</a></li>
+                        <li><a href="solutions.html#cybersecurity">Cybersecurity</a></li>
+                        <li><a href="solutions.html#cloud">Cloud Migration</a></li>
+                        <li><a href="solutions.html#managed-it">Managed IT</a></li>
+                        <li><a href="solutions.html#software-dev">Software Dev</a></li>
                     </ul>
                 </div>
                 <div>
@@ -196,34 +267,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                &copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal
-            </div>
+            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal</div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
-        // Sticky header
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile menu
+        window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50));
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            nav.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggle.classList.remove('active');
-                nav.classList.remove('active');
-            });
-        });
+        toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
     </script>
 </body>
 </html>
