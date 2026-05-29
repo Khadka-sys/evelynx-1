@@ -111,6 +111,15 @@
         .service-item h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
         .service-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
+        /* FAQ ACCORDION */
+        .faq-accordion { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--card-bg); border: 1px solid var(--gray-light); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: var(--transition); }
+        .faq-question { padding: 1.2rem 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question:hover { color: var(--gold); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0 1.5rem; color: var(--text-muted); }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.2rem; }
+        .faq-item.active .faq-question { color: var(--gold); }
+
         /* TESTIMONIAL SLIDER */
         .testimonial-slider { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
         .testimonial-slide { display: none; background: white; padding: 2.5rem; border-radius: 8px; box-shadow: var(--shadow-md); }
@@ -343,6 +352,37 @@
             </div>
         </div>
     </section>
+
+
+
+    <!-- ==================== FAQ ACCORDION ==================== -->
+    <section class="section bg-light" id="faq">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="container" data-aos="fade-up">
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">What is a Managed IT Service? <span>+</span></div>
+                    <div class="faq-answer"><p>We take full responsibility for your IT infrastructure, from monitoring and maintenance to security and support – all for a fixed monthly fee, allowing you to focus on your business.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How quickly can you respond to a support request? <span>+</span></div>
+                    <div class="faq-answer"><p>Our helpdesk is available 24/7. Most issues are acknowledged within 15 minutes, and critical problems are resolved in under 4 hours, thanks to our remote and on‑site teams.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer services outside Kathmandu? <span>+</span></div>
+                    <div class="faq-answer"><p>Yes! While our office is in Kathmandu, we serve clients across Nepal – from Pokhara to Biratnagar – with a combination of remote support and on‑site visits.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is my data safe with your cloud solutions? <span>+</span></div>
+                    <div class="faq-answer"><p>Absolutely. We use bank‑grade encryption, regular backups, and follow strict compliance standards. Your data never leaves Nepal without your explicit consent.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- ==================== TESTIMONIAL SLIDER ==================== -->
     <section class="section bg-light" id="testimonials">
