@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evelynx Solutions Pvt. Ltd. | IT & Technology Nepal</title>
+    <meta name="description" content="Nepal-based IT company – software, hardware, cloud, AI, cybersecurity, retail, wholesale, repair & training. Limited liability.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,8 +17,9 @@
             --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
             --bg-primary: #ffffff; --bg-secondary: #f7f8fa;
             --card-bg: #ffffff; --header-bg: rgba(11,26,45,0.96);
-            --hero-overlay: linear-gradient(135deg, #0a1628 0%, #112240 60%, #1a3654 100%);
-            --text-hero: #ffffff;
+            --hero-overlay: linear-gradient(135deg, rgba(10,22,40,0.7) 0%, rgba(17,34,64,0.8) 100%);
+            --glass-bg: rgba(255,255,255,0.08);
+            --glass-border: rgba(255,255,255,0.15);
         }
         [data-theme="dark"] {
             --navy: #0f172a; --white: #1e293b; --off-white: #1a2235; --gray-light: #2d3748;
@@ -26,8 +28,9 @@
             --card-bg: #1e293b; --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
             --shadow-md: 0 8px 28px rgba(0,0,0,0.5);
             --header-bg: rgba(15,23,42,0.98);
-            --hero-overlay: linear-gradient(135deg, #0a0f1a 0%, #0f172a 60%, #1a2235 100%);
-            --text-hero: #e2e8f0;
+            --hero-overlay: linear-gradient(135deg, rgba(10,22,40,0.85) 0%, rgba(15,23,42,0.9) 100%);
+            --glass-bg: rgba(30,41,59,0.6);
+            --glass-border: rgba(255,255,255,0.1);
         }
 
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -44,18 +47,18 @@
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
         .text-center { text-align: center; }
 
-        #progressBar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 10000; width: 0; transition: width 0.1s linear; }
+        #progressBar { position: fixed; top:0; left:0; height:3px; background:var(--gold); z-index:10000; width:0; transition:width 0.1s linear; }
 
-        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
-        .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background:var(--header-bg); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
+        .header.scrolled { background:var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
         .logo-icon { width:40px; height:40px; background: linear-gradient(135deg, var(--gold), #b3892d); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:1.1rem; }
         .nav-links { display:flex; list-style:none; gap:2rem; align-items:center; }
         .nav-links a { color:#ccd6e0; text-decoration:none; font-weight:500; font-size:0.95rem; transition:var(--transition); }
         .nav-links a:hover { color:white; }
-        .nav-links .btn-contact { background: var(--gold); color:var(--navy); padding:0.6rem 1.6rem; border-radius:4px; font-weight:600; }
-        .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
+        .nav-links .btn-contact { background:var(--gold); color:var(--navy); padding:0.6rem 1.6rem; border-radius:4px; font-weight:600; }
+        .nav-links .btn-contact:hover { background:#d4b66b; transform:translateY(-1px); }
         .dropdown { position:relative; }
         .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
         .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:var(--card-bg); border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
@@ -68,27 +71,61 @@
         .mobile-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-        .theme-toggle, .lang-toggle {
-            background: none; border: none; color: #ccd6e0; font-size:1.2rem;
-            cursor: pointer; transition:var(--transition); padding:0.3rem;
+        .theme-toggle, .lang-toggle { background:none; border:none; color:#ccd6e0; font-size:1.2rem; cursor:pointer; transition:var(--transition); padding:0.3rem; }
+        .theme-toggle:hover, .lang-toggle:hover { color:var(--gold); }
+        .lang-toggle { font-family:'Mukta', sans-serif; font-weight:600; font-size:1rem; }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&auto=format&fit=crop') center/cover no-repeat fixed;
         }
-        .theme-toggle:hover, .lang-toggle:hover { color: var(--gold); }
-        .lang-toggle { font-family: 'Mukta', sans-serif; font-weight: 600; font-size:1rem; }
-
-        .hero { background: var(--hero-overlay); min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:8rem 0 5rem; }
-        .hero .container { position:relative; z-index:2; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--hero-overlay);
+            backdrop-filter: blur(6px);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity:0; transform: translateY(30px); }
+            to { opacity:1; transform: translateY(0); }
+        }
         .hero-greeting { font-size:1.1rem; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:1rem; }
-        .hero h1 { font-size: clamp(3rem, 6vw, 4.8rem); color:var(--text-hero); line-height:1.12; margin-bottom:1.8rem; }
+        .hero h1 { font-size: clamp(2.8rem, 5vw, 4.2rem); color:white; line-height:1.12; margin-bottom:1.5rem; }
         .hero h1 span { color: var(--gold); }
-        .hero p { font-size:1.2rem; color:#b0c4de; max-width:650px; margin-bottom:2.8rem; }
-        .hero-buttons { display:flex; gap:1.2rem; flex-wrap:wrap; }
-        .btn { display:inline-block; padding:0.95rem 2.4rem; border-radius:4px; font-weight:600; text-decoration:none; transition:var(--transition); font-size:1rem; }
-        .btn-primary { background:var(--gold); color:var(--navy); box-shadow:0 10px 25px rgba(197,163,82,0.25); }
-        .btn-primary:hover { background:#d4b66b; transform:translateY(-2px); }
-        .btn-outline { border:2px solid rgba(255,255,255,0.6); color:white; }
-        .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+        .hero p { font-size:1.1rem; color:rgba(255,255,255,0.8); max-width:600px; margin:0 auto 2.5rem; }
+        .hero-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+        .btn { display:inline-block; padding:0.95rem 2.2rem; border-radius:50px; font-weight:600; text-decoration:none; transition:var(--transition); font-size:1rem; position:relative; overflow:hidden; }
+        .btn-primary { background:var(--gold); color:var(--navy); border:2px solid var(--gold); }
+        .btn-primary:hover { background:transparent; color:var(--gold); }
+        .btn-outline { border:2px solid var(--gold); color:var(--gold); background:transparent; }
+        .btn-outline:hover { background:var(--gold); color:var(--navy); }
 
-        .counters { background: var(--bg-secondary); padding:4rem 0; }
+        .client-carousel { padding: 3rem 0; background: var(--bg-secondary); overflow: hidden; }
+        .client-track { display: flex; gap: 3rem; animation: scroll 20s linear infinite; width: max-content; }
+        .client-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .client-logo { width: 100px; height: 60px; background: var(--card-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); font-weight: 700; color: var(--text-muted); }
+
+        .counters { background: var(--bg-primary); padding:4rem 0; }
         .counters-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; text-align:center; }
         .counter-item h3 { font-size:2.5rem; color:var(--gold); }
         .counter-item p { color:var(--text-muted); }
@@ -99,22 +136,27 @@
         .section-subtitle { color:var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto 3rem; }
         .bg-light { background: var(--bg-secondary); }
 
-        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .solution-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
-        .solution-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+        .filter-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .filter-tab { padding: 0.6rem 1.5rem; border-radius: 50px; font-weight: 600; cursor: pointer; border: 2px solid var(--gray-light); background: transparent; color: var(--text-muted); transition: var(--transition); }
+        .filter-tab.active, .filter-tab:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .solution-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+        .solution-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: var(--gold); }
         .solution-card img { width: 100%; height: 180px; object-fit: cover; }
         .solution-card .card-body { padding: 1.8rem 1.5rem; text-align: center; flex: 1; }
         .solution-card h3 { font-size: 1.4rem; color: var(--navy); margin-bottom: 0.8rem; }
         .solution-card p { color: var(--text-muted); font-size: 0.95rem; }
+        .hidden { display: none; }
 
         .page-content { padding-top:8rem; padding-bottom:5rem; }
         .section-heading { text-align: center; margin-bottom: 4rem; }
         .section-heading h2 { font-size:2.8rem; color: var(--navy); margin-bottom: 1rem; }
         .section-heading p { color: var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto; }
         .service-category { margin-bottom: 5rem; }
-        .category-title { font-size:2rem; color: var(--navy); border-left: 5px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2rem; }
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
-        .service-item { background: var(--card-bg); border-radius: 8px; padding: 2rem 1.6rem; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); text-align: center; }
+        .category-title { font-size:2rem; color: var(--navy); border-left:5px solid var(--gold); padding-left:1.5rem; margin-bottom:2rem; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.8rem; }
+        .service-item { background: var(--card-bg); border-radius: 12px; padding: 2rem 1.6rem; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); text-align: center; }
         .service-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--gold); }
         .service-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--gold); }
         .service-item h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
@@ -129,7 +171,7 @@
         .faq-item.active .faq-question { color: var(--gold); }
 
         .testimonial-slider { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
-        .testimonial-slide { display: none; background: var(--card-bg); padding: 2.5rem; border-radius: 8px; box-shadow: var(--shadow-md); }
+        .testimonial-slide { display: none; background: var(--card-bg); padding: 2.5rem; border-radius: 12px; box-shadow: var(--shadow-md); }
         .testimonial-slide.active { display: block; }
         .testimonial-slide p { font-style: italic; color: var(--text-muted); margin-bottom: 1rem; }
         .testimonial-slide strong { color: var(--navy); display: block; margin-top: 1rem; }
@@ -137,40 +179,32 @@
         .slider-dots .dot { display: inline-block; width: 12px; height: 12px; margin: 0 5px; background: var(--gray-light); border-radius: 50%; cursor: pointer; transition: var(--transition); }
         .slider-dots .dot.active { background: var(--gold); }
 
-        .contact-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg); border-radius: 8px; padding: 2rem; box-shadow: var(--shadow-md); }
-        .contact-form-container input,
-        .contact-form-container textarea {
-            width: 100%; padding: 0.8rem; margin-bottom: 1rem;
-            border: 1px solid var(--gray-light); border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary); color: var(--text);
-        }
-        .contact-form-container textarea { height: 150px; resize: vertical; }
-        .contact-form-container button {
-            background: var(--gold); color: var(--navy);
-            padding: 0.8rem 2rem; border: none; border-radius: 4px;
-            font-weight: 600; cursor: pointer; transition: var(--transition);
-        }
-        .contact-form-container button:hover { background: #d4b66b; }
+        .newsletter-box { background: var(--navy); border-radius: 16px; padding: 3rem 2rem; text-align: center; color: white; margin-top: 3rem; }
+        .newsletter-box input[type="email"] { padding: 0.8rem 1.5rem; border-radius: 50px; border: none; width: 300px; max-width: 100%; margin-right: 0.5rem; font-family: 'Inter', sans-serif; }
+        .newsletter-box button { padding: 0.8rem 2rem; border-radius: 50px; border: none; background: var(--gold); color: var(--navy); font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
 
-        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 1rem 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; z-index: 9999; transform: translateY(100%); transition: transform 0.4s ease; }
-        .cookie-banner.show { transform: translateY(0); }
-        .cookie-banner button { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        .contact-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow-md); }
+        .contact-form-container input, .contact-form-container textarea { width:100%; padding:0.8rem; margin-bottom:1rem; border:1px solid var(--gray-light); border-radius:4px; font-family:'Inter',sans-serif; background:var(--bg-primary); color:var(--text); }
+        .contact-form-container textarea { height:150px; resize:vertical; }
+        .contact-form-container button { background:var(--gold); color:var(--navy); padding:0.8rem 2rem; border:none; border-radius:4px; font-weight:600; cursor:pointer; transition:var(--transition); }
+        .contact-form-container button:hover { background:#d4b66b; }
 
-        .chat-widget { position: fixed; bottom: 2rem; left: 2rem; z-index: 999; }
-        .chat-btn { background: var(--gold); color: var(--navy); width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
-        .chat-btn:hover { transform: scale(1.1); }
-        .chat-modal { display: none; position: absolute; bottom: 70px; left: 0; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow-md); padding: 1.5rem; width: 280px; text-align: center; }
-        .chat-modal.active { display: block; }
-        .chat-modal a { display: block; margin: 0.8rem 0; color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.2s; }
-        .chat-modal a:hover { color: var(--gold); }
-        .chat-modal .close-chat { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
-
-        .mobile-call-bar { display: none; position: fixed; bottom: 0; left:0; right:0; background: var(--gold); color: var(--navy); text-align: center; padding: 0.8rem; font-weight: 700; z-index: 998; text-decoration: none; font-size: 1rem; }
-        @media (max-width: 768px) { .mobile-call-bar { display: block; } .chat-widget { bottom: 4rem; } }
-
-        .back-to-top { position:fixed; bottom:2rem; right:2rem; width:45px; height:45px; background:var(--gold); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; }
+        .cookie-banner { position: fixed; bottom:0; left:0; right:0; background:var(--navy); color:white; padding:1rem 2rem; display:flex; justify-content:center; align-items:center; gap:1rem; z-index:9999; transform:translateY(100%); transition:transform 0.4s ease; }
+        .cookie-banner.show { transform:translateY(0); }
+        .cookie-banner button { background:var(--gold); color:var(--navy); border:none; padding:0.5rem 1.5rem; border-radius:4px; font-weight:600; cursor:pointer; }
+        .chat-widget { position: fixed; bottom:2rem; left:2rem; z-index:999; }
+        .chat-btn { background:var(--gold); color:var(--navy); width:60px; height:60px; border-radius:50%; border:none; font-size:1.8rem; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,0.3); transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+        .chat-btn:hover { transform:scale(1.1); }
+        .chat-modal { display:none; position:absolute; bottom:70px; left:0; background:var(--card-bg); border-radius:12px; box-shadow:var(--shadow-md); padding:1.5rem; width:280px; text-align:center; }
+        .chat-modal.active { display:block; }
+        .chat-modal a { display:block; margin:0.8rem 0; color:var(--text); text-decoration:none; font-weight:600; transition:color 0.2s; }
+        .chat-modal a:hover { color:var(--gold); }
+        .chat-modal .close-chat { position:absolute; top:5px; right:10px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-muted); }
+        .mobile-call-bar { display:none; position:fixed; bottom:0; left:0; right:0; background:var(--gold); color:var(--navy); text-align:center; padding:0.8rem; font-weight:700; z-index:998; text-decoration:none; font-size:1rem; }
+        @media (max-width:768px) { .mobile-call-bar { display:block; } .chat-widget { bottom:4rem; } }
+        .back-to-top { position:fixed; bottom:2rem; right:2rem; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; background: conic-gradient(var(--gold) 0%, var(--gold) var(--scroll-percent, 0%), transparent var(--scroll-percent, 0%)); }
         .back-to-top.show { opacity:1; visibility:visible; }
+        .back-to-top span { background: var(--navy); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; color: var(--gold); }
 
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
@@ -183,9 +217,9 @@
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
         .footer-bottom span { color:var(--gold); font-weight:600; }
 
-        @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
+        @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } .hero-content { margin:0 1rem; padding:2rem; } }
         @media (max-width:768px) {
-            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background: var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
@@ -198,7 +232,7 @@
 <body>
     <div id="progressBar"></div>
 
-    <!-- HEADER -->
+    <!-- ==================== HEADER ==================== -->
     <header class="header" id="header">
         <div class="container header-inner">
             <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
@@ -230,14 +264,14 @@
                     <li><button class="lang-toggle" id="langToggle" aria-label="Switch language">🇳🇵</button></li>
                     <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button></li>
                 </ul>
-                <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
             </nav>
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- ==================== HERO ==================== -->
     <section class="hero" id="home">
-        <div class="container" data-aos="fade-up">
+        <div class="hero-content">
             <div class="hero-greeting" data-i18n="hero.greeting">नमस्ते 🙏 | KATHMANDU, NEPAL</div>
             <h1><span data-i18n="hero.headline">We deliver <span>technology</span> that transforms business.</span></h1>
             <p data-i18n="hero.description">From software to hardware, cloud to repair – Evelynx Solutions is Nepal’s most comprehensive IT partner. Limited liability, unlimited ambition.</p>
@@ -248,7 +282,20 @@
         </div>
     </section>
 
-    <!-- COUNTERS -->
+    <!-- ==================== CLIENT LOGO CAROUSEL ==================== -->
+    <section class="client-carousel">
+        <div class="container text-center" data-aos="fade-up">
+            <span class="section-label" data-i18n="clients.label">Trusted by Leading Organisations</span>
+        </div>
+        <div class="client-track">
+            <div class="client-logo">LOGO 1</div><div class="client-logo">LOGO 2</div><div class="client-logo">LOGO 3</div>
+            <div class="client-logo">LOGO 4</div><div class="client-logo">LOGO 5</div><div class="client-logo">LOGO 6</div>
+            <div class="client-logo">LOGO 1</div><div class="client-logo">LOGO 2</div><div class="client-logo">LOGO 3</div>
+            <div class="client-logo">LOGO 4</div><div class="client-logo">LOGO 5</div><div class="client-logo">LOGO 6</div>
+        </div>
+    </section>
+
+    <!-- ==================== COUNTERS ==================== -->
     <section class="counters" data-aos="fade-up">
         <div class="container">
             <div class="counters-grid">
@@ -268,7 +315,7 @@
         </div>
     </section>
 
-    <!-- SOLUTIONS -->
+    <!-- ==================== SOLUTIONS (FILTERABLE) ==================== -->
     <section class="section" id="solutions">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label" data-i18n="solutions.label">What We Solve</span>
@@ -276,67 +323,62 @@
             <p class="section-subtitle" data-i18n="solutions.subtitle">We don't just fix problems – we prevent them. Our proactive approach keeps your business running smoothly, securely, and efficiently.</p>
         </div>
         <div class="container">
-            <div class="solutions-grid">
-                <a href="solutions.html#business-continuity" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop" alt="Business Continuity">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card1.title">Business Continuity</h3>
-                            <p data-i18n="solutions.card1.desc">Keep your operations running no matter what. Disaster recovery, automated backups, and failover systems ensure zero downtime.</p>
-                        </div>
+            <div class="filter-tabs" data-aos="fade-up">
+                <button class="filter-tab active" data-filter="all" data-i18n="filter.all">All</button>
+                <button class="filter-tab" data-filter="business-continuity" data-i18n="filter.business-continuity">Business Continuity</button>
+                <button class="filter-tab" data-filter="cloud" data-i18n="filter.cloud">Cloud</button>
+                <button class="filter-tab" data-filter="security" data-i18n="filter.security">Cybersecurity</button>
+                <button class="filter-tab" data-filter="support" data-i18n="filter.support">IT Support</button>
+                <button class="filter-tab" data-filter="other" data-i18n="filter.other">Other</button>
+            </div>
+            <div class="solutions-grid" id="solutionsGrid">
+                <div class="solution-card" data-category="business-continuity" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop" alt="Business Continuity" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card1.title">Business Continuity</h3>
+                        <p data-i18n="solutions.card1.desc">Keep your operations running no matter what. Disaster recovery, automated backups, and failover systems ensure zero downtime.</p>
                     </div>
-                </a>
-                <a href="solutions.html#cloud-solutions" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop" alt="Cloud Solutions">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card2.title">Cloud Solutions</h3>
-                            <p data-i18n="solutions.card2.desc">Flexible, secure cloud infrastructure – migration, optimization, and 24/7 management on AWS, Azure, and GCP.</p>
-                        </div>
+                </div>
+                <div class="solution-card" data-category="cloud" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop" alt="Cloud Solutions" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card2.title">Cloud Solutions</h3>
+                        <p data-i18n="solutions.card2.desc">Flexible, secure cloud infrastructure – migration, optimization, and 24/7 management on AWS, Azure, and GCP.</p>
                     </div>
-                </a>
-                <a href="solutions.html#cybersecurity" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop" alt="Cybersecurity">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card3.title">Cybersecurity</h3>
-                            <p data-i18n="solutions.card3.desc">Protect your business from ransomware, phishing, and data breaches with multi‑layered security and 24/7 monitoring.</p>
-                        </div>
+                </div>
+                <div class="solution-card" data-category="security" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop" alt="Cybersecurity" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card3.title">Cybersecurity</h3>
+                        <p data-i18n="solutions.card3.desc">Protect your business from ransomware, phishing, and data breaches with multi‑layered security and 24/7 monitoring.</p>
                     </div>
-                </a>
-                <!-- Updated IT Support image -->
-                <a href="solutions.html#it-support" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://plus.unsplash.com/premium_photo-1661510222198-2c15ce11a644?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="IT Support">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card4.title">IT Support Services</h3>
-                            <p data-i18n="solutions.card4.desc">24/7 helpdesk with Nepali‑speaking engineers. Remote and on‑site support that keeps your team productive.</p>
-                        </div>
+                </div>
+                <div class="solution-card" data-category="support" data-aos="fade-up">
+                    <img src="https://plus.unsplash.com/premium_photo-1661510222198-2c15ce11a644?w=800&auto=format&fit=crop" alt="IT Support" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card4.title">IT Support Services</h3>
+                        <p data-i18n="solutions.card4.desc">24/7 helpdesk with Nepali‑speaking engineers. Remote and on‑site support that keeps your team productive.</p>
                     </div>
-                </a>
-                <a href="solutions.html#it-consulting" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop" alt="IT Consulting">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card5.title">IT Consulting</h3>
-                            <p data-i18n="solutions.card5.desc">Align your technology with business goals. Strategic roadmaps, digital transformation, and vendor management.</p>
-                        </div>
+                </div>
+                <div class="solution-card" data-category="other" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop" alt="IT Consulting" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card5.title">IT Consulting</h3>
+                        <p data-i18n="solutions.card5.desc">Align your technology with business goals. Strategic roadmaps, digital transformation, and vendor management.</p>
                     </div>
-                </a>
-                <a href="solutions.html#managed-it" style="text-decoration:none; color:inherit;">
-                    <div class="solution-card" data-aos="fade-up">
-                        <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&auto=format&fit=crop" alt="Managed IT">
-                        <div class="card-body">
-                            <h3 data-i18n="solutions.card6.title">Managed IT Services</h3>
-                            <p data-i18n="solutions.card6.desc">Outsource your IT operations so you can focus on your core business. Proactive monitoring, maintenance, and support.</p>
-                        </div>
+                </div>
+                <div class="solution-card" data-category="other" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&auto=format&fit=crop" alt="Managed IT" loading="lazy">
+                    <div class="card-body">
+                        <h3 data-i18n="solutions.card6.title">Managed IT Services</h3>
+                        <p data-i18n="solutions.card6.desc">Outsource your IT operations so you can focus on your core business. Proactive monitoring, maintenance, and support.</p>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICE DETAILS -->
+    <!-- ==================== SERVICE DETAILS ==================== -->
     <section class="page-content" id="services-section">
         <div class="container">
             <div class="section-heading" data-aos="fade-up">
@@ -344,6 +386,7 @@
                 <h2 data-i18n="services.title">Comprehensive IT Services</h2>
                 <p data-i18n="services.subtitle">From building your infrastructure to securing your data and enabling remote work – we have every technology need covered.</p>
             </div>
+
             <!-- Infrastructure -->
             <div class="service-category" id="infrastructure" data-aos="fade-up">
                 <h3 class="category-title" data-i18n="services.cat1.title">Infrastructure</h3>
@@ -359,6 +402,7 @@
                     <div class="service-item"><div class="service-icon">🎧</div><h3 data-i18n="services.cat1.item9.title">Managed Helpdesk Services</h3><p data-i18n="services.cat1.item9.desc">Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p></div>
                 </div>
             </div>
+
             <!-- Security -->
             <div class="service-category" id="security" data-aos="fade-up">
                 <h3 class="category-title" data-i18n="services.cat2.title">Security</h3>
@@ -370,6 +414,7 @@
                     <div class="service-item"><div class="service-icon">📋</div><h3 data-i18n="services.cat2.item5.title">Vulnerability Assessment</h3><p data-i18n="services.cat2.item5.desc">Regular scanning and penetration testing to find and fix security holes before attackers do.</p></div>
                 </div>
             </div>
+
             <!-- Remote Workers -->
             <div class="service-category" id="remote-workers" data-aos="fade-up">
                 <h3 class="category-title" data-i18n="services.cat3.title">Remote Workers</h3>
@@ -383,7 +428,7 @@
         </div>
     </section>
 
-    <!-- FAQ (fixed) -->
+    <!-- ==================== FAQ ==================== -->
     <section class="section bg-light" id="faq">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label" data-i18n="faq.label">FAQ</span>
@@ -423,7 +468,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ==================== TESTIMONIALS ==================== -->
     <section class="section" id="testimonials">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label" data-i18n="testimonials.label">Client Testimonials</span>
@@ -452,8 +497,22 @@
         </div>
     </section>
 
-    <!-- CONTACT (Formspree) -->
-    <section class="section bg-light" id="contact">
+    <!-- ==================== NEWSLETTER ==================== -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="newsletter-box" data-aos="fade-up">
+                <h2 style="color:white; margin-bottom:1rem;" data-i18n="newsletter.title">Stay Updated</h2>
+                <p style="color:rgba(255,255,255,0.7);" data-i18n="newsletter.subtitle">Get the latest tech insights and offers directly to your inbox.</p>
+                <form action="https://formspree.io/f/xbdbqerg" method="POST" style="margin-top:1.5rem;">
+                    <input type="email" name="email" placeholder="Your email address" required data-i18n="newsletter.placeholder" data-i18n-attr="placeholder">
+                    <button type="submit" data-i18n="newsletter.btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section" id="contact">
         <div class="container text-center" data-aos="fade-up">
             <span class="section-label" data-i18n="contact.label">Get In Touch</span>
             <h2 class="section-title" data-i18n="contact.title">Let's start a conversation.</h2>
@@ -464,23 +523,23 @@
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="_replyto" placeholder="Your Email" required>
                     <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
+                    <button type="submit" data-i18n="contact.form.btn">Send Message</button>
                 </form>
             </div>
             <p class="text-center" style="color:var(--text-muted); margin-top:1rem;">
-                <span data-i18n="contact.phone">📞 Need immediate help? Call or WhatsApp us at</span> <strong>+977‑9768969780</strong>
+                <span data-i18n="contact.phone">📞 Need immediate help? Call or WhatsApp us at</span> <strong>+977-9768969780</strong>
             </p>
         </div>
     </section>
 
-    <!-- Live Chat, Call Bar, Cookie, Back-to-top, Footer -->
+    <!-- ==================== WIDGETS ==================== -->
     <div class="chat-widget" id="chatWidget">
-        <button class="chat-btn" id="chatBtn">💬</button>
+        <button class="chat-btn" id="chatBtn" aria-label="Chat">💬</button>
         <div class="chat-modal" id="chatModal">
-            <button class="close-chat" id="closeChat">✕</button>
+            <button class="close-chat" id="closeChat" aria-label="Close chat">✕</button>
             <h4 data-i18n="chat.title">How can we help?</h4>
             <a href="https://wa.me/9779768969780" target="_blank" data-i18n="chat.whatsapp">💬 WhatsApp Chat</a>
-            <a href="mailto:info@evelynxsolutions.com" data-i18n="chat.email">✉️ Email Us</a>
+            <a href="mailto:evelynxsolutions@gmail.com" data-i18n="chat.email">✉️ Email Us</a>
             <a href="tel:+977-9768969780" data-i18n="chat.call">📞 Call Now</a>
         </div>
     </div>
@@ -489,9 +548,9 @@
         <span data-i18n="cookie.text">🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.</span>
         <button id="acceptCookies" data-i18n="cookie.accept">Accept</button>
     </div>
-    <div class="back-to-top" id="backToTop">↑</div>
+    <div class="back-to-top" id="backToTop"><span>↑</span></div>
 
-    <!-- ==================== FOOTER (FULLY TRANSLATED) ==================== -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -532,7 +591,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // --- Translations (including new footer keys) ---
+        // --- Translations ---
         const translations = {
             en: {
                 "nav.home": "Home", "nav.about": "About", "nav.solutions": "Solutions", "nav.services": "Services",
@@ -545,7 +604,10 @@
                 "hero.headline": "We deliver <span>technology</span> that transforms business.",
                 "hero.description": "From software to hardware, cloud to repair – Evelynx Solutions is Nepal’s most comprehensive IT partner. Limited liability, unlimited ambition.",
                 "hero.explore": "Explore All Services", "hero.contact": "Get in Touch",
+                "clients.label": "Trusted by Leading Organisations",
                 "counter.projects": "Projects Delivered", "counter.clients": "Happy Clients", "counter.years": "Years Experience",
+                "filter.all": "All", "filter.business-continuity": "Business Continuity", "filter.cloud": "Cloud",
+                "filter.security": "Cybersecurity", "filter.support": "IT Support", "filter.other": "Other",
                 "solutions.label": "What We Solve",
                 "solutions.title": "Technology Solutions for Modern Business",
                 "solutions.subtitle": "We don't just fix problems – we prevent them. Our proactive approach keeps your business running smoothly, securely, and efficiently.",
@@ -594,8 +656,13 @@
                 "testimonials.2.author": "— Kathmandu‑based E‑commerce Company",
                 "testimonials.3.quote": "\"We've been relying on Evelynx for cybersecurity and managed IT for over three years. They've never let us down.\"",
                 "testimonials.3.author": "— National NGO",
+                "newsletter.title": "Stay Updated",
+                "newsletter.subtitle": "Get the latest tech insights and offers directly to your inbox.",
+                "newsletter.placeholder": "Your email address",
+                "newsletter.btn": "Subscribe",
                 "contact.label": "Get In Touch", "contact.title": "Let's start a conversation.",
                 "contact.phone": "📞 Need immediate help? Call or WhatsApp us at",
+                "contact.form.btn": "Send Message",
                 "chat.title": "How can we help?", "chat.whatsapp": "💬 WhatsApp Chat", "chat.email": "✉️ Email Us", "chat.call": "📞 Call Now",
                 "mobile.call": "📞 Tap to Call – We're here 24/7",
                 "cookie.text": "🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.",
@@ -617,7 +684,10 @@
                 "hero.headline": "हामी <span>प्रविधि</span> प्रदान गर्छौं जसले व्यवसाय रूपान्तरण गर्छ।",
                 "hero.description": "सफ्टवेयरदेखि हार्डवेयरसम्म, क्लाउडदेखि मर्मतसम्म – इभलिन्क्स सोलुसन्स नेपालको सबैभन्दा व्यापक आईटी साझेदार हो। सीमित दायित्व, असीमित महत्वाकांक्षा।",
                 "hero.explore": "सबै सेवाहरू अन्वेषण गर्नुहोस्", "hero.contact": "सम्पर्क गर्नुहोस्",
+                "clients.label": "प्रमुख संस्थाहरूद्वारा विश्वसनीय",
                 "counter.projects": "परियोजनाहरू सम्पन्न", "counter.clients": "खुसी ग्राहकहरू", "counter.years": "वर्ष अनुभव",
+                "filter.all": "सबै", "filter.business-continuity": "व्यवसाय निरन्तरता", "filter.cloud": "क्लाउड",
+                "filter.security": "साइबर सुरक्षा", "filter.support": "आईटी सहयोग", "filter.other": "अन्य",
                 "solutions.label": "हामी के समाधान गर्छौं",
                 "solutions.title": "आधुनिक व्यवसायका लागि प्रविधि समाधान",
                 "solutions.subtitle": "हामी केवल समस्या समाधान गर्दैनौं – हामी तिनलाई रोक्छौं। हाम्रो सक्रिय दृष्टिकोणले तपाईंको व्यवसाय सहज, सुरक्षित र दक्ष रूपमा चलिरहन्छ।",
@@ -666,8 +736,13 @@
                 "testimonials.2.author": "— काठमाडौं स्थित इ‑कमर्स कम्पनी",
                 "testimonials.3.quote": "\"हामी तीन वर्ष भन्दा बढीदेखि साइबर सुरक्षा र प्रबन्धित आईटीको लागि इभलिन्क्समा भर परिरहेका छौं। उनीहरूले हामीलाई कहिल्यै निराश बनाएनन्।\"",
                 "testimonials.3.author": "— राष्ट्रिय एनजीओ",
+                "newsletter.title": "अपडेट रहनुहोस्",
+                "newsletter.subtitle": "नवीनतम प्रविधि अन्तर्दृष्टि र प्रस्तावहरू सिधै आफ्नो इनबक्समा प्राप्त गर्नुहोस्।",
+                "newsletter.placeholder": "तपाईंको ईमेल ठेगाना",
+                "newsletter.btn": "सब्सक्राइब गर्नुहोस्",
                 "contact.label": "सम्पर्कमा रहनुहोस्", "contact.title": "कुराकानी सुरु गरौं।",
                 "contact.phone": "📞 तत्काल सहायता चाहिन्छ? हामीलाई कल वा व्हाट्सएप गर्नुहोस्",
+                "contact.form.btn": "सन्देश पठाउनुहोस्",
                 "chat.title": "हामी कसरी सहयोग गर्न सक्छौं?", "chat.whatsapp": "💬 व्हाट्सएप च्याट", "chat.email": "✉️ हामीलाई इमेल गर्नुहोस्", "chat.call": "📞 अहिले कल गर्नुहोस्",
                 "mobile.call": "📞 कल गर्न ट्याप गर्नुहोस् – हामी २४/७ यहाँ छौं",
                 "cookie.text": "🍪 हामी तपाईंको ब्राउजिङ अनुभव बढाउन कुकीहरू प्रयोग गर्छौं। जारी राखेर, तपाईं हाम्रो गोपनीयता नीतिमा सहमत हुनुहुन्छ।",
@@ -680,6 +755,7 @@
             }
         };
 
+        // --- Language toggle ---
         function setLanguage(lang) {
             document.documentElement.setAttribute('lang', lang);
             localStorage.setItem('lang', lang);
@@ -688,7 +764,10 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    if (key === 'hero.headline') {
+                    if (el.hasAttribute('data-i18n-attr')) {
+                        const attr = el.getAttribute('data-i18n-attr');
+                        el.setAttribute(attr, translations[lang][key]);
+                    } else if (key === 'hero.headline') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
@@ -696,46 +775,60 @@
                 }
             });
         }
-
         const langToggle = document.getElementById('langToggle');
         const savedLang = localStorage.getItem('lang') || 'en';
         setLanguage(savedLang);
         langToggle.addEventListener('click', () => {
             const currentLang = document.documentElement.getAttribute('lang');
-            const newLang = currentLang === 'ne' ? 'en' : 'ne';
-            setLanguage(newLang);
+            setLanguage(currentLang === 'ne' ? 'en' : 'ne');
         });
 
-        // All other scripts
-        AOS.init({ duration: 1000, once: true });
-
+        // --- Scroll progress & back-to-top ring ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('progressBar').style.width = scrolled + '%';
+            const backBtn = document.getElementById('backToTop');
+            backBtn.style.setProperty('--scroll-percent', scrolled + '%');
+            backBtn.classList.toggle('show', window.scrollY > 500);
             document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
-            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
         });
 
-        const toggle = document.getElementById('mobileToggle');
-        const nav = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
-        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
+        // --- Mobile menu ---
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
 
-        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior: 'smooth' }));
+        // --- Back to top ---
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+        // --- Counters ---
         const counters = document.querySelectorAll('.count');
-        const counterObserver = new IntersectionObserver(entries => {
+        const counterObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
+                if (entry.isIntersecting) {
                     const counter = entry.target;
                     const target = +counter.getAttribute('data-target');
                     let count = 0;
                     const speed = target / 100;
                     const update = () => {
-                        if(count < target) { counter.innerText = Math.ceil(count); count += speed; requestAnimationFrame(update); }
-                        else counter.innerText = target;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count);
+                            count += speed;
+                            requestAnimationFrame(update);
+                        } else {
+                            counter.innerText = target;
+                        }
                     };
                     update();
                     counterObserver.unobserve(counter);
@@ -744,6 +837,25 @@
         }, { threshold: 0.5 });
         counters.forEach(c => counterObserver.observe(c));
 
+        // --- Filter tabs ---
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const solutionCards = document.querySelectorAll('#solutionsGrid .solution-card');
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.getAttribute('data-filter');
+                solutionCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // --- Testimonial slider ---
         const slides = document.querySelectorAll('.testimonial-slide');
         const dots = document.querySelectorAll('.dot');
         function showSlide(index) {
@@ -761,44 +873,7 @@
             showSlide(currentSlide);
         }, 5000);
 
-        const cookieBanner = document.getElementById('cookieBanner');
-        const acceptBtn = document.getElementById('acceptCookies');
-        if (!localStorage.getItem('cookiesAccepted')) {
-            setTimeout(() => cookieBanner.classList.add('show'), 1000);
-        }
-        acceptBtn.addEventListener('click', () => {
-            localStorage.setItem('cookiesAccepted', 'true');
-            cookieBanner.classList.remove('show');
-        });
-
-        const themeToggle = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeToggle.innerHTML = '☀️';
-        }
-        themeToggle.addEventListener('click', () => {
-            let theme = 'light';
-            if (document.documentElement.getAttribute('data-theme') === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                themeToggle.innerHTML = '🌙';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggle.innerHTML = '☀️';
-                theme = 'dark';
-            }
-            localStorage.setItem('theme', theme);
-        });
-
-        const chatBtn = document.getElementById('chatBtn');
-        const chatModal = document.getElementById('chatModal');
-        const closeChat = document.getElementById('closeChat');
-        chatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
-        closeChat.addEventListener('click', () => chatModal.classList.remove('active'));
-        window.addEventListener('click', (e) => {
-            if (!document.getElementById('chatWidget').contains(e.target)) chatModal.classList.remove('active');
-        });
-
+        // --- FAQ accordion ---
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
@@ -807,6 +882,46 @@
                 faqItems.forEach(other => { if (other !== item) other.classList.remove('active'); });
             });
         });
+
+        // --- Cookie consent ---
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => cookieBanner.classList.add('show'), 1000);
+        }
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        // --- Dark mode ---
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '☀️';
+        }
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // --- Chat widget ---
+        const chatBtn = document.getElementById('chatBtn');
+        const chatModal = document.getElementById('chatModal');
+        chatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
+        document.getElementById('closeChat').addEventListener('click', () => chatModal.classList.remove('active'));
+        window.addEventListener('click', (e) => {
+            if (!document.getElementById('chatWidget').contains(e.target)) chatModal.classList.remove('active');
+        });
+
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>
