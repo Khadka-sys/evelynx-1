@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Evelynx Solutions | Nepal</title>
-    <!-- Same fonts, AOS, and styles as about.html (I'll keep them for brevity, but they are identical) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,9 +11,10 @@
     <style>
         :root {
             --navy: #0B1A2D; --white: #ffffff; --off-white: #f7f8fa; --gray-light: #e9ecf1;
-            --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352; --nepal-red: #C8102E;
-            --nepal-blue: #003893; --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
-            --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
+            --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352;
+            --nepal-red: #C8102E; --nepal-blue: #003893;
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.04); --shadow-md: 0 8px 28px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
             --bg-primary: #ffffff; --bg-secondary: #f7f8fa;
             --card-bg: #ffffff; --header-bg: rgba(11,26,45,0.96);
         }
@@ -29,7 +29,14 @@
 
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text); line-height: 1.6; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
         .text-center { text-align: center; }
@@ -45,6 +52,7 @@
         .nav-links a { color:#ccd6e0; text-decoration:none; font-weight:500; font-size:0.95rem; transition:var(--transition); }
         .nav-links a:hover { color:white; }
         .nav-links .btn-contact { background: var(--gold); color:var(--navy); padding:0.6rem 1.6rem; border-radius:4px; font-weight:600; }
+        .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
         .dropdown { position:relative; }
         .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
         .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:var(--card-bg); border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
@@ -57,19 +65,31 @@
         .mobile-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-        .theme-toggle, .lang-toggle { background: none; border: none; color: #ccd6e0; font-size:1.2rem; cursor: pointer; transition:var(--transition); padding:0.3rem; }
+        .theme-toggle, .lang-toggle {
+            background: none; border: none; color: #ccd6e0; font-size:1.2rem;
+            cursor: pointer; transition:var(--transition); padding:0.3rem;
+        }
         .theme-toggle:hover, .lang-toggle:hover { color: var(--gold); }
         .lang-toggle { font-family: 'Mukta', sans-serif; font-weight: 600; font-size:1rem; }
 
         .page-content { padding-top:8rem; padding-bottom:5rem; }
+        .section-title { font-size:2.6rem; color:var(--navy); margin-bottom:2rem; }
         .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:2rem; }
         .contact-info .info-item { display:flex; align-items:center; gap:1.2rem; margin-bottom:2rem; background:var(--card-bg); padding:1.5rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.04); }
         .info-icon { width:48px; height:48px; background:rgba(197,163,82,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:var(--gold); }
         .contact-form { background:var(--card-bg); padding:2rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.04); }
-        .contact-form input, .contact-form textarea { width:100%; padding:0.8rem; margin-bottom:1rem; border:1px solid var(--gray-light); border-radius:4px; font-family:'Inter',sans-serif; background:var(--bg-primary); color:var(--text); }
-        .contact-form textarea { height:150px; resize:vertical; }
-        .contact-form button { background:var(--gold); color:var(--navy); padding:0.8rem 2rem; border:none; border-radius:4px; font-weight:600; cursor:pointer; transition:var(--transition); }
+        .contact-form h3 { color:var(--navy); margin-bottom:1.5rem; }
+        .contact-form input, .contact-form textarea {
+            width:100%; padding:0.9rem; margin-bottom:1.2rem;
+            border:1px solid var(--gray-light); border-radius:6px;
+            font-family:'Inter',sans-serif; background:var(--bg-primary); color:var(--text);
+            transition:var(--transition);
+        }
+        .contact-form input:focus, .contact-form textarea:focus { outline:none; border-color:var(--gold); }
+        .contact-form button { background:var(--gold); color:var(--navy); border:none; padding:0.9rem 2.2rem; border-radius:6px; font-weight:600; cursor:pointer; transition:var(--transition); }
         .contact-form button:hover { background:#d4b66b; }
+
+        .map-container { margin-top:3rem; border-radius:8px; overflow:hidden; box-shadow:var(--shadow-md); }
 
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
@@ -115,6 +135,7 @@
 <body>
     <div id="progressBar"></div>
 
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="container header-inner">
             <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
@@ -124,11 +145,22 @@
                     <li><a href="about.html" data-i18n="nav.about">About</a></li>
                     <li class="dropdown">
                         <a href="solutions.html" data-i18n="nav.solutions">Solutions</a>
-                        <ul class="dropdown-menu"> ... </ul> <!-- abbreviated, same as above -->
+                        <ul class="dropdown-menu">
+                            <li><a href="solutions.html#business-continuity" data-i18n="nav.business-continuity">Business Continuity</a></li>
+                            <li><a href="solutions.html#cloud-solutions" data-i18n="nav.cloud-solutions">Cloud Solutions</a></li>
+                            <li><a href="solutions.html#cybersecurity" data-i18n="nav.cybersecurity">Cybersecurity</a></li>
+                            <li><a href="solutions.html#it-support" data-i18n="nav.it-support">IT Support Services</a></li>
+                            <li><a href="solutions.html#it-consulting" data-i18n="nav.it-consulting">IT Consulting</a></li>
+                            <li><a href="solutions.html#managed-it" data-i18n="nav.managed-it">Managed IT Services</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a href="services.html" data-i18n="nav.services">Services</a>
-                        <ul class="dropdown-menu"> ... </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="services.html#infrastructure" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                            <li><a href="services.html#security" data-i18n="nav.security">Security</a></li>
+                            <li><a href="services.html#remote-workers" data-i18n="nav.remote">Remote Workers</a></li>
+                        </ul>
                     </li>
                     <li><a href="why-us.html" data-i18n="nav.why-us">Why Us</a></li>
                     <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">Contact</a></li>
@@ -140,33 +172,265 @@
         </div>
     </header>
 
-    <section class="page-content">
+    <!-- CONTACT CONTENT -->
+    <section class="page-content" id="contact">
         <div class="container">
             <div class="text-center" data-aos="fade-up">
                 <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;" data-i18n="contact.label">Get In Touch</span>
-                <h2 style="font-size:2.6rem; color:var(--navy); margin:1rem 0 2rem;" data-i18n="contact.title">Let's start a conversation.</h2>
+                <h2 class="section-title" data-i18n="contact.title">Let's start a conversation.</h2>
             </div>
             <div class="contact-grid">
                 <div class="contact-info" data-aos="fade-right">
-                    <div class="info-item"><div class="info-icon">📍</div><div><strong data-i18n="contact.address.title">Registered Office</strong><br><span data-i18n="contact.address">Kathmandu, Nepal</span></div></div>
-                    <div class="info-item"><div class="info-icon">📧</div><div><strong>Email</strong><br>info@evelynxsolutions.com</div></div>
-                    <div class="info-item"><div class="info-icon">📞</div><div><strong data-i18n="contact.phone.title">Phone / WhatsApp</strong><br>+977-9768969780</div></div>
-                    <div class="info-item"><div class="info-icon">⚖️</div><div><strong data-i18n="contact.legal.title">Legal Structure</strong><br><span data-i18n="contact.legal.desc">Private Limited Company · Members' liability limited</span></div></div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <strong data-i18n="contact.address.title">Registered Office</strong><br>
+                            <span data-i18n="contact.address">Kathmandu, Nepal</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div>
+                            <strong data-i18n="contact.email.title">Email</strong><br>
+                            <span data-i18n="contact.email">evelynxsolutions@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <strong data-i18n="contact.phone.title">Phone / WhatsApp</strong><br>
+                            <span>+977-9768969780</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">⚖️</div>
+                        <div>
+                            <strong data-i18n="contact.legal.title">Legal Structure</strong><br>
+                            <span data-i18n="contact.legal.desc">Private Limited Company · Members' liability limited</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="contact-form" data-aos="fade-left">
                     <h3 data-i18n="contact.form.title">Send a message</h3>
                     <form action="https://formspree.io/f/xbdbqerg" method="POST">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="_replyto" placeholder="Your Email" required>
-                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <input type="text" name="name" placeholder="Your Name" required data-i18n="contact.form.name" data-i18n-attr="placeholder">
+                        <input type="email" name="email" placeholder="Your Email" required data-i18n="contact.form.email" data-i18n-attr="placeholder">
+                        <input type="tel" name="phone" placeholder="Phone Number" required data-i18n="contact.form.phone" data-i18n-attr="placeholder">
+                        <textarea name="message" rows="5" placeholder="Tell us about your project..." required data-i18n="contact.form.message" data-i18n-attr="placeholder"></textarea>
+                        <input type="text" name="_gotcha" style="display:none">
                         <button type="submit" data-i18n="contact.form.btn">Submit Inquiry</button>
                     </form>
                 </div>
+            </div>
+            <!-- Map -->
+            <div class="map-container" data-aos="fade-up" data-aos-delay="200">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.1120!2d85.3240!3d27.7172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1908434cb3c5%3A0x1e9b2c3e5e3e6e1e!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1690000000000" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <p class="text-center" style="margin-top:2rem; color:var(--text-muted);" data-i18n="contact.help">📞 Need immediate help? Call or WhatsApp us at <strong>+977-9768969780</strong></p>
         </div>
     </section>
 
-    <!-- Footer, widgets, scripts identical to about.html, using the same translation keys plus additional contact ones -->
-    ...
-    <!-- I'll provide the full script later; due to length, I'm summarizing the pattern. The complete files are available. -->
+    <!-- CHAT WIDGET -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-btn" id="chatBtn">💬</button>
+        <div class="chat-modal" id="chatModal">
+            <button class="close-chat" id="closeChat">✕</button>
+            <h4 data-i18n="chat.title">How can we help?</h4>
+            <a href="https://wa.me/9779768969780" target="_blank" data-i18n="chat.whatsapp">💬 WhatsApp Chat</a>
+            <a href="mailto:evelynxsolutions@gmail.com" data-i18n="chat.email">✉️ Email Us</a>
+            <a href="tel:+977-9768969780" data-i18n="chat.call">📞 Call Now</a>
+        </div>
+    </div>
+    <a href="tel:+977-9768969780" class="mobile-call-bar" data-i18n="mobile.call">📞 Tap to Call – We're here 24/7</a>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookieBanner">
+        <span data-i18n="cookie.text">🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.</span>
+        <button id="acceptCookies" data-i18n="cookie.accept">Accept</button>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
+                    <p style="margin-top:1rem;" data-i18n="footer.description">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.quick">Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+                        <li><a href="about.html" data-i18n="footer.about">About</a></li>
+                        <li><a href="solutions.html" data-i18n="footer.solutions">Solutions</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.key">Key Solutions</h4>
+                    <ul>
+                        <li><a href="solutions.html#business-continuity" data-i18n="footer.business-continuity">Business Continuity</a></li>
+                        <li><a href="solutions.html#cloud-solutions" data-i18n="footer.cloud">Cloud</a></li>
+                        <li><a href="solutions.html#cybersecurity" data-i18n="footer.cybersecurity">Cybersecurity</a></li>
+                        <li><a href="solutions.html#it-support" data-i18n="footer.it-support">IT Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.ltd">Limited Liability Company</a></li>
+                        <li><a href="#" data-i18n="footer.reg">Registered in Nepal</a></li>
+                        <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> | Kathmandu, Nepal</div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                "nav.home": "Home", "nav.about": "About", "nav.solutions": "Solutions", "nav.services": "Services",
+                "nav.why-us": "Why Us", "nav.contact": "Contact",
+                "nav.business-continuity": "Business Continuity", "nav.cloud-solutions": "Cloud Solutions",
+                "nav.cybersecurity": "Cybersecurity", "nav.it-support": "IT Support Services",
+                "nav.it-consulting": "IT Consulting", "nav.managed-it": "Managed IT Services",
+                "nav.infrastructure": "Infrastructure", "nav.security": "Security", "nav.remote": "Remote Workers",
+                "contact.label": "Get In Touch", "contact.title": "Let's start a conversation.",
+                "contact.address.title": "Registered Office", "contact.address": "Kathmandu, Nepal",
+                "contact.email.title": "Email", "contact.email": "evelynxsolutions@gmail.com",
+                "contact.phone.title": "Phone / WhatsApp",
+                "contact.legal.title": "Legal Structure", "contact.legal.desc": "Private Limited Company · Members' liability limited",
+                "contact.form.title": "Send a message",
+                "contact.form.name": "Your Name",
+                "contact.form.email": "Your Email",
+                "contact.form.phone": "Phone Number",
+                "contact.form.message": "Tell us about your project...",
+                "contact.form.btn": "Submit Inquiry",
+                "contact.help": "📞 Need immediate help? Call or WhatsApp us at <strong>+977-9768969780</strong>",
+                "chat.title": "How can we help?", "chat.whatsapp": "💬 WhatsApp Chat", "chat.email": "✉️ Email Us", "chat.call": "📞 Call Now",
+                "mobile.call": "📞 Tap to Call – We're here 24/7",
+                "cookie.text": "🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.",
+                "cookie.accept": "Accept",
+                "footer.description": "A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.",
+                "footer.quick": "Quick Links", "footer.key": "Key Solutions", "footer.legal": "Legal",
+                "footer.home": "Home", "footer.about": "About", "footer.solutions": "Solutions", "footer.contact": "Contact",
+                "footer.business-continuity": "Business Continuity", "footer.cloud": "Cloud", "footer.cybersecurity": "Cybersecurity", "footer.it-support": "IT Support",
+                "footer.ltd": "Limited Liability Company", "footer.reg": "Registered in Nepal", "footer.privacy": "Privacy Policy"
+            },
+            ne: {
+                "nav.home": "गृहपृष्ठ", "nav.about": "हाम्रोबारे", "nav.solutions": "समाधानहरू", "nav.services": "सेवाहरू",
+                "nav.why-us": "हामीलाई किन", "nav.contact": "सम्पर्क",
+                "nav.business-continuity": "व्यवसाय निरन्तरता", "nav.cloud-solutions": "क्लाउड समाधान",
+                "nav.cybersecurity": "साइबर सुरक्षा", "nav.it-support": "आईटी सहयोग सेवाहरू",
+                "nav.it-consulting": "आईटी परामर्श", "nav.managed-it": "प्रबन्धित आईटी सेवाहरू",
+                "nav.infrastructure": "पूर्वाधार", "nav.security": "सुरक्षा", "nav.remote": "दूरस्थ कार्यकर्ता",
+                "contact.label": "सम्पर्कमा रहनुहोस्", "contact.title": "कुराकानी सुरु गरौं।",
+                "contact.address.title": "दर्ता कार्यालय", "contact.address": "काठमाडौं, नेपाल",
+                "contact.email.title": "ईमेल", "contact.email": "evelynxsolutions@gmail.com",
+                "contact.phone.title": "फोन / व्हाट्सएप",
+                "contact.legal.title": "कानूनी संरचना", "contact.legal.desc": "प्राइभेट लिमिटेड कम्पनी · सदस्यहरूको दायित्व सीमित",
+                "contact.form.title": "सन्देश पठाउनुहोस्",
+                "contact.form.name": "तपाईंको नाम",
+                "contact.form.email": "तपाईंको ईमेल",
+                "contact.form.phone": "फोन नम्बर",
+                "contact.form.message": "आफ्नो परियोजनाको बारेमा बताउनुहोस्...",
+                "contact.form.btn": "सोधपुछ पेस गर्नुहोस्",
+                "contact.help": "📞 तत्काल सहायता चाहिन्छ? हामीलाई <strong>+977-9768969780</strong> मा कल वा व्हाट्सएप गर्नुहोस्",
+                "chat.title": "हामी कसरी सहयोग गर्न सक्छौं?", "chat.whatsapp": "💬 व्हाट्सएप च्याट", "chat.email": "✉️ हामीलाई इमेल गर्नुहोस्", "chat.call": "📞 अहिले कल गर्नुहोस्",
+                "mobile.call": "📞 कल गर्न ट्याप गर्नुहोस् – हामी २४/७ यहाँ छौं",
+                "cookie.text": "🍪 हामी तपाईंको ब्राउजिङ अनुभव बढाउन कुकीहरू प्रयोग गर्छौं। जारी राखेर, तपाईं हाम्रो गोपनीयता नीतिमा सहमत हुनुहुन्छ।",
+                "cookie.accept": "स्वीकार गर्नुहोस्",
+                "footer.description": "नेपालमा दर्ता भएको प्राइभेट लिमिटेड कम्पनी। सबै आईटी सेवाहरू — सफ्टवेयर, हार्डवेयर, क्लाउड, मर्मत, प्रशिक्षण। सीमित दायित्व।",
+                "footer.quick": "द्रुत लिङ्कहरू", "footer.key": "मुख्य समाधानहरू", "footer.legal": "कानूनी",
+                "footer.home": "गृहपृष्ठ", "footer.about": "हाम्रोबारे", "footer.solutions": "समाधानहरू", "footer.contact": "सम्पर्क",
+                "footer.business-continuity": "व्यवसाय निरन्तरता", "footer.cloud": "क्लाउड", "footer.cybersecurity": "साइबर सुरक्षा", "footer.it-support": "आईटी सहयोग",
+                "footer.ltd": "सीमित दायित्व कम्पनी", "footer.reg": "नेपालमा दर्ता", "footer.privacy": "गोपनीयता नीति"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('lang', lang);
+            document.getElementById('langToggle').innerHTML = lang === 'ne' ? '🇬🇧' : '🇳🇵';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (el.hasAttribute('data-i18n-attr')) {
+                        const attr = el.getAttribute('data-i18n-attr');
+                        el.setAttribute(attr, translations[lang][key]);
+                    } else {
+                        el.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        const langToggle = document.getElementById('langToggle');
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+        langToggle.addEventListener('click', () => {
+            const currentLang = document.documentElement.getAttribute('lang');
+            setLanguage(currentLang === 'ne' ? 'en' : 'ne');
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (winScroll / height) * 100 + '%';
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
+        });
+
+        // Mobile menu
+        const toggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
+
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior: 'smooth' }));
+
+        // Cookie
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => cookieBanner.classList.add('show'), 1000);
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        // Dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '☀️';
+        }
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Chat widget
+        const chatBtn = document.getElementById('chatBtn');
+        const chatModal = document.getElementById('chatModal');
+        chatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
+        document.getElementById('closeChat').addEventListener('click', () => chatModal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (!document.getElementById('chatWidget').contains(e.target)) chatModal.classList.remove('active'); });
+
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>
