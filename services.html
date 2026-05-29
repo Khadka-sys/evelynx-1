@@ -6,7 +6,7 @@
     <title>Services | Evelynx Solutions Pvt. Ltd.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
@@ -14,15 +14,35 @@
             --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352; --nepal-red: #C8102E;
             --nepal-blue: #003893; --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
             --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
+            --bg-primary: #ffffff; --bg-secondary: #f7f8fa;
+            --card-bg: #ffffff; --header-bg: rgba(11,26,45,0.96);
         }
+        [data-theme="dark"] {
+            --navy: #0f172a; --white: #1e293b; --off-white: #1a2235; --gray-light: #2d3748;
+            --text: #e2e8f0; --text-muted: #a0aec0; --gold: #c5a352;
+            --bg-primary: #0f172a; --bg-secondary: #1a2235;
+            --card-bg: #1e293b; --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.5);
+            --header-bg: rgba(15,23,42,0.98);
+        }
+
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); line-height: 1.6; }
-        .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
+        .text-center { text-align: center; }
 
-        /* HEADER (same as other pages) */
-        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
+        #progressBar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 10000; width: 0; transition: width 0.1s linear; }
+
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
@@ -34,7 +54,7 @@
         .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
         .dropdown { position:relative; }
         .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
-        .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:white; border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
+        .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:var(--card-bg); border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
         .dropdown:hover .dropdown-menu { display:block; }
         .dropdown-menu li { list-style:none; }
         .dropdown-menu li a { padding:0.7rem 1.4rem; color:var(--text); display:block; font-weight:500; font-size:0.9rem; }
@@ -44,23 +64,26 @@
         .mobile-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+        .theme-toggle, .lang-toggle {
+            background: none; border: none; color: #ccd6e0; font-size:1.2rem;
+            cursor: pointer; transition:var(--transition); padding:0.3rem;
+        }
+        .theme-toggle:hover, .lang-toggle:hover { color: var(--gold); }
+        .lang-toggle { font-family: 'Mukta', sans-serif; font-weight: 600; font-size:1rem; }
 
-        /* PAGE CONTENT */
         .page-content { padding-top:8rem; padding-bottom:5rem; }
         .section-heading { text-align: center; margin-bottom: 4rem; }
         .section-heading h2 { font-size:2.8rem; color: var(--navy); margin-bottom: 1rem; }
         .section-heading p { color: var(--text-muted); font-size:1.1rem; max-width:700px; margin:0 auto; }
-
         .service-category { margin-bottom: 5rem; }
         .category-title { font-size:2rem; color: var(--navy); border-left: 5px solid var(--gold); padding-left: 1.5rem; margin-bottom: 2rem; }
         .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; }
-        .service-item { background: white; border-radius: 8px; padding: 2rem 1.6rem; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); text-align: center; }
+        .service-item { background: var(--card-bg); border-radius: 8px; padding: 2rem 1.6rem; border: 1px solid var(--gray-light); transition: var(--transition); box-shadow: var(--shadow-sm); text-align: center; }
         .service-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--gold); }
         .service-icon { font-size: 2.5rem; margin-bottom: 1rem; color: var(--gold); }
         .service-item h3 { font-size: 1.2rem; color: var(--navy); margin-bottom: 0.5rem; }
         .service-item p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        /* FOOTER */
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
         .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:white; display:flex; align-items:center; gap:8px; }
@@ -72,9 +95,28 @@
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
         .footer-bottom span { color:var(--gold); font-weight:600; }
 
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 1rem 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; z-index: 9999; transform: translateY(100%); transition: transform 0.4s ease; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner button { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
+
+        .chat-widget { position: fixed; bottom: 2rem; left: 2rem; z-index: 999; }
+        .chat-btn { background: var(--gold); color: var(--navy); width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .chat-btn:hover { transform: scale(1.1); }
+        .chat-modal { display: none; position: absolute; bottom: 70px; left: 0; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow-md); padding: 1.5rem; width: 280px; text-align: center; }
+        .chat-modal.active { display: block; }
+        .chat-modal a { display: block; margin: 0.8rem 0; color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+        .chat-modal a:hover { color: var(--gold); }
+        .chat-modal .close-chat { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
+
+        .mobile-call-bar { display: none; position: fixed; bottom: 0; left:0; right:0; background: var(--gold); color: var(--navy); text-align: center; padding: 0.8rem; font-weight: 700; z-index: 998; text-decoration: none; font-size: 1rem; }
+        @media (max-width: 768px) { .mobile-call-bar { display: block; } .chat-widget { bottom: 4rem; } }
+
+        .back-to-top { position:fixed; bottom:2rem; right:2rem; width:45px; height:45px; background:var(--gold); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; }
+        .back-to-top.show { opacity:1; visibility:visible; }
+
         @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
         @media (max-width:768px) {
-            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background: var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
@@ -85,212 +127,309 @@
     </style>
 </head>
 <body>
-    <!-- ==================== HEADER ==================== -->
+    <div id="progressBar"></div>
+
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="container header-inner">
             <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
             <nav>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
                     <li class="dropdown">
-                        <a href="solutions.html">Solutions</a>
+                        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#Cybersecurity & Data Protection">Cybersecurity & Data Protection</a></li>
-                            <li><a href="#Cloud Infrastructure & Migration">Cloud Infrastructure & Migration</a></li>
-                            <li><a href="#Managed IT & Helpdesk Support">Managed IT & Helpdesk Support</a></li>
-                            <li><a href="#Software Development & ERP">Software Development & ERP</a></li>
-                            <li><a href="#AI & Machine Learning">AI & Machine Learning</a></li>
-                            <li><a href="#Hardware Supply & Repair">Hardware Supply & Repair</a></li>
+                            <li><a href="solutions.html#business-continuity" data-i18n="nav.business-continuity">Business Continuity</a></li>
+                            <li><a href="solutions.html#cloud-solutions" data-i18n="nav.cloud-solutions">Cloud Solutions</a></li>
+                            <li><a href="solutions.html#cybersecurity" data-i18n="nav.cybersecurity">Cybersecurity</a></li>
+                            <li><a href="solutions.html#it-support" data-i18n="nav.it-support">IT Support Services</a></li>
+                            <li><a href="solutions.html#it-consulting" data-i18n="nav.it-consulting">IT Consulting</a></li>
+                            <li><a href="solutions.html#managed-it" data-i18n="nav.managed-it">Managed IT Services</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="services.html">Services</a>
+                        <a href="services.html" data-i18n="nav.services">Services</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#infrastructure">Infrastructure</a></li>
-                            <li><a href="#security">Security</a></li>
-                            <li><a href="#remote-workers">Remote Workers</a></li>
+                            <li><a href="services.html#infrastructure" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                            <li><a href="services.html#security" data-i18n="nav.security">Security</a></li>
+                            <li><a href="services.html#remote-workers" data-i18n="nav.remote">Remote Workers</a></li>
                         </ul>
                     </li>
-                    <li><a href="why-us.html">Why Us</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
+                    <li><a href="why-us.html" data-i18n="nav.why-us">Why Us</a></li>
+                    <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">Contact</a></li>
+                    <li><button class="lang-toggle" id="langToggle">🇳🇵</button></li>
+                    <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
                 </ul>
                 <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
             </nav>
         </div>
     </header>
 
-    <!-- ==================== SERVICES CONTENT ==================== -->
-    <section class="page-content">
+    <!-- SERVICES CONTENT -->
+    <section class="page-content" id="services">
         <div class="container">
             <div class="section-heading" data-aos="fade-up">
-                <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;">What We Offer</span>
-                <h2>Comprehensive IT Services</h2>
-                <p>From building your infrastructure to securing your data and enabling remote work – we have every technology need covered.</p>
+                <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;" data-i18n="services.label">What We Offer</span>
+                <h2 data-i18n="services.title">Comprehensive IT Services</h2>
+                <p data-i18n="services.subtitle">From building your infrastructure to securing your data and enabling remote work – we have every technology need covered.</p>
             </div>
 
             <!-- INFRASTRUCTURE -->
             <div class="service-category" id="infrastructure" data-aos="fade-up">
-                <h3 class="category-title">Infrastructure</h3>
+                <h3 class="category-title" data-i18n="services.cat1.title">Infrastructure</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">📡</div>
-                        <h3>Wireless Infrastructure</h3>
-                        <p>Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🖥️</div>
-                        <h3>Endpoint Management</h3>
-                        <p>Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🛒</div>
-                        <h3>IT Procurement</h3>
-                        <p>Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🌐</div>
-                        <h3>Network Management</h3>
-                        <p>Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">⚙️</div>
-                        <h3>Operations</h3>
-                        <p>Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">☁️</div>
-                        <h3>Cloud Backup & Disaster Recovery</h3>
-                        <p>Automated backups and rapid recovery plans to keep your business running after any disruption.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📧</div>
-                        <h3>Microsoft 365 for Business</h3>
-                        <p>Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔥</div>
-                        <h3>Managed Firewall Services</h3>
-                        <p>24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎧</div>
-                        <h3>Managed Helpdesk Services</h3>
-                        <p>Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">📡</div><h3 data-i18n="services.cat1.item1.title">Wireless Infrastructure</h3><p data-i18n="services.cat1.item1.desc">Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.</p></div>
+                    <div class="service-item"><div class="service-icon">🖥️</div><h3 data-i18n="services.cat1.item2.title">Endpoint Management</h3><p data-i18n="services.cat1.item2.desc">Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.</p></div>
+                    <div class="service-item"><div class="service-icon">🛒</div><h3 data-i18n="services.cat1.item3.title">IT Procurement</h3><p data-i18n="services.cat1.item3.desc">Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.</p></div>
+                    <div class="service-item"><div class="service-icon">🌐</div><h3 data-i18n="services.cat1.item4.title">Network Management</h3><p data-i18n="services.cat1.item4.desc">Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.</p></div>
+                    <div class="service-item"><div class="service-icon">⚙️</div><h3 data-i18n="services.cat1.item5.title">Operations</h3><p data-i18n="services.cat1.item5.desc">Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.</p></div>
+                    <div class="service-item"><div class="service-icon">☁️</div><h3 data-i18n="services.cat1.item6.title">Cloud Backup & Disaster Recovery</h3><p data-i18n="services.cat1.item6.desc">Automated backups and rapid recovery plans to keep your business running after any disruption.</p></div>
+                    <div class="service-item"><div class="service-icon">📧</div><h3 data-i18n="services.cat1.item7.title">Microsoft 365 for Business</h3><p data-i18n="services.cat1.item7.desc">Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.</p></div>
+                    <div class="service-item"><div class="service-icon">🔥</div><h3 data-i18n="services.cat1.item8.title">Managed Firewall Services</h3><p data-i18n="services.cat1.item8.desc">24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.</p></div>
+                    <div class="service-item"><div class="service-icon">🎧</div><h3 data-i18n="services.cat1.item9.title">Managed Helpdesk Services</h3><p data-i18n="services.cat1.item9.desc">Multi‑channel IT support desk for your employees, with fast resolution and friendly service.</p></div>
                 </div>
             </div>
 
             <!-- SECURITY -->
             <div class="service-category" id="security" data-aos="fade-up">
-                <h3 class="category-title">Security</h3>
+                <h3 class="category-title" data-i18n="services.cat2.title">Security</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">🛡️</div>
-                        <h3>Endpoint Protection</h3>
-                        <p>Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔍</div>
-                        <h3>IT Security Risk Analysis</h3>
-                        <p>Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔐</div>
-                        <h3>Ransomware Protection</h3>
-                        <p>Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎓</div>
-                        <h3>Security Awareness Training</h3>
-                        <p>Employee training programs that transform your staff into the first line of defense against cyber threats.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📋</div>
-                        <h3>Vulnerability Assessment</h3>
-                        <p>Regular scanning and penetration testing to find and fix security holes before attackers do.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">🛡️</div><h3 data-i18n="services.cat2.item1.title">Endpoint Protection</h3><p data-i18n="services.cat2.item1.desc">Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.</p></div>
+                    <div class="service-item"><div class="service-icon">🔍</div><h3 data-i18n="services.cat2.item2.title">IT Security Risk Analysis</h3><p data-i18n="services.cat2.item2.desc">Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.</p></div>
+                    <div class="service-item"><div class="service-icon">🔐</div><h3 data-i18n="services.cat2.item3.title">Ransomware Protection</h3><p data-i18n="services.cat2.item3.desc">Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.</p></div>
+                    <div class="service-item"><div class="service-icon">🎓</div><h3 data-i18n="services.cat2.item4.title">Security Awareness Training</h3><p data-i18n="services.cat2.item4.desc">Employee training programs that transform your staff into the first line of defense against cyber threats.</p></div>
+                    <div class="service-item"><div class="service-icon">📋</div><h3 data-i18n="services.cat2.item5.title">Vulnerability Assessment</h3><p data-i18n="services.cat2.item5.desc">Regular scanning and penetration testing to find and fix security holes before attackers do.</p></div>
                 </div>
             </div>
 
             <!-- REMOTE WORKERS -->
             <div class="service-category" id="remote-workers" data-aos="fade-up">
-                <h3 class="category-title">Remote Workers</h3>
+                <h3 class="category-title" data-i18n="services.cat3.title">Remote Workers</h3>
                 <div class="service-grid">
-                    <div class="service-item">
-                        <div class="service-icon">💻</div>
-                        <h3>Virtual Desktop Solutions</h3>
-                        <p>Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">✉️</div>
-                        <h3>Business Email Management</h3>
-                        <p>Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🔧</div>
-                        <h3>Hardware Support Services</h3>
-                        <p>On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.</p>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">📂</div>
-                        <h3>Remote File Access</h3>
-                        <p>Secure, encrypted access to company files and shared drives from anywhere in the world.</p>
-                    </div>
+                    <div class="service-item"><div class="service-icon">💻</div><h3 data-i18n="services.cat3.item1.title">Virtual Desktop Solutions</h3><p data-i18n="services.cat3.item1.desc">Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.</p></div>
+                    <div class="service-item"><div class="service-icon">✉️</div><h3 data-i18n="services.cat3.item2.title">Business Email Management</h3><p data-i18n="services.cat3.item2.desc">Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.</p></div>
+                    <div class="service-item"><div class="service-icon">🔧</div><h3 data-i18n="services.cat3.item3.title">Hardware Support Services</h3><p data-i18n="services.cat3.item3.desc">On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.</p></div>
+                    <div class="service-item"><div class="service-icon">📂</div><h3 data-i18n="services.cat3.item4.title">Remote File Access</h3><p data-i18n="services.cat3.item4.desc">Secure, encrypted access to company files and shared drives from anywhere in the world.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
-                    <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
+                    <p style="margin-top:1rem;" data-i18n="footer.description">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
-                    <h4>Quick Links</h4>
+                    <h4 data-i18n="footer.quick">Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+                        <li><a href="about.html" data-i18n="footer.about">About</a></li>
+                        <li><a href="solutions.html" data-i18n="footer.solutions">Solutions</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Key Services</h4>
+                    <h4 data-i18n="footer.key">Key Solutions</h4>
                     <ul>
-                        <li><a href="#infrastructure">Infrastructure</a></li>
-                        <li><a href="#security">Security</a></li>
-                        <li><a href="#remote-workers">Remote Workers</a></li>
+                        <li><a href="solutions.html#business-continuity" data-i18n="footer.business-continuity">Business Continuity</a></li>
+                        <li><a href="solutions.html#cloud-solutions" data-i18n="footer.cloud">Cloud</a></li>
+                        <li><a href="solutions.html#cybersecurity" data-i18n="footer.cybersecurity">Cybersecurity</a></li>
+                        <li><a href="solutions.html#it-support" data-i18n="footer.it-support">IT Support</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Legal</h4>
+                    <h4 data-i18n="footer.legal">Legal</h4>
                     <ul>
-                        <li><a href="#">Limited Liability Company</a></li>
-                        <li><a href="#">Registered in Nepal</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#" data-i18n="footer.ltd">Limited Liability Company</a></li>
+                        <li><a href="#" data-i18n="footer.reg">Registered in Nepal</a></li>
+                        <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal</div>
+            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> | Kathmandu, Nepal</div>
         </div>
     </footer>
 
+    <!-- WIDGETS -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-btn" id="chatBtn">💬</button>
+        <div class="chat-modal" id="chatModal">
+            <button class="close-chat" id="closeChat">✕</button>
+            <h4 data-i18n="chat.title">How can we help?</h4>
+            <a href="https://wa.me/9779768969780" target="_blank" data-i18n="chat.whatsapp">💬 WhatsApp Chat</a>
+            <a href="mailto:info@evelynxsolutions.com" data-i18n="chat.email">✉️ Email Us</a>
+            <a href="tel:+977-9768969780" data-i18n="chat.call">📞 Call Now</a>
+        </div>
+    </div>
+    <a href="tel:+977-9768969780" class="mobile-call-bar" data-i18n="mobile.call">📞 Tap to Call – We're here 24/7</a>
+    <div class="cookie-banner" id="cookieBanner">
+        <span data-i18n="cookie.text">🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.</span>
+        <button id="acceptCookies" data-i18n="cookie.accept">Accept</button>
+    </div>
+    <div class="back-to-top" id="backToTop">↑</div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
-        window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50));
+        // Translations
+        const translations = {
+            en: {
+                "nav.home": "Home", "nav.about": "About", "nav.solutions": "Solutions", "nav.services": "Services",
+                "nav.why-us": "Why Us", "nav.contact": "Contact",
+                "nav.business-continuity": "Business Continuity", "nav.cloud-solutions": "Cloud Solutions",
+                "nav.cybersecurity": "Cybersecurity", "nav.it-support": "IT Support Services",
+                "nav.it-consulting": "IT Consulting", "nav.managed-it": "Managed IT Services",
+                "nav.infrastructure": "Infrastructure", "nav.security": "Security", "nav.remote": "Remote Workers",
+                "services.label": "What We Offer", "services.title": "Comprehensive IT Services",
+                "services.subtitle": "From building your infrastructure to securing your data and enabling remote work – we have every technology need covered.",
+                "services.cat1.title": "Infrastructure",
+                "services.cat1.item1.title": "Wireless Infrastructure", "services.cat1.item1.desc": "Design and deployment of robust Wi‑Fi networks for offices, campuses, and public venues.",
+                "services.cat1.item2.title": "Endpoint Management", "services.cat1.item2.desc": "Centralized management of desktops, laptops, and mobile devices with patching, inventory, and policy control.",
+                "services.cat1.item3.title": "IT Procurement", "services.cat1.item3.desc": "Hardware and software sourcing, vendor negotiation, and lifecycle management for your IT assets.",
+                "services.cat1.item4.title": "Network Management", "services.cat1.item4.desc": "Proactive monitoring, configuration, and optimization of your LAN, WAN, and VPN connections.",
+                "services.cat1.item5.title": "Operations", "services.cat1.item5.desc": "Day‑to‑day IT operations management, ensuring systems run smoothly and efficiently.",
+                "services.cat1.item6.title": "Cloud Backup & Disaster Recovery", "services.cat1.item6.desc": "Automated backups and rapid recovery plans to keep your business running after any disruption.",
+                "services.cat1.item7.title": "Microsoft 365 for Business", "services.cat1.item7.desc": "Migration, setup, and management of Microsoft 365 – email, Teams, SharePoint, and more.",
+                "services.cat1.item8.title": "Managed Firewall Services", "services.cat1.item8.desc": "24/7 firewall monitoring, rule management, and intrusion prevention to keep threats out.",
+                "services.cat1.item9.title": "Managed Helpdesk Services", "services.cat1.item9.desc": "Multi‑channel IT support desk for your employees, with fast resolution and friendly service.",
+                "services.cat2.title": "Security",
+                "services.cat2.item1.title": "Endpoint Protection", "services.cat2.item1.desc": "Next‑gen antivirus, anti‑malware, and device control to secure all endpoints.",
+                "services.cat2.item2.title": "IT Security Risk Analysis", "services.cat2.item2.desc": "Comprehensive assessment of your IT environment to identify vulnerabilities and compliance gaps.",
+                "services.cat2.item3.title": "Ransomware Protection", "services.cat2.item3.desc": "Multi‑layered defense and recovery strategies specifically designed to stop ransomware attacks.",
+                "services.cat2.item4.title": "Security Awareness Training", "services.cat2.item4.desc": "Employee training programs that transform your staff into the first line of defense against cyber threats.",
+                "services.cat2.item5.title": "Vulnerability Assessment", "services.cat2.item5.desc": "Regular scanning and penetration testing to find and fix security holes before attackers do.",
+                "services.cat3.title": "Remote Workers",
+                "services.cat3.item1.title": "Virtual Desktop Solutions", "services.cat3.item1.desc": "Secure, cloud‑based virtual desktops that allow your team to work from anywhere on any device.",
+                "services.cat3.item2.title": "Business Email Management", "services.cat3.item2.desc": "Professional email hosting, spam filtering, and archiving solutions for uninterrupted communication.",
+                "services.cat3.item3.title": "Hardware Support Services", "services.cat3.item3.desc": "On‑site and remote hardware troubleshooting, repair, and maintenance for all employee devices.",
+                "services.cat3.item4.title": "Remote File Access", "services.cat3.item4.desc": "Secure, encrypted access to company files and shared drives from anywhere in the world.",
+                "chat.title": "How can we help?", "chat.whatsapp": "💬 WhatsApp Chat", "chat.email": "✉️ Email Us", "chat.call": "📞 Call Now",
+                "mobile.call": "📞 Tap to Call – We're here 24/7",
+                "cookie.text": "🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.",
+                "cookie.accept": "Accept",
+                "footer.description": "A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.",
+                "footer.quick": "Quick Links", "footer.key": "Key Solutions", "footer.legal": "Legal",
+                "footer.home": "Home", "footer.about": "About", "footer.solutions": "Solutions", "footer.contact": "Contact",
+                "footer.business-continuity": "Business Continuity", "footer.cloud": "Cloud", "footer.cybersecurity": "Cybersecurity", "footer.it-support": "IT Support",
+                "footer.ltd": "Limited Liability Company", "footer.reg": "Registered in Nepal", "footer.privacy": "Privacy Policy"
+            },
+            ne: {
+                "nav.home": "गृहपृष्ठ", "nav.about": "हाम्रोबारे", "nav.solutions": "समाधानहरू", "nav.services": "सेवाहरू",
+                "nav.why-us": "हामीलाई किन", "nav.contact": "सम्पर्क",
+                "nav.business-continuity": "व्यवसाय निरन्तरता", "nav.cloud-solutions": "क्लाउड समाधान",
+                "nav.cybersecurity": "साइबर सुरक्षा", "nav.it-support": "आईटी सहयोग सेवाहरू",
+                "nav.it-consulting": "आईटी परामर्श", "nav.managed-it": "प्रबन्धित आईटी सेवाहरू",
+                "nav.infrastructure": "पूर्वाधार", "nav.security": "सुरक्षा", "nav.remote": "दूरस्थ कार्यकर्ता",
+                "services.label": "हामी के प्रदान गर्छौं", "services.title": "व्यापक आईटी सेवाहरू",
+                "services.subtitle": "तपाईंको पूर्वाधार निर्माणदेखि डेटा सुरक्षित गर्न र दूरस्थ कार्य सक्षम गर्न – हामीसँग हरेक प्रविधि आवश्यकता समेटिएको छ।",
+                "services.cat1.title": "पूर्वाधार",
+                "services.cat1.item1.title": "वायरलेस पूर्वाधार", "services.cat1.item1.desc": "कार्यालय, क्याम्पस, र सार्वजनिक स्थलहरूका लागि मजबूत Wi‑Fi नेटवर्कको डिजाइन र तैनाती।",
+                "services.cat1.item2.title": "एन्डपोइन्ट व्यवस्थापन", "services.cat1.item2.desc": "प्याचिङ, सूची, र नीति नियन्त्रणको साथ डेस्कटप, ल्यापटप, र मोबाइल उपकरणहरूको केन्द्रीकृत व्यवस्थापन।",
+                "services.cat1.item3.title": "आईटी खरिद", "services.cat1.item3.desc": "हार्डवेयर र सफ्टवेयर सोर्सिङ, विक्रेता वार्ता, र तपाईंको आईटी सम्पत्तिहरूको जीवनचक्र व्यवस्थापन।",
+                "services.cat1.item4.title": "नेटवर्क व्यवस्थापन", "services.cat1.item4.desc": "तपाईंको LAN, WAN, र VPN जडानहरूको सक्रिय अनुगमन, कन्फिगरेसन, र अनुकूलन।",
+                "services.cat1.item5.title": "सञ्चालन", "services.cat1.item5.desc": "दिन‑प्रतिदिनको आईटी सञ्चालन व्यवस्थापन, प्रणालीहरू सहज र कुशलतापूर्वक चल्ने सुनिश्चित गर्दै।",
+                "services.cat1.item6.title": "क्लाउड ब्याकअप र विपद् पुन:प्राप्ति", "services.cat1.item6.desc": "स्वचालित ब्याकअप र द्रुत रिकभरी योजनाहरू जसले कुनै पनि अवरोध पछि तपाईंको व्यवसाय चालू राख्छ।",
+                "services.cat1.item7.title": "व्यवसायका लागि Microsoft 365", "services.cat1.item7.desc": "Microsoft 365 को स्थानान्तरण, सेटअप, र व्यवस्थापन – इमेल, Teams, SharePoint, र थप।",
+                "services.cat1.item8.title": "प्रबन्धित फायरवाल सेवाहरू", "services.cat1.item8.desc": "खतराहरूलाई बाहिर राख्न २४/७ फायरवाल अनुगमन, नियम व्यवस्थापन, र घुसपैठ रोकथाम।",
+                "services.cat1.item9.title": "प्रबन्धित हेल्पडेस्क सेवाहरू", "services.cat1.item9.desc": "तपाईंको कर्मचारीहरूको लागि बहु‑च्यानल आईटी समर्थन डेस्क, द्रुत समाधान र मैत्रीपूर्ण सेवाको साथ।",
+                "services.cat2.title": "सुरक्षा",
+                "services.cat2.item1.title": "एन्डपोइन्ट सुरक्षा", "services.cat2.item1.desc": "सबै एन्डपोइन्टहरू सुरक्षित गर्न अर्को पुस्ताको एन्टिभाइरस, एन्टि‑मालवेयर, र उपकरण नियन्त्रण।",
+                "services.cat2.item2.title": "आईटी सुरक्षा जोखिम विश्लेषण", "services.cat2.item2.desc": "कमजोरीहरू र अनुपालन अन्तरहरू पहिचान गर्न तपाईंको आईटी वातावरणको व्यापक मूल्याङ्कन।",
+                "services.cat2.item3.title": "Ransomware सुरक्षा", "services.cat2.item3.desc": "ransomware आक्रमणहरू रोक्न विशेष रूपमा डिजाइन गरिएको बहु‑स्तरीय रक्षा र रिकभरी रणनीतिहरू।",
+                "services.cat2.item4.title": "सुरक्षा जागरूकता तालिम", "services.cat2.item4.desc": "कर्मचारी प्रशिक्षण कार्यक्रमहरू जसले तपाईंको स्टाफलाई साइबर खतराहरू विरुद्धको पहिलो पङ्क्तिमा रूपान्तरण गर्दछ।",
+                "services.cat2.item5.title": "कमजोरी मूल्याङ्कन", "services.cat2.item5.desc": "आक्रमणकारीहरूले गर्नु अघि सुरक्षा छिद्रहरू पत्ता लगाउन र समाधान गर्न नियमित स्क्यानिङ र प्रवेश परीक्षण।",
+                "services.cat3.title": "दूरस्थ कार्यकर्ता",
+                "services.cat3.item1.title": "भर्चुअल डेस्कटप समाधान", "services.cat3.item1.desc": "सुरक्षित, क्लाउड‑आधारित भर्चुअल डेस्कटपहरू जसले तपाईंको टोलीलाई जुनसुकै उपकरणबाट कहीं पनि काम गर्न अनुमति दिन्छ।",
+                "services.cat3.item2.title": "व्यवसाय इमेल व्यवस्थापन", "services.cat3.item2.desc": "अविच्छिन्न संचारको लागि व्यावसायिक इमेल होस्टिङ, स्प्याम फिल्टरिङ, र संग्रह समाधान।",
+                "services.cat3.item3.title": "हार्डवेयर समर्थन सेवाहरू", "services.cat3.item3.desc": "सबै कर्मचारी उपकरणहरूको लागि साइटमा र रिमोट हार्डवेयर समस्या निवारण, मर्मत, र रखरखाव।",
+                "services.cat3.item4.title": "रिमोट फाइल पहुँच", "services.cat3.item4.desc": "संसारको जुनसुकै ठाउँबाट कम्पनी फाइलहरू र साझा ड्राइभहरूमा सुरक्षित, इन्क्रिप्टेड पहुँच।",
+                "chat.title": "हामी कसरी सहयोग गर्न सक्छौं?", "chat.whatsapp": "💬 व्हाट्सएप च्याट", "chat.email": "✉️ हामीलाई इमेल गर्नुहोस्", "chat.call": "📞 अहिले कल गर्नुहोस्",
+                "mobile.call": "📞 कल गर्न ट्याप गर्नुहोस् – हामी २४/७ यहाँ छौं",
+                "cookie.text": "🍪 हामी तपाईंको ब्राउजिङ अनुभव बढाउन कुकीहरू प्रयोग गर्छौं। जारी राखेर, तपाईं हाम्रो गोपनीयता नीतिमा सहमत हुनुहुन्छ।",
+                "cookie.accept": "स्वीकार गर्नुहोस्",
+                "footer.description": "नेपालमा दर्ता भएको प्राइभेट लिमिटेड कम्पनी। सबै आईटी सेवाहरू — सफ्टवेयर, हार्डवेयर, क्लाउड, मर्मत, प्रशिक्षण। सीमित दायित्व।",
+                "footer.quick": "द्रुत लिङ्कहरू", "footer.key": "मुख्य समाधानहरू", "footer.legal": "कानूनी",
+                "footer.home": "गृहपृष्ठ", "footer.about": "हाम्रोबारे", "footer.solutions": "समाधानहरू", "footer.contact": "सम्पर्क",
+                "footer.business-continuity": "व्यवसाय निरन्तरता", "footer.cloud": "क्लाउड", "footer.cybersecurity": "साइबर सुरक्षा", "footer.it-support": "आईटी सहयोग",
+                "footer.ltd": "सीमित दायित्व कम्पनी", "footer.reg": "नेपालमा दर्ता", "footer.privacy": "गोपनीयता नीति"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('lang', lang);
+            document.getElementById('langToggle').innerHTML = lang === 'ne' ? '🇬🇧' : '🇳🇵';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        const langToggle = document.getElementById('langToggle');
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+        langToggle.addEventListener('click', () => {
+            const currentLang = document.documentElement.getAttribute('lang');
+            setLanguage(currentLang === 'ne' ? 'en' : 'ne');
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (winScroll / height) * 100 + '%';
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
+        });
+
+        // Mobile menu
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
         toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
+
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior: 'smooth' }));
+
+        // Cookie
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => cookieBanner.classList.add('show'), 1000);
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        // Dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '☀️';
+        }
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Chat widget
+        const chatBtn = document.getElementById('chatBtn');
+        const chatModal = document.getElementById('chatModal');
+        chatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
+        document.getElementById('closeChat').addEventListener('click', () => chatModal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (!document.getElementById('chatWidget').contains(e.target)) chatModal.classList.remove('active'); });
+
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>

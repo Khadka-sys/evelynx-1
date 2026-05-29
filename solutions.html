@@ -6,7 +6,7 @@
     <title>Solutions | Evelynx Solutions Pvt. Ltd.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@600;700;800;900&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
@@ -14,15 +14,35 @@
             --text: #1e293b; --text-muted: #5b6e8c; --gold: #c5a352; --nepal-red: #C8102E;
             --nepal-blue: #003893; --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
             --shadow-md: 0 8px 28px rgba(0,0,0,0.08); --transition: all 0.3s ease;
+            --bg-primary: #ffffff; --bg-secondary: #f7f8fa;
+            --card-bg: #ffffff; --header-bg: rgba(11,26,45,0.96);
         }
+        [data-theme="dark"] {
+            --navy: #0f172a; --white: #1e293b; --off-white: #1a2235; --gray-light: #2d3748;
+            --text: #e2e8f0; --text-muted: #a0aec0; --gold: #c5a352;
+            --bg-primary: #0f172a; --bg-secondary: #1a2235;
+            --card-bg: #1e293b; --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 28px rgba(0,0,0,0.5);
+            --header-bg: rgba(15,23,42,0.98);
+        }
+
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); line-height: 1.6; }
-        .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1200px; margin:0 auto; padding:0 2rem; }
+        .text-center { text-align: center; }
 
-        /* HEADER */
-        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: rgba(11,26,45,0.96); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
+        #progressBar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 10000; width: 0; transition: width 0.1s linear; }
+
+        .header { position: fixed; top:0; left:0; right:0; z-index:1000; background: var(--header-bg); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,0.06); padding:0.8rem 0; transition:var(--transition); }
         .header.scrolled { background: var(--navy); box-shadow:0 4px 20px rgba(0,0,0,0.3); padding:0.6rem 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; }
         .logo { display:flex; align-items:center; gap:10px; text-decoration:none; font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:white; letter-spacing:-0.5px; }
@@ -34,7 +54,7 @@
         .nav-links .btn-contact:hover { background: #d4b66b; transform:translateY(-1px); }
         .dropdown { position:relative; }
         .dropdown > a::after { content:' ▾'; font-size:0.7rem; margin-left:4px; color:var(--gold); }
-        .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:white; border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
+        .dropdown-menu { display:none; position:absolute; top:100%; left:0; background:var(--card-bg); border-radius:6px; min-width:220px; box-shadow:0 10px 30px rgba(0,0,0,0.15); padding:0.5rem 0; z-index:999; }
         .dropdown:hover .dropdown-menu { display:block; }
         .dropdown-menu li { list-style:none; }
         .dropdown-menu li a { padding:0.7rem 1.4rem; color:var(--text); display:block; font-weight:500; font-size:0.9rem; }
@@ -44,22 +64,30 @@
         .mobile-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
         .mobile-toggle.active span:nth-child(2) { opacity:0; }
         .mobile-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+        .theme-toggle, .lang-toggle {
+            background: none; border: none; color: #ccd6e0; font-size:1.2rem;
+            cursor: pointer; transition:var(--transition); padding:0.3rem;
+        }
+        .theme-toggle:hover, .lang-toggle:hover { color: var(--gold); }
+        .lang-toggle { font-family: 'Mukta', sans-serif; font-weight: 600; font-size:1rem; }
 
-        /* PAGE CONTENT */
         .page-content { padding-top:8rem; padding-bottom:5rem; }
-        .solution-section { padding: 4rem 0; background: white; border-bottom: 1px solid var(--gray-light); }
+        .page-heading { text-align: center; margin-bottom: 4rem; }
+        .page-heading h2 { font-size:2.8rem; color:var(--navy); margin-bottom:1rem; }
+        .page-heading p { color:var(--text-muted); font-size:1.1rem; max-width:650px; margin:0 auto; }
+
+        .solution-section { padding: 4rem 0; background: white; border-bottom: 1px solid var(--gray-light); scroll-margin-top: 80px; }
         .solution-section:nth-child(even) { background: var(--off-white); }
         .solution-section .container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .solution-section .solution-text h2 { font-size: 2.2rem; color: var(--navy); margin-bottom: 1.5rem; }
-        .solution-section .solution-text p { color: var(--text-muted); margin-bottom: 1rem; }
-        .solution-section .solution-text ul { list-style: none; padding: 0; }
-        .solution-section .solution-text ul li { margin-bottom: 0.6rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
-        .solution-section .solution-text ul li::before { content: "✓"; color: var(--gold); font-weight: bold; margin-right: 0.3rem; }
+        .solution-text h2 { font-size: 2.2rem; color: var(--navy); margin-bottom: 1.5rem; }
+        .solution-text p { color: var(--text-muted); margin-bottom: 1rem; }
+        .solution-text ul { list-style: none; padding: 0; margin-bottom: 1.5rem; }
+        .solution-text ul li { margin-bottom: 0.6rem; color: var(--text-muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+        .solution-text ul li::before { content: "✓"; color: var(--gold); font-weight: bold; margin-right: 0.3rem; }
         .solution-icon-large { font-size: 8rem; text-align: center; color: var(--gold); opacity: 0.8; }
-        .cta-btn { display: inline-block; margin-top: 1.5rem; background: var(--gold); color: var(--navy); padding: 0.8rem 2rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: var(--transition); }
+        .cta-btn { display: inline-block; margin-top: 0.5rem; background: var(--gold); color: var(--navy); padding: 0.8rem 2rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: var(--transition); }
         .cta-btn:hover { background: #d4b66b; }
 
-        /* FOOTER */
         .footer { background:var(--navy); color:#b0c4de; padding:4rem 0 2rem; }
         .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:3rem; }
         .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; color:white; display:flex; align-items:center; gap:8px; }
@@ -71,9 +99,28 @@
         .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); margin-top:3rem; padding-top:1.5rem; text-align:center; font-size:0.85rem; }
         .footer-bottom span { color:var(--gold); font-weight:600; }
 
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); color: white; padding: 1rem 2rem; display: flex; justify-content: center; align-items: center; gap: 1rem; z-index: 9999; transform: translateY(100%); transition: transform 0.4s ease; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner button { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
+
+        .chat-widget { position: fixed; bottom: 2rem; left: 2rem; z-index: 999; }
+        .chat-btn { background: var(--gold); color: var(--navy); width: 60px; height: 60px; border-radius: 50%; border: none; font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .chat-btn:hover { transform: scale(1.1); }
+        .chat-modal { display: none; position: absolute; bottom: 70px; left: 0; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow-md); padding: 1.5rem; width: 280px; text-align: center; }
+        .chat-modal.active { display: block; }
+        .chat-modal a { display: block; margin: 0.8rem 0; color: var(--text); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+        .chat-modal a:hover { color: var(--gold); }
+        .chat-modal .close-chat { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
+
+        .mobile-call-bar { display: none; position: fixed; bottom: 0; left:0; right:0; background: var(--gold); color: var(--navy); text-align: center; padding: 0.8rem; font-weight: 700; z-index: 998; text-decoration: none; font-size: 1rem; }
+        @media (max-width: 768px) { .mobile-call-bar { display: block; } .chat-widget { bottom: 4rem; } }
+
+        .back-to-top { position:fixed; bottom:2rem; right:2rem; width:45px; height:45px; background:var(--gold); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.2); opacity:0; visibility:hidden; transition:0.3s; cursor:pointer; z-index:999; }
+        .back-to-top.show { opacity:1; visibility:visible; }
+
         @media (max-width:1024px) { .footer-grid { grid-template-columns:1fr 1fr; } }
         @media (max-width:768px) {
-            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background:var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
+            .nav-links { position:fixed; top:0; right:-100%; width:280px; height:100vh; background: var(--navy); flex-direction:column; padding:6rem 2rem 2rem; gap:1.5rem; transition:right 0.4s; border-left:1px solid rgba(255,255,255,0.1); }
             .nav-links.active { right:0; }
             .mobile-toggle { display:block; }
             .dropdown-menu { position:static; box-shadow:none; background:transparent; padding-left:1rem; }
@@ -85,202 +132,383 @@
     </style>
 </head>
 <body>
-    <!-- ==================== HEADER ==================== -->
+    <div id="progressBar"></div>
+
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="container header-inner">
             <a href="index.html" class="logo"><span class="logo-icon">E</span> EvelynX Solutions</a>
             <nav>
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="about.html" data-i18n="nav.about">About</a></li>
                     <li class="dropdown">
-                        <a href="solutions.html">Solutions</a>
+                        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#Cybersecurity & Data Protection">Cybersecurity & Data Protection</a></li>
-                            <li><a href="#Cloud Infrastructure & Migration">Cloud Infrastructure & Migration</a></li>
-                            <li><a href="#Managed IT & Helpdesk Support">Managed IT & Helpdesk Support</a></li>
-                            <li><a href="#Software Development & ERP">Software Development & ERP</a></li>
-                            <li><a href="#AI & Machine Learning">AI & Machine Learning</a></li>
-                            <li><a href="#Hardware Supply & Repair">Hardware Supply & Repair</a></li>
+                            <li><a href="solutions.html#business-continuity" data-i18n="nav.business-continuity">Business Continuity</a></li>
+                            <li><a href="solutions.html#cloud-solutions" data-i18n="nav.cloud-solutions">Cloud Solutions</a></li>
+                            <li><a href="solutions.html#cybersecurity" data-i18n="nav.cybersecurity">Cybersecurity</a></li>
+                            <li><a href="solutions.html#it-support" data-i18n="nav.it-support">IT Support Services</a></li>
+                            <li><a href="solutions.html#it-consulting" data-i18n="nav.it-consulting">IT Consulting</a></li>
+                            <li><a href="solutions.html#managed-it" data-i18n="nav.managed-it">Managed IT Services</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="services.html">Services</a>
+                        <a href="services.html" data-i18n="nav.services">Services</a>
                         <ul class="dropdown-menu">
-                            <!-- Quick jump links to categories -->
-                            <li><a href="#infrastructure">Infrastructure</a></li>
-                            <li><a href="#security">Security</a></li>
-                            <li><a href="#remote-workers">Remote Workers</a></li>
+                            <li><a href="services.html#infrastructure" data-i18n="nav.infrastructure">Infrastructure</a></li>
+                            <li><a href="services.html#security" data-i18n="nav.security">Security</a></li>
+                            <li><a href="services.html#remote-workers" data-i18n="nav.remote">Remote Workers</a></li>
                         </ul>
                     </li>
-                    <li><a href="why-us.html">Why Us</a></li>
-                    <li><a href="contact.html" class="btn-contact">Contact</a></li>
+                    <li><a href="why-us.html" data-i18n="nav.why-us">Why Us</a></li>
+                    <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">Contact</a></li>
+                    <li><button class="lang-toggle" id="langToggle">🇳🇵</button></li>
+                    <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
                 </ul>
                 <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
             </nav>
         </div>
     </header>
 
-    <!-- ==================== SOLUTIONS CONTENT ==================== -->
+    <!-- SOLUTIONS CONTENT -->
     <div class="page-content">
-        <!-- Cybersecurity -->
+        <div class="container">
+            <div class="page-heading" data-aos="fade-up">
+                <span style="color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase;" data-i18n="solutions.label">What We Solve</span>
+                <h2 data-i18n="solutions.title">Technology Solutions for Modern Business</h2>
+                <p data-i18n="solutions.subtitle">We don't just fix problems – we prevent them. Our proactive approach keeps your business running smoothly, securely, and efficiently.</p>
+            </div>
+        </div>
+
+        <!-- 1. Business Continuity -->
+        <section class="solution-section" id="business-continuity">
+            <div class="container">
+                <div class="solution-text" data-aos="fade-right">
+                    <h2 data-i18n="solutions.card1.title">Business Continuity</h2>
+                    <p data-i18n="solutions.card1.desc">Keep your operations running no matter what. Disaster recovery, automated backups, and failover systems ensure zero downtime.</p>
+                    <ul>
+                        <li data-i18n="solutions.card1.li1">Disaster recovery planning and implementation</li>
+                        <li data-i18n="solutions.card1.li2">Automated backup solutions with off‑site replication</li>
+                        <li data-i18n="solutions.card1.li3">Failover systems and redundant infrastructure</li>
+                        <li data-i18n="solutions.card1.li4">Regular testing and compliance documentation</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card1.cta">Plan Your Continuity</a>
+                </div>
+                <div class="solution-icon-large" data-aos="fade-left">🔄</div>
+            </div>
+        </section>
+
+        <!-- 2. Cloud Solutions -->
+        <section class="solution-section" id="cloud-solutions">
+            <div class="container">
+                <div class="solution-icon-large" data-aos="fade-right">☁️</div>
+                <div class="solution-text" data-aos="fade-left">
+                    <h2 data-i18n="solutions.card2.title">Cloud Solutions</h2>
+                    <p data-i18n="solutions.card2.desc">Flexible, secure cloud infrastructure – migration, optimization, and 24/7 management on AWS, Azure, and GCP.</p>
+                    <ul>
+                        <li data-i18n="solutions.card2.li1">Cloud migration and deployment (AWS, Azure, GCP)</li>
+                        <li data-i18n="solutions.card2.li2">Serverless architecture and containerization</li>
+                        <li data-i18n="solutions.card2.li3">Cloud backup and disaster recovery</li>
+                        <li data-i18n="solutions.card2.li4">Cost optimization and performance monitoring</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card2.cta">Start Cloud Journey</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Cybersecurity -->
         <section class="solution-section" id="cybersecurity">
             <div class="container">
                 <div class="solution-text" data-aos="fade-right">
-                    <h2>Cybersecurity & Data Protection</h2>
-                    <p>Protect your business from ransomware, phishing, and data breaches with our multi‑layered security stack.</p>
+                    <h2 data-i18n="solutions.card3.title">Cybersecurity</h2>
+                    <p data-i18n="solutions.card3.desc">Protect your business from ransomware, phishing, and data breaches with multi‑layered security and 24/7 monitoring.</p>
                     <ul>
-                        <li>24/7 threat monitoring and incident response</li>
-                        <li>Endpoint protection and advanced firewall management</li>
-                        <li>Security awareness training for your employees</li>
-                        <li>Compliance audits (ISO, PCI‑DSS, GDPR)</li>
+                        <li data-i18n="solutions.card3.li1">Endpoint protection and advanced firewall management</li>
+                        <li data-i18n="solutions.card3.li2">Vulnerability assessments and penetration testing</li>
+                        <li data-i18n="solutions.card3.li3">Security awareness training for employees</li>
+                        <li data-i18n="solutions.card3.li4">Compliance audits (ISO, PCI‑DSS, GDPR)</li>
                     </ul>
-                    <a href="contact.html" class="cta-btn">Get a Security Assessment</a>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card3.cta">Get a Security Assessment</a>
                 </div>
                 <div class="solution-icon-large" data-aos="fade-left">🔒</div>
             </div>
         </section>
 
-        <!-- Cloud -->
-        <section class="solution-section" id="cloud">
+        <!-- 4. IT Support Services -->
+        <section class="solution-section" id="it-support">
             <div class="container">
-                <div class="solution-icon-large" data-aos="fade-right">☁️</div>
+                <div class="solution-icon-large" data-aos="fade-right">🎧</div>
                 <div class="solution-text" data-aos="fade-left">
-                    <h2>Cloud Infrastructure & Migration</h2>
-                    <p>Move your workloads to the cloud seamlessly and run them efficiently.</p>
+                    <h2 data-i18n="solutions.card4.title">IT Support Services</h2>
+                    <p data-i18n="solutions.card4.desc">24/7 helpdesk with Nepali‑speaking engineers. Remote and on‑site support that keeps your team productive.</p>
                     <ul>
-                        <li>AWS, Azure, and Google Cloud expertise</li>
-                        <li>Serverless and containerized architectures</li>
-                        <li>Cost optimization and performance tuning</li>
-                        <li>Disaster recovery and backup solutions</li>
+                        <li data-i18n="solutions.card4.li1">24/7 multi‑channel helpdesk (phone, email, chat)</li>
+                        <li data-i18n="solutions.card4.li2">Remote and on‑site troubleshooting</li>
+                        <li data-i18n="solutions.card4.li3">Hardware and software break‑fix support</li>
+                        <li data-i18n="solutions.card4.li4">User onboarding and offboarding assistance</li>
                     </ul>
-                    <a href="contact.html" class="cta-btn">Start Cloud Journey</a>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card4.cta">Explore Support Plans</a>
                 </div>
             </div>
         </section>
 
-        <!-- Managed IT -->
+        <!-- 5. IT Consulting -->
+        <section class="solution-section" id="it-consulting">
+            <div class="container">
+                <div class="solution-text" data-aos="fade-right">
+                    <h2 data-i18n="solutions.card5.title">IT Consulting</h2>
+                    <p data-i18n="solutions.card5.desc">Align your technology with business goals. Strategic roadmaps, digital transformation, and vendor management.</p>
+                    <ul>
+                        <li data-i18n="solutions.card5.li1">Technology audits and strategic planning</li>
+                        <li data-i18n="solutions.card5.li2">Digital transformation roadmaps</li>
+                        <li data-i18n="solutions.card5.li3">Vendor selection and management</li>
+                        <li data-i18n="solutions.card5.li4">Project management and implementation</li>
+                    </ul>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card5.cta">Book a Consultation</a>
+                </div>
+                <div class="solution-icon-large" data-aos="fade-left">📊</div>
+            </div>
+        </section>
+
+        <!-- 6. Managed IT Services -->
         <section class="solution-section" id="managed-it">
             <div class="container">
-                <div class="solution-text" data-aos="fade-right">
-                    <h2>Managed IT & Helpdesk Support</h2>
-                    <p>Outsource your IT operations so you can focus on your core business.</p>
-                    <ul>
-                        <li>24/7 helpdesk with Nepali‑speaking engineers</li>
-                        <li>Proactive monitoring and maintenance</li>
-                        <li>Hardware and software procurement assistance</li>
-                        <li>On‑site and remote support</li>
-                    </ul>
-                    <a href="contact.html" class="cta-btn">Learn About Support Plans</a>
-                </div>
-                <div class="solution-icon-large" data-aos="fade-left">💻</div>
-            </div>
-        </section>
-
-        <!-- Software Development -->
-        <section class="solution-section" id="software-dev">
-            <div class="container">
-                <div class="solution-icon-large" data-aos="fade-right">📊</div>
+                <div class="solution-icon-large" data-aos="fade-right">🖥️</div>
                 <div class="solution-text" data-aos="fade-left">
-                    <h2>Software Development & ERP</h2>
-                    <p>Custom applications that streamline your operations and fuel growth.</p>
+                    <h2 data-i18n="solutions.card6.title">Managed IT Services</h2>
+                    <p data-i18n="solutions.card6.desc">Outsource your IT operations so you can focus on your core business. Proactive monitoring, maintenance, and support.</p>
                     <ul>
-                        <li>Web & mobile app development (React, Node.js, Python)</li>
-                        <li>ERP implementation (finance, HR, supply chain)</li>
-                        <li>SaaS platform development</li>
-                        <li>Agile project management and continuous delivery</li>
+                        <li data-i18n="solutions.card6.li1">24/7 system monitoring and alerting</li>
+                        <li data-i18n="solutions.card6.li2">Patch management and software updates</li>
+                        <li data-i18n="solutions.card6.li3">Helpdesk and end‑user support</li>
+                        <li data-i18n="solutions.card6.li4">IT budgeting and asset lifecycle management</li>
                     </ul>
-                    <a href="contact.html" class="cta-btn">Discuss Your Project</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- AI / ML -->
-        <section class="solution-section" id="ai-ml">
-            <div class="container">
-                <div class="solution-text" data-aos="fade-right">
-                    <h2>AI & Machine Learning</h2>
-                    <p>Turn your data into a competitive advantage with intelligent automation.</p>
-                    <ul>
-                        <li>Predictive analytics and forecasting</li>
-                        <li>Natural language processing (chatbots, sentiment analysis)</li>
-                        <li>Computer vision applications</li>
-                        <li>Custom ML model training and deployment</li>
-                    </ul>
-                    <a href="contact.html" class="cta-btn">Explore AI Possibilities</a>
-                </div>
-                <div class="solution-icon-large" data-aos="fade-left">🤖</div>
-            </div>
-        </section>
-
-        <!-- Hardware -->
-        <section class="solution-section" id="hardware">
-            <div class="container">
-                <div class="solution-icon-large" data-aos="fade-right">🛠️</div>
-                <div class="solution-text" data-aos="fade-left">
-                    <h2>Hardware Supply & Repair</h2>
-                    <p>One‑stop shop for all your hardware needs – from purchase to maintenance.</p>
-                    <ul>
-                        <li>Wholesale and retail of laptops, desktops, printers</li>
-                        <li>Genuine spare parts and warranty services</li>
-                        <li>Certified repair technicians</li>
-                        <li>Annual maintenance contracts for businesses</li>
-                    </ul>
-                    <a href="contact.html" class="cta-btn">Request a Quote</a>
+                    <a href="contact.html" class="cta-btn" data-i18n="solutions.card6.cta">Get a Managed IT Plan</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo"><span style="background:var(--gold); width:32px; height:32px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:var(--navy); font-weight:800; margin-right:8px;">E</span>EvelynX Solutions</div>
-                    <p style="margin-top:1rem;">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
+                    <p style="margin-top:1rem;" data-i18n="footer.description">A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.</p>
                 </div>
                 <div>
-                    <h4>Quick Links</h4>
+                    <h4 data-i18n="footer.quick">Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="solutions.html">Solutions</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html" data-i18n="footer.home">Home</a></li>
+                        <li><a href="about.html" data-i18n="footer.about">About</a></li>
+                        <li><a href="solutions.html" data-i18n="footer.solutions">Solutions</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Key Solutions</h4>
+                    <h4 data-i18n="footer.key">Key Solutions</h4>
                     <ul>
-                        <li><a href="solutions.html#cybersecurity">Cybersecurity</a></li>
-                        <li><a href="solutions.html#cloud">Cloud Migration</a></li>
-                        <li><a href="solutions.html#managed-it">Managed IT</a></li>
-                        <li><a href="solutions.html#software-dev">Software Dev</a></li>
+                        <li><a href="solutions.html#business-continuity" data-i18n="footer.business-continuity">Business Continuity</a></li>
+                        <li><a href="solutions.html#cloud-solutions" data-i18n="footer.cloud">Cloud</a></li>
+                        <li><a href="solutions.html#cybersecurity" data-i18n="footer.cybersecurity">Cybersecurity</a></li>
+                        <li><a href="solutions.html#it-support" data-i18n="footer.it-support">IT Support</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Legal</h4>
+                    <h4 data-i18n="footer.legal">Legal</h4>
                     <ul>
-                        <li><a href="#">Limited Liability Company</a></li>
-                        <li><a href="#">Registered in Nepal</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#" data-i18n="footer.ltd">Limited Liability Company</a></li>
+                        <li><a href="#" data-i18n="footer.reg">Registered in Nepal</a></li>
+                        <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> All rights reserved. | Kathmandu, Nepal</div>
+            <div class="footer-bottom">&copy; 2026 <span>Evelynx Solutions Pvt. Ltd.</span> | Kathmandu, Nepal</div>
         </div>
     </footer>
 
+    <!-- WIDGETS -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-btn" id="chatBtn">💬</button>
+        <div class="chat-modal" id="chatModal">
+            <button class="close-chat" id="closeChat">✕</button>
+            <h4 data-i18n="chat.title">How can we help?</h4>
+            <a href="https://wa.me/9779768969780" target="_blank" data-i18n="chat.whatsapp">💬 WhatsApp Chat</a>
+            <a href="mailto:info@evelynxsolutions.com" data-i18n="chat.email">✉️ Email Us</a>
+            <a href="tel:+977-9768969780" data-i18n="chat.call">📞 Call Now</a>
+        </div>
+    </div>
+    <a href="tel:+977-9768969780" class="mobile-call-bar" data-i18n="mobile.call">📞 Tap to Call – We're here 24/7</a>
+    <div class="cookie-banner" id="cookieBanner">
+        <span data-i18n="cookie.text">🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.</span>
+        <button id="acceptCookies" data-i18n="cookie.accept">Accept</button>
+    </div>
+    <div class="back-to-top" id="backToTop">↑</div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
-        window.addEventListener('scroll', () => document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50));
+        const translations = {
+            en: {
+                "nav.home": "Home", "nav.about": "About", "nav.solutions": "Solutions", "nav.services": "Services",
+                "nav.why-us": "Why Us", "nav.contact": "Contact",
+                "nav.business-continuity": "Business Continuity", "nav.cloud-solutions": "Cloud Solutions",
+                "nav.cybersecurity": "Cybersecurity", "nav.it-support": "IT Support Services",
+                "nav.it-consulting": "IT Consulting", "nav.managed-it": "Managed IT Services",
+                "nav.infrastructure": "Infrastructure", "nav.security": "Security", "nav.remote": "Remote Workers",
+                "solutions.label": "What We Solve", "solutions.title": "Technology Solutions for Modern Business",
+                "solutions.subtitle": "We don't just fix problems – we prevent them. Our proactive approach keeps your business running smoothly, securely, and efficiently.",
+                "solutions.card1.title": "Business Continuity", "solutions.card1.desc": "Keep your operations running no matter what. Disaster recovery, automated backups, and failover systems ensure zero downtime.",
+                "solutions.card1.li1": "Disaster recovery planning and implementation", "solutions.card1.li2": "Automated backup solutions with off‑site replication",
+                "solutions.card1.li3": "Failover systems and redundant infrastructure", "solutions.card1.li4": "Regular testing and compliance documentation",
+                "solutions.card1.cta": "Plan Your Continuity",
+                "solutions.card2.title": "Cloud Solutions", "solutions.card2.desc": "Flexible, secure cloud infrastructure – migration, optimization, and 24/7 management on AWS, Azure, and GCP.",
+                "solutions.card2.li1": "Cloud migration and deployment (AWS, Azure, GCP)", "solutions.card2.li2": "Serverless architecture and containerization",
+                "solutions.card2.li3": "Cloud backup and disaster recovery", "solutions.card2.li4": "Cost optimization and performance monitoring",
+                "solutions.card2.cta": "Start Cloud Journey",
+                "solutions.card3.title": "Cybersecurity", "solutions.card3.desc": "Protect your business from ransomware, phishing, and data breaches with multi‑layered security and 24/7 monitoring.",
+                "solutions.card3.li1": "Endpoint protection and advanced firewall management", "solutions.card3.li2": "Vulnerability assessments and penetration testing",
+                "solutions.card3.li3": "Security awareness training for employees", "solutions.card3.li4": "Compliance audits (ISO, PCI‑DSS, GDPR)",
+                "solutions.card3.cta": "Get a Security Assessment",
+                "solutions.card4.title": "IT Support Services", "solutions.card4.desc": "24/7 helpdesk with Nepali‑speaking engineers. Remote and on‑site support that keeps your team productive.",
+                "solutions.card4.li1": "24/7 multi‑channel helpdesk (phone, email, chat)", "solutions.card4.li2": "Remote and on‑site troubleshooting",
+                "solutions.card4.li3": "Hardware and software break‑fix support", "solutions.card4.li4": "User onboarding and offboarding assistance",
+                "solutions.card4.cta": "Explore Support Plans",
+                "solutions.card5.title": "IT Consulting", "solutions.card5.desc": "Align your technology with business goals. Strategic roadmaps, digital transformation, and vendor management.",
+                "solutions.card5.li1": "Technology audits and strategic planning", "solutions.card5.li2": "Digital transformation roadmaps",
+                "solutions.card5.li3": "Vendor selection and management", "solutions.card5.li4": "Project management and implementation",
+                "solutions.card5.cta": "Book a Consultation",
+                "solutions.card6.title": "Managed IT Services", "solutions.card6.desc": "Outsource your IT operations so you can focus on your core business. Proactive monitoring, maintenance, and support.",
+                "solutions.card6.li1": "24/7 system monitoring and alerting", "solutions.card6.li2": "Patch management and software updates",
+                "solutions.card6.li3": "Helpdesk and end‑user support", "solutions.card6.li4": "IT budgeting and asset lifecycle management",
+                "solutions.card6.cta": "Get a Managed IT Plan",
+                "chat.title": "How can we help?", "chat.whatsapp": "💬 WhatsApp Chat", "chat.email": "✉️ Email Us", "chat.call": "📞 Call Now",
+                "mobile.call": "📞 Tap to Call – We're here 24/7",
+                "cookie.text": "🍪 We use cookies to enhance your browsing experience. By continuing, you agree to our Privacy Policy.",
+                "cookie.accept": "Accept",
+                "footer.description": "A Nepal‑registered Private Limited company. All IT services — software, hardware, cloud, repair, training. Limited liability.",
+                "footer.quick": "Quick Links", "footer.key": "Key Solutions", "footer.legal": "Legal",
+                "footer.home": "Home", "footer.about": "About", "footer.solutions": "Solutions", "footer.contact": "Contact",
+                "footer.business-continuity": "Business Continuity", "footer.cloud": "Cloud", "footer.cybersecurity": "Cybersecurity", "footer.it-support": "IT Support",
+                "footer.ltd": "Limited Liability Company", "footer.reg": "Registered in Nepal", "footer.privacy": "Privacy Policy"
+            },
+            ne: {
+                "nav.home": "गृहपृष्ठ", "nav.about": "हाम्रोबारे", "nav.solutions": "समाधानहरू", "nav.services": "सेवाहरू",
+                "nav.why-us": "हामीलाई किन", "nav.contact": "सम्पर्क",
+                "nav.business-continuity": "व्यवसाय निरन्तरता", "nav.cloud-solutions": "क्लाउड समाधान",
+                "nav.cybersecurity": "साइबर सुरक्षा", "nav.it-support": "आईटी सहयोग सेवाहरू",
+                "nav.it-consulting": "आईटी परामर्श", "nav.managed-it": "प्रबन्धित आईटी सेवाहरू",
+                "nav.infrastructure": "पूर्वाधार", "nav.security": "सुरक्षा", "nav.remote": "दूरस्थ कार्यकर्ता",
+                "solutions.label": "हामी के समाधान गर्छौं", "solutions.title": "आधुनिक व्यवसायका लागि प्रविधि समाधान",
+                "solutions.subtitle": "हामी केवल समस्या समाधान गर्दैनौं – हामी तिनलाई रोक्छौं। हाम्रो सक्रिय दृष्टिकोणले तपाईंको व्यवसाय सहज, सुरक्षित र दक्ष रूपमा चलिरहन्छ।",
+                "solutions.card1.title": "व्यवसाय निरन्तरता", "solutions.card1.desc": "जे भए पनि आफ्नो कार्य सञ्चालन जारी राख्नुहोस्। विपद् पुन:प्राप्ति, स्वचालित ब्याकअप, र फेलओभर प्रणालीले शून्य डाउनटाइम सुनिश्चित गर्दछ।",
+                "solutions.card1.li1": "विपद् पुन:प्राप्ति योजना र कार्यान्वयन", "solutions.card1.li2": "अफ‑साइट प्रतिकृतिको साथ स्वचालित ब्याकअप समाधान",
+                "solutions.card1.li3": "फेलओभर प्रणाली र अनावश्यक पूर्वाधार", "solutions.card1.li4": "नियमित परीक्षण र अनुपालन दस्तावेजीकरण",
+                "solutions.card1.cta": "आफ्नो निरन्तरता योजना बनाउनुहोस्",
+                "solutions.card2.title": "क्लाउड समाधान", "solutions.card2.desc": "लचिलो, सुरक्षित क्लाउड पूर्वाधार – AWS, Azure, र GCP मा स्थानान्तरण, अनुकूलन, र २४/७ व्यवस्थापन।",
+                "solutions.card2.li1": "क्लाउड स्थानान्तरण र तैनाती (AWS, Azure, GCP)", "solutions.card2.li2": "सर्भररहित आर्किटेक्चर र कन्टेनराइजेसन",
+                "solutions.card2.li3": "क्लाउड ब्याकअप र विपद् पुन:प्राप्ति", "solutions.card2.li4": "लागत अनुकूलन र प्रदर्शन अनुगमन",
+                "solutions.card2.cta": "क्लाउड यात्रा सुरु गर्नुहोस्",
+                "solutions.card3.title": "साइबर सुरक्षा", "solutions.card3.desc": "मल्टी‑लेयर सुरक्षा र २४/७ अनुगमनको साथ ransomware, फिसिङ, र डेटा उल्लंघनबाट आफ्नो व्यवसाय जोगाउनुहोस्।",
+                "solutions.card3.li1": "एन्डपोइन्ट सुरक्षा र उन्नत फायरवाल व्यवस्थापन", "solutions.card3.li2": "कमजोरी मूल्याङ्कन र प्रवेश परीक्षण",
+                "solutions.card3.li3": "कर्मचारीहरूको लागि सुरक्षा जागरूकता तालिम", "solutions.card3.li4": "अनुपालन अडिट (ISO, PCI‑DSS, GDPR)",
+                "solutions.card3.cta": "सुरक्षा मूल्याङ्कन प्राप्त गर्नुहोस्",
+                "solutions.card4.title": "आईटी सहयोग सेवाहरू", "solutions.card4.desc": "नेपाली भाषी इन्जिनियरहरू सहित २४/७ हेल्पडेस्क। रिमोट र साइटमा समर्थन जसले तपाईंको टोलीलाई उत्पादक बनाइराख्छ।",
+                "solutions.card4.li1": "२४/७ बहु‑च्यानल हेल्पडेस्क (फोन, इमेल, च्याट)", "solutions.card4.li2": "रिमोट र साइटमा समस्या निवारण",
+                "solutions.card4.li3": "हार्डवेयर र सफ्टवेयर ब्रेक‑फिक्स समर्थन", "solutions.card4.li4": "प्रयोगकर्ता अनबोर्डिङ र अफबोर्डिङ सहायता",
+                "solutions.card4.cta": "समर्थन योजनाहरू अन्वेषण गर्नुहोस्",
+                "solutions.card5.title": "आईटी परामर्श", "solutions.card5.desc": "आफ्नो प्रविधिलाई व्यावसायिक लक्ष्यहरूसँग मिलाउनुहोस्। रणनीतिक योजना, डिजिटल रूपान्तरण, र विक्रेता व्यवस्थापन।",
+                "solutions.card5.li1": "प्रविधि अडिट र रणनीतिक योजना", "solutions.card5.li2": "डिजिटल रूपान्तरण खाका",
+                "solutions.card5.li3": "विक्रेता चयन र व्यवस्थापन", "solutions.card5.li4": "परियोजना व्यवस्थापन र कार्यान्वयन",
+                "solutions.card5.cta": "परामर्श बुक गर्नुहोस्",
+                "solutions.card6.title": "प्रबन्धित आईटी सेवाहरू", "solutions.card6.desc": "आफ्नो आईटी सञ्चालन आउटसोर्स गर्नुहोस् ताकि तपाईं आफ्नो मुख्य व्यवसायमा ध्यान केन्द्रित गर्न सक्नुहुन्छ। सक्रिय अनुगमन, मर्मत, र समर्थन।",
+                "solutions.card6.li1": "२४/७ प्रणाली अनुगमन र सूचना", "solutions.card6.li2": "प्याच व्यवस्थापन र सफ्टवेयर अद्यावधिक",
+                "solutions.card6.li3": "हेल्पडेस्क र अन्तिम‑प्रयोगकर्ता समर्थन", "solutions.card6.li4": "आईटी बजेट र सम्पत्ति जीवनचक्र व्यवस्थापन",
+                "solutions.card6.cta": "प्रबन्धित आईटी योजना प्राप्त गर्नुहोस्",
+                "chat.title": "हामी कसरी सहयोग गर्न सक्छौं?", "chat.whatsapp": "💬 व्हाट्सएप च्याट", "chat.email": "✉️ हामीलाई इमेल गर्नुहोस्", "chat.call": "📞 अहिले कल गर्नुहोस्",
+                "mobile.call": "📞 कल गर्न ट्याप गर्नुहोस् – हामी २४/७ यहाँ छौं",
+                "cookie.text": "🍪 हामी तपाईंको ब्राउजिङ अनुभव बढाउन कुकीहरू प्रयोग गर्छौं। जारी राखेर, तपाईं हाम्रो गोपनीयता नीतिमा सहमत हुनुहुन्छ।",
+                "cookie.accept": "स्वीकार गर्नुहोस्",
+                "footer.description": "नेपालमा दर्ता भएको प्राइभेट लिमिटेड कम्पनी। सबै आईटी सेवाहरू — सफ्टवेयर, हार्डवेयर, क्लाउड, मर्मत, प्रशिक्षण। सीमित दायित्व।",
+                "footer.quick": "द्रुत लिङ्कहरू", "footer.key": "मुख्य समाधानहरू", "footer.legal": "कानूनी",
+                "footer.home": "गृहपृष्ठ", "footer.about": "हाम्रोबारे", "footer.solutions": "समाधानहरू", "footer.contact": "सम्पर्क",
+                "footer.business-continuity": "व्यवसाय निरन्तरता", "footer.cloud": "क्लाउड", "footer.cybersecurity": "साइबर सुरक्षा", "footer.it-support": "आईटी सहयोग",
+                "footer.ltd": "सीमित दायित्व कम्पनी", "footer.reg": "नेपालमा दर्ता", "footer.privacy": "गोपनीयता नीति"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('lang', lang);
+            document.getElementById('langToggle').innerHTML = lang === 'ne' ? '🇬🇧' : '🇳🇵';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        const langToggle = document.getElementById('langToggle');
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+        langToggle.addEventListener('click', () => {
+            const currentLang = document.documentElement.getAttribute('lang');
+            setLanguage(currentLang === 'ne' ? 'en' : 'ne');
+        });
+
+        // Scroll progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById('progressBar').style.width = (winScroll / height) * 100 + '%';
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 500);
+        });
+
+        // Mobile menu
         const toggle = document.getElementById('mobileToggle');
         const nav = document.getElementById('navLinks');
         toggle.addEventListener('click', () => { toggle.classList.toggle('active'); nav.classList.toggle('active'); });
         document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => { toggle.classList.remove('active'); nav.classList.remove('active'); }));
+
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top:0, behavior: 'smooth' }));
+
+        // Cookie
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => cookieBanner.classList.add('show'), 1000);
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        // Dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '☀️';
+        }
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.getAttribute('data-theme') === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Chat widget
+        const chatBtn = document.getElementById('chatBtn');
+        const chatModal = document.getElementById('chatModal');
+        chatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
+        document.getElementById('closeChat').addEventListener('click', () => chatModal.classList.remove('active'));
+        window.addEventListener('click', (e) => { if (!document.getElementById('chatWidget').contains(e.target)) chatModal.classList.remove('active'); });
+
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>
